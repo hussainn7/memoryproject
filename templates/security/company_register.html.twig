@@ -1,0 +1,128 @@
+{% extends 'frontend/base-login.html.twig' %}
+
+{% block title %}Регистрация компании - Небесный Архив{% endblock %}
+
+{% block body_id 'company-register' %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <form class="form-horizontal m-t-20" action="{{ path('company_register') }}" method="post">
+                    <fieldset>
+                        <legend><h4><i class="fas fa-building" aria-hidden="true"></i> Регистрация ритуальной компании</h4></legend>
+
+                        <div class="mb-3">
+                            <p class="text-muted">
+                                Регистрация для ритуальных компаний: учёт баланса, генерация QR-кодов с оплатой, история генераций.
+                            </p>
+                        </div>
+
+                        {% for flash_error in app.flashes('error') %}
+                            <div class="alert alert-danger">{{ flash_error }}</div>
+                        {% endfor %}
+
+                        {{ form_start(form) }}
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    {{ form_widget(form.firstName, {'attr': {'class': 'form-control form-control-md', 'placeholder': 'Имя контактного лица'}}) }}
+                                </div>
+                                {{ form_errors(form.firstName) }}
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    {{ form_widget(form.lastName, {'attr': {'class': 'form-control form-control-md', 'placeholder': 'Фамилия контактного лица'}}) }}
+                                </div>
+                                {{ form_errors(form.lastName) }}
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3"><i class="fas fa-building"></i></span>
+                            </div>
+                            {{ form_widget(form.username, {'attr': {'class': 'form-control form-control-md', 'placeholder': 'Название компании'}}) }}
+                        </div>
+                        {{ form_errors(form.username) }}
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon4"><i class="mdi mdi-email"></i></span>
+                            </div>
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control form-control-md', 'placeholder': 'Email'}}) }}
+                        </div>
+                        {{ form_errors(form.email) }}
+
+                        {# Hide role field - set automatically #}
+                        {{ form_widget(form.role, {'attr': {'style': 'display: none'}}) }}
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="mdi mdi-shield-outline"></i></span>
+                                    </div>
+                                    {{ form_widget(form.newPassword.first, {'attr': {'class': 'form-control form-control-md', 'placeholder': 'Пароль'}}) }}
+                                    <label class="form-label">{{ form_label(form.newPassword.first) }}</label>
+                                </div>
+                                {{ form_errors(form.newPassword.first) }}
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="mdi mdi-shield-check-outline"></i></span>
+                                    </div>
+                                    {{ form_widget(form.newPassword.second, {'attr': {'class': 'form-control form-control-md', 'placeholder': 'Подтвердите пароль'}}) }}
+                                    <label class="form-label">{{ form_label(form.newPassword.second) }}</label>
+                                </div>
+                                {{ form_errors(form.newPassword.second) }}
+                            </div>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                            <label class="form-check-label" for="termsCheck">
+                                Я согласен с <a href="#" target="_blank">условиями использования</a>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-user-plus" aria-hidden="true"></i> Зарегистрировать компанию
+                        </button>
+
+                        {{ form_end(form) }}
+
+                        <div class="text-center mt-3">
+                            <p>Уже есть аккаунт? <a href="{{ path('security_login') }}">Войти</a></p>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Преимущества для компаний</h5>
+            <ul class="list-unstyled">
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Учёт баланса</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Генерация QR-кодов</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Оплата за услуги</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>История генераций</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Управление клиентами</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Статистика и отчёты</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

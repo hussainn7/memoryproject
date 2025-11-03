@@ -1,0 +1,45 @@
+# Типы файлов
+*.sql
+*.tar
+*.tgz
+*.gz
+*.zip
+*.rar
+*.bz2
+*.jar
+*.app
+*.exe
+*.[Mm][Pp]4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+Thumbs.db
+
+# Backup entities generated with doctrine:generate:entities command
+**/Entity/*~
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/img/
+/public_html
+/var/cache/
+/var/log/
+.env
+
+*.log*
+webpack.config.js
+
+# Editor directories and files
+/.mc
+/.vscode/*
+!.vscode/extensions.json
+/.idea
+/.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*_vhost.conf

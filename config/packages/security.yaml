@@ -1,0 +1,65 @@
+security:
+    enable_authenticator_manager: true
+    password_hashers:
+        # Our user class and the algorithm we'll use to encode passwords
+        # https://symfony.com/doc/current/security.html#c-encoding-the-user-s-password
+        App\Entity\User:
+            # Use native credential encoder
+            # This value auto-selects the best possible hashing algorithm
+            # (i.e. Sodium when available).
+            algorithm: auto
+#    password_hashers:
+#        FOS\UserBundle\Model\UserInterface: auto
+
+    providers:
+        database_users:
+            entity: { class: App\Entity\User, property: username }
+            #id: fos_user.user_provider.username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            login_link:
+                check_route: login_check
+                signature_properties: [ 'id' ]
+                failure_handler: App\Security\Authentication\AuthenticationErrorHandler
+                success_handler: App\Security\Authentication\AuthenticationSuccessHandler
+            # Enable the authenticator manager
+            lazy: true
+            access_denied_handler: App\Security\AccessDeniedHandler
+            form_login:
+                #provider: fos_userbundle
+                login_path: security_login
+                check_path: security_login
+                enable_csrf: true
+                default_target_path: admin_dashboard
+                #default_target_path: fos_user_profile_show
+                #always_use_default_target_path: true
+                #use_referer: true
+            logout:
+                path: security_logout
+                target: /
+                # Secure the logout against CSRF
+                csrf_parameter: logout
+               # csrf_token_generator: security.csrf.token_manager
+            entry_point: 'form_login'
+           # entry_point: App\Security\AuthenticationEntryPoint
+
+    access_control:
+        - { path: ^/dashboard,           roles: [ROLE_ADMIN,ROLE_MEMBER,ROLE_MANAGER]} #, requires_channel: https }
+        - { path: ^/login,           roles: PUBLIC_ACCESS} #, requires_channel: https }
+        - { path: ^/person,           roles: PUBLIC_ACCESS} #, requires_channel: https }
+        - { path: ^/person/edit,           roles: ROLE_MEMBER} #, requires_channel: https }
+        - { path: ^/person/code/^,           roles: PUBLIC_ACCESS} #, requires_channel: https }
+        - { path: ^/person/code,           roles: PUBLIC_ACCESS} #, requires_channel: https }
+        - { path: ^/admin/qr-code,           roles: ROLE_MANAGER} #, requires_channel: https }
+
+    role_hierarchy:
+        ROLE_MEMBER: ROLE_MEMBER
+        ROLE_MANAGER: ROLE_MEMBER
+        ROLE_ADMIN: ROLE_MANAGER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN

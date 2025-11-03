@@ -1,0 +1,334 @@
+{% extends 'front-base.html.twig' %}
+
+{% block body_id memory.thema.classname|default('bg-option-1') %}
+
+{% block body %}
+    <div class="container-fluid memory">
+
+        {% if memory.qrUrl is defined %}
+        <section class="container my-4">
+            <img src="{{ memory.qrUrl|e('html_attr') }}"
+                 alt="QR"
+                 class="memory-qr img-fluid d-block mx-auto">
+            {% if memory.qrNumber is defined %}
+            <div class="text-center mt-2 fw-semibold">
+                НЕБЕСНЫЙ-АРХИВ.РФ №: {{ memory.qrNumber }}
+            </div>
+            {% endif %}
+        </section>
+        {% endif %}
+
+        <div class="card gradient-info-bg3 m-t-0 m-b-0">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="photo ratio ratio-1x1 rounded overflow-hidden bg-dark-subtle">
+                                <img class="memory--photo w-100 h-100" src="{{ asset('img/' ~ memory.mainPhoto|default('')) }}" alt="memory" style="object-fit:cover">
+                            </div>
+                        </div>
+                        <div class="col-md-9 d-flex flex-column">
+                            <div class="memory--last-name text-uppercase display-4">
+                                {{ memory.lastName|default('') }}
+                            </div>
+                            <div class="memory--full-name display-4">
+                                <span class="memory--first-name">
+                                    {{ memory.firstName|default('') }}
+                                </span>
+                                <span class="memory--patronymic">
+                                    {{ memory.patronymic|default('') }}
+                                </span>
+                            </div>
+
+                            <div class="memory--live h6">
+                                {{ memory.dateBirth|date('d.m.Y') }} - {{ memory.dateDeads|date('d.m.Y') }}
+                            </div>
+
+                            <div class="memory-zg text-white text-uppercase mt-2 mb-2 h5">
+                                {{ 'label.data.pagememory'|trans }}
+                            </div>
+
+                            <div class="memory-nav d-flex align-items-start flex-column gap-2">
+                                {% if memory.wordsMemory is not empty %}
+                                    <a href="#wordsMemory" class="btn waves-effect waves-light btn-dark btn-sm">{{ 'label.data.wordsMemory'|trans }}</a>
+                                {% endif %}
+
+                                {% if memory.photoArhive is not empty %}
+                                    <a href="#photoArhive" class="btn waves-effect waves-light btn-dark btn-sm">{{ 'label.data.photoarhive'|trans }}</a>
+                                {% endif %}
+
+                                {% if memory.linksMemory is not empty %}
+                                    <a href="#linksMemory" class="btn waves-effect waves-light btn-dark btn-sm">{{ 'label.data.linksMemory'|trans }}</a>
+                                {% endif %}
+
+                                {% if memory.biography %}
+                                    <a href="#biography" class="btn waves-effect waves-light btn-dark btn-sm">{{ 'label.data.biography'|trans }}</a>
+                                {% endif %}
+
+                                {% if memory.burialPlace is not empty %}
+                                    <a href="#burialPlace" class="btn waves-effect waves-light btn-dark btn-sm">{{ 'label.data.burialPlace'|trans }}</a>
+                                {% endif %}
+                            </div>
+
+
+                            <div class="memory--epitaph">
+                                <figure class=" text-end text-white">
+                                    <blockquote class="blockquote">
+                                        <p>
+                                            {% if memory.epitaph %}
+                                                {{ memory.epitaph[0].text|default('') }}
+                                            {% endif %}
+                                        </p>
+                                    </blockquote>
+                                    <figcaption class="blockquote-footer text-white">
+                                        {% if memory.epitaph %}
+                                            {{ memory.epitaph[0].subText|default('') }}
+                                        {% endif %}
+                                    </figcaption>
+                                </figure>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if  memory.wordsMemory is not empty  %}
+            <div class="card w-100 my-4" id="wordsMemory">
+                <div class="card-header bg-secondary">
+                    <h4 class="mb-0 text-white text-uppercase">{{ 'label.data.wordsMemory'|trans }}</h4>
+                </div>
+                <div class="card-body p-4">
+                    {% for words in memory.wordsMemory %}
+                        <figure class="memory--words h6 text-end mt-3 mb-4">
+                            <blockquote class="blockquote">
+                                <p class="lead mb-2">
+                                    {% if words.words %}
+                                        {{ words.words|default('') }}
+                                    {% endif %}
+                                </p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer">
+                                {% if words.fromPeople %}
+                                    {{ words.fromPeople|default('') }}
+                                {% endif %}
+                            </figcaption>
+                        </figure>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+
+
+
+        {% if memory.photoArhive is not empty  %}
+            <div class="card w-100 my-4" id="photoArhive">
+                <div class="card-header bg-secondary">
+                    <h4 class="mb-0 text-white text-uppercase">{{ 'label.data.photoarhive'|trans }}</h4>
+                </div>
+                <div class="card-body p-4">
+
+                        <div id="carouselExample" class="carousel slide carousel-dark">
+                            <div class="carousel-inner">
+
+                                {% for photo in memory.photoArhive %}
+
+                                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                        <img src="{{ asset('img/' ~ photo.photo) }}"
+                                             class="memory--photoArhive-photo d-block" alt="photo">
+                                    </div>
+
+                                {% endfor %}
+
+                            </div>
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                    data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Далее</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                    data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden"> Назад </span></button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+
+        {% if  memory.linksMemory is not empty  %}
+            <div class="card w-100 my-4" id="linksMemory">
+                <div class="card-header bg-secondary">
+                    <h4 class="mb-0 text-white text-uppercase">{{ 'label.data.linksMemory'|trans }}</h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-start flex-column gap-2">
+                        {% for link in memory.linksMemory %}
+                            <a target="_blank" class="btn waves-effect waves-light btn-dark"
+                               href="{{ link.link|default('#') }}">{{ link.linkText|default('Адресс ссылки') }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if memory.biography %}
+            <div class="card w-100 my-4" id="biography">
+                <div class="card-header bg-secondary text-uppercase">
+                    <h4 class="mb-0 text-white">{{ 'label.data.biography'|trans }}</h4>
+                </div>
+                <div class="card-body p-4 memory--biography lead">
+                    {{ memory.biography|nl2br }}
+                </div>
+            </div>
+        {% endif %}
+
+
+        {% if memory.burialPlace is not empty %}
+            <div class="card w-100 my-4" id="burialPlace">
+                <div class="card-header bg-secondary text-uppercase">
+                    <h4 class="mb-0 text-white">{{ 'label.data.burialPlace'|trans }}</h4>
+                </div>
+                <div class="card-body p-4 memory--burialPlace">
+                    <div class="memory--burialPlace-map mb-3" id="mapBurialPlace"
+                         data-lng="{{ memory.burialPlace is not empty ? memory.burialPlace[0].lng : '37.554263' }}"
+                         data-lat="{{ memory.burialPlace is not empty ? memory.burialPlace[0].lat : '55.724596' }}"
+                         style="height: 400px; width: 100%; border: 1px solid #ddd; border-radius: 8px;"></div>
+                    <div class="mb-3">
+                        <button type="button" id="getDirectionsBtn" class="btn btn-primary btn-sm">
+                            <i class="fas fa-directions"></i> {{ 'label.burialPlace.get_directions'|trans }}
+                        </button>
+                        <button type="button" id="openInYandexBtn" class="btn btn-outline-secondary btn-sm ms-2">
+                            <i class="fas fa-external-link-alt"></i> {{ 'label.burialPlace.open_in_yandex'|trans }}
+                        </button>
+                    </div>
+                    <p class="lead font-bold mb-2">{{ 'label.data.burialPlace.adress'|trans }}</p>
+                    <p class="lead text-black memory--burialPlace-adress">{{ memory.burialPlace is not empty ? memory.burialPlace[0].adress : 'Адрес не указан' }}</p>
+                </div>
+            </div>
+        {% endif %}
+
+
+        <div class="card w-100 my-4">
+            <div class="card-header bg-secondary text-uppercase">
+                <h4 class="mb-0 text-white">{{ 'label.data.change_information'|trans }}</h4>
+            </div>
+            <div class="card-body p-4">
+                <a href="javascript:void(0)"
+                   class="btn waves-effect waves-light btn-dark js--send-change-memory-link"
+                    data-uuid="{{ uuid|default('')}}"
+                >{{ 'label.data.change_information_link'|trans }}</a>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            // Initialize burial place map on memory page
+            initBurialPlaceMap();
+        });
+
+        function initBurialPlaceMap() {
+            const mapElement = document.getElementById('mapBurialPlace');
+            if (!mapElement) return;
+
+            // Prevent multiple initializations
+            if (window.burialPlaceMapInitialized) {
+                console.log('Burial place map already initialized, skipping...');
+                return;
+            }
+
+            const lat = parseFloat(mapElement.getAttribute('data-lat'));
+            const lng = parseFloat(mapElement.getAttribute('data-lng'));
+
+            // Check if we have valid coordinates
+            const hasValidCoords = lat && lng && !isNaN(lat) && !isNaN(lng);
+            const defaultLat = 55.724596; // Moscow coordinates as default
+            const defaultLng = 37.554263;
+
+            const finalLat = hasValidCoords ? lat : defaultLat;
+            const finalLng = hasValidCoords ? lng : defaultLng;
+
+            // Clear any existing content in the map container
+            mapElement.innerHTML = '';
+
+            ymaps.ready(function () {
+                try {
+                    const map = new ymaps.Map('mapBurialPlace', {
+                        center: [finalLat, finalLng],
+                        zoom: hasValidCoords ? 15 : 10,
+                        controls: ['zoomControl', 'fullscreenControl']
+                    });
+
+                    if (hasValidCoords) {
+                        const placemark = new ymaps.Placemark([finalLat, finalLng], {
+                            hintContent: 'Место захоронения',
+                            balloonContent: '{{ memory.firstName }} {{ memory.lastName }}<br>{{ memory.burialPlace is not empty ? memory.burialPlace[0].adress : "Адрес не указан" }}'
+                        }, {
+                            preset: 'islands#redIcon',
+                            iconColor: '#dc3545'
+                        });
+
+                        map.geoObjects.add(placemark);
+                    }
+
+                    // Mark as initialized to prevent duplicates
+                    window.burialPlaceMapInitialized = true;
+
+                    // Get directions button - only show if we have valid burial coordinates
+                    if (hasValidCoords) {
+                        $('#getDirectionsBtn').on('click', function() {
+                            if (navigator.geolocation) {
+                                navigator.geolocation.getCurrentPosition(function(position) {
+                                    const userLat = position.coords.latitude;
+                                    const userLng = position.coords.longitude;
+
+                                    // Open Yandex Maps with directions
+                                    const url = `https://yandex.ru/maps/?rtext=${userLat},${userLng}~${finalLat},${finalLng}&rtt=auto`;
+                                    window.open(url, '_blank');
+                                }, function() {
+                                    // Fallback: just open the location
+                                    const url = `https://yandex.ru/maps/?ll=${finalLng},${finalLat}&z=16&pt=${finalLng},${finalLat}`;
+                                    window.open(url, '_blank');
+                                });
+                            } else {
+                                // Fallback: just open the location
+                                const url = `https://yandex.ru/maps/?ll=${finalLng},${finalLat}&z=16&pt=${finalLng},${finalLat}`;
+                                window.open(url, '_blank');
+                            }
+                        });
+
+                        // Open in Yandex Maps button
+                        $('#openInYandexBtn').on('click', function() {
+                            const url = `https://yandex.ru/maps/?ll=${finalLng},${finalLat}&z=16&pt=${finalLng},${finalLat}`;
+                            window.open(url, '_blank');
+                        });
+                    } else {
+                        // Hide buttons if no valid coordinates
+                        $('#getDirectionsBtn, #openInYandexBtn').hide();
+                    }
+
+                } catch (error) {
+                    console.error('Burial place map initialization failed:', error);
+                    $('#mapBurialPlace').html('<div class="alert alert-warning p-3"><i class="fas fa-exclamation-triangle me-2"></i>Карта недоступна</div>');
+                }
+            });
+        }
+    </script>
+
+
+
+
+
+{% endblock %}

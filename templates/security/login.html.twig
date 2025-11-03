@@ -1,0 +1,52 @@
+{% extends 'frontend/base-login.html.twig' %}
+
+{% block body_id 'login' %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <form class="form-horizontal m-t-20" action="{{ path('security_login') }}" method="post">
+                    <fieldset>
+                        <legend><h4><i class="fa fa-lock" aria-hidden="true"></i> {{ 'title.login'|trans }}</h4></legend>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account"></i></span>
+                            </div>
+                            <input type="text" value="{{ last_username }}" id="username" name="_username" class="form-control form-control-md" placeholder="{{ 'label.username'|trans }}" aria-label="{{ 'label.username'|trans }}" aria-describedby="basic-addon1">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon2"><i class="mdi mdi-shield-outline"></i></span>
+                            </div>
+                            <input type="password" id="password" name="_password" class="form-control form-control-md" placeholder="{{ 'label.credential'|trans }}" aria-label="{{ 'label.credential'|trans }}" aria-describedby="basic-addon1">
+                        </div>
+
+                        <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'action.sign_in'|trans }}
+                        </button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+
+    {# show_source_code(_self) #}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        {% if error %}
+        toastr.error('', '{{ error.messageKey|trans(error.messageData, 'security') }}');
+        {% endif %}
+    </script>
+{% endblock %}

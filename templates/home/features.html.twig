@@ -1,0 +1,263 @@
+{% extends 'front-base.html.twig' %}
+
+{% block title %}Возможности - Небесный Архив{% endblock %}
+
+{% block body_id 'features' %}
+
+{% block body %}
+    <!-- Hero Section -->
+    <div class="hero-section bg-primary text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-4">Возможности платформы</h1>
+                    <p class="lead mb-4">
+                        Полный набор инструментов для создания достойной цифровой памяти о близких
+                    </p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{{ path('homepage') }}" class="text-white text-decoration-none">Главная</a></li>
+                            <li class="breadcrumb-item active text-white-50" aria-current="page">Возможности</li>
+                        </ol>
+                    </nav>
+                    <div class="mt-4">
+                        <a href="{{ path('about') }}" class="btn btn-outline-light me-2">О нас</a>
+                        <a href="{{ path('security_login') }}" class="btn btn-light me-2">Войти</a>
+                        <a href="{{ path('company_register') }}" class="btn btn-outline-light">Для компаний</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Features -->
+    <section class="core-features py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-5 fw-bold text-primary mb-3">Основные возможности</h2>
+                    <p class="lead text-muted">
+                        Все необходимое для создания богатой цифровой памяти
+                    </p>
+                </div>
+            </div>
+
+            <!-- QR Codes Feature -->
+            <div class="row align-items-center g-5 mb-5">
+                <div class="col-lg-6">
+                    <div class="feature-content">
+                        <div class="feature-badge mb-3">
+                            <span class="badge bg-primary fs-6 px-3 py-2">QR-коды</span>
+                        </div>
+                        <h3 class="fw-bold mb-3">Уникальные QR-коды памяти</h3>
+                        <p class="text-muted mb-4">
+                            Каждый памятник получает персональный QR-код, который связывает физический
+                            памятник с цифровой страницей памяти. Просто отсканируйте код смартфоном
+                            и получите доступ к полной истории жизни человека.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Уникальный код для каждого памятника</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Печать на наклейках и табличках</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Работает с любым смартфоном</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Вечная ссылка без срока действия</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="feature-image text-center">
+                        <i class="fas fa-qrcode fa-8x text-primary opacity-25"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photos Feature -->
+            <div class="row align-items-center g-5 mb-5">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="feature-content">
+                        <div class="feature-badge mb-3">
+                            <span class="badge bg-success fs-6 px-3 py-2">Фотографии</span>
+                        </div>
+                        <h3 class="fw-bold mb-3">Богатые фотогалереи</h3>
+                        <p class="text-muted mb-4">
+                            Создавайте подробные фотоальбомы с важными моментами жизни,
+                            семейными фотографиями и воспоминаниями. Ваши близкие смогут
+                            увидеть не только портрет, но и полную историю жизни человека.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Неограниченное количество фото</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Организация по альбомам</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Высокое качество изображений</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Автоматическая оптимизация</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="feature-image text-center">
+                        <i class="fas fa-images fa-8x text-success opacity-25"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Feature -->
+            <div class="row align-items-center g-5 mb-5">
+                <div class="col-lg-6">
+                    <div class="feature-content">
+                        <div class="feature-badge mb-3">
+                            <span class="badge bg-info fs-6 px-3 py-2">Карты</span>
+                        </div>
+                        <h3 class="fw-bold mb-3">Интерактивные карты захоронений</h3>
+                        <p class="text-muted mb-4">
+                            Укажите точное место захоронения на интерактивной карте.
+                            Это поможет близким найти могилу даже через много лет,
+                            особенно в больших кладбищах.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Точное географическое положение</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Интерактивная карта</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Удобная навигация</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Подробный адрес</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="feature-image text-center">
+                        <i class="fas fa-map-marked-alt fa-8x text-info opacity-25"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Biography Feature -->
+            <div class="row align-items-center g-5 mb-5">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="feature-content">
+                        <div class="feature-badge mb-3">
+                            <span class="badge bg-warning fs-6 px-3 py-2">Биография</span>
+                        </div>
+                        <h3 class="fw-bold mb-3">Подробная биография и воспоминания</h3>
+                        <p class="text-muted mb-4">
+                            Расскажите полную историю жизни человека: его достижения,
+                            увлечения, важные события. Добавьте воспоминания от родных
+                            и близких, чтобы сохранить живую память.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Подробная биография</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Воспоминания от близких</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Важные даты и события</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Эпитафии и цитаты</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="feature-image text-center">
+                        <i class="fas fa-book-open fa-8x text-warning opacity-25"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Feature -->
+            <div class="row align-items-center g-5 mb-5">
+                <div class="col-lg-6">
+                    <div class="feature-content">
+                        <div class="feature-badge mb-3">
+                            <span class="badge bg-danger fs-6 px-3 py-2">Социальные сети</span>
+                        </div>
+                        <h3 class="fw-bold mb-3">Связь с социальными сетями</h3>
+                        <p class="text-muted mb-4">
+                            Поделитесь ссылками на страницы в социальных сетях,
+                            чтобы показать полную картину жизни человека.
+                            Это поможет сохранить цифровой след личности.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Ссылки на соцсети</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Профильные страницы</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Публикации и посты</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Цифровой архив</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="feature-image text-center">
+                        <i class="fas fa-share-alt fa-8x text-danger opacity-25"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Themes Feature -->
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="feature-content">
+                        <div class="feature-badge mb-3">
+                            <span class="badge bg-secondary fs-6 px-3 py-2">Персонализация</span>
+                        </div>
+                        <h3 class="fw-bold mb-3">Уникальные темы оформления</h3>
+                        <p class="text-muted mb-4">
+                            Выберите индивидуальную тему оформления для каждой страницы памяти.
+                            Это позволит отразить характер и предпочтения человека,
+                            сделать страницу по-настоящему персональной.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Множество тем оформления</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Индивидуальный дизайн</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Цветовые схемы</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Персонализация стиля</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="feature-image text-center">
+                        <i class="fas fa-palette fa-8x text-secondary opacity-25"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section bg-primary text-white py-5">
+        <div class="container text-center">
+            <h2 class="display-5 fw-bold mb-4">Попробуйте все возможности</h2>
+            <p class="lead mb-4">
+                Войдите в систему и начните создавать страницы памяти
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{{ path('security_login') }}" class="btn btn-light btn-lg px-5">
+                    <i class="fas fa-sign-in-alt me-2"></i>Войти
+                </a>
+                <a href="{{ path('company_register') }}" class="btn btn-primary btn-lg px-5">
+                    <i class="fas fa-building me-2"></i>Регистрация компании
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-content {
+            padding: 2rem 0;
+        }
+
+        .feature-badge .badge {
+            font-size: 0.875rem;
+        }
+
+        .feature-image {
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+{% endblock %}

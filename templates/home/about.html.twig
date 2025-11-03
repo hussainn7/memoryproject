@@ -1,0 +1,249 @@
+{% extends 'front-base.html.twig' %}
+
+{% block title %}О нас - Небесный Архив{% endblock %}
+
+{% block body_id 'about' %}
+
+{% block body %}
+    <!-- Hero Section -->
+    <div class="hero-section bg-primary text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-4">О Небесном Архиве</h1>
+                    <p class="lead mb-4">
+                        Мы создаем платформу, которая помогает семьям сохранить память о близких людях
+                        в цифровом формате навсегда.
+                    </p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{{ path('homepage') }}" class="text-white text-decoration-none">Главная</a></li>
+                            <li class="breadcrumb-item active text-white-50" aria-current="page">О нас</li>
+                        </ol>
+                    </nav>
+                    <div class="mt-4">
+                        <a href="{{ path('features') }}" class="btn btn-outline-light me-2">Возможности</a>
+                        <a href="{{ path('security_login') }}" class="btn btn-light me-2">Войти</a>
+                        <a href="{{ path('company_register') }}" class="btn btn-outline-light">Для компаний</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mission Section -->
+    <section class="mission-section py-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold text-primary mb-4">Наша миссия</h2>
+                    <p class="lead text-muted mb-4">
+                        В современном мире технологии развиваются стремительно, но память о близких
+                        остается вечной ценностью. Мы верим, что каждый человек заслуживает того,
+                        чтобы его история, воспоминания и достижения были сохранены для будущих поколений.
+                    </p>
+                    <p class="text-muted mb-4">
+                        Небесный Архив создан для того, чтобы помочь семьям создать цифровые памятники,
+                        которые будут жить вечно. Через QR-коды, размещенные на надгробиях,
+                        близкие смогут получить доступ к богатой истории жизни человека.
+                    </p>
+                    <a href="{{ path('security_login') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-heart me-2"></i>Создать память
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mission-image text-center">
+                        <i class="fas fa-infinity fa-6x text-primary opacity-25"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold text-primary mb-3">Наша история</h2>
+                    <p class="lead text-muted">Как появилась идея Небесного Архива</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="story-icon mb-3">
+                                <i class="fas fa-lightbulb fa-3x text-warning"></i>
+                            </div>
+                            <h5 class="card-title fw-bold mb-3">Идея</h5>
+                            <p class="card-text text-muted">
+                                Идея Небесного Архива родилась из личного опыта. Потеряв близкого человека,
+                                мы осознали, насколько важно сохранить не только память о человеке,
+                                но и рассказать его историю будущим поколениям.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="story-icon mb-3">
+                                <i class="fas fa-code fa-3x text-info"></i>
+                            </div>
+                            <h5 class="card-title fw-bold mb-3">Разработка</h5>
+                            <p class="card-text text-muted">
+                                Мы собрали команду единомышленников и начали создавать платформу,
+                                которая объединяет традиции почитания памяти с современными технологиями.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="story-icon mb-3">
+                                <i class="fas fa-users fa-3x text-success"></i>
+                            </div>
+                            <h5 class="card-title fw-bold mb-3">Сообщество</h5>
+                            <p class="card-text text-muted">
+                                Сегодня тысячи семей по всему миру используют Небесный Архив,
+                                чтобы сохранить память о своих близких и поделиться ею с другими.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="story-icon mb-3">
+                                <i class="fas fa-rocket fa-3x text-danger"></i>
+                            </div>
+                            <h5 class="card-title fw-bold mb-3">Будущее</h5>
+                            <p class="card-text text-muted">
+                                Мы продолжаем развивать платформу, добавляя новые возможности
+                                и улучшая пользовательский опыт для сохранения семейных воспоминаний.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold text-primary mb-3">Наши ценности</h2>
+                    <p class="lead text-muted">Принципы, которыми мы руководствуемся</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="value-card text-center p-4">
+                        <div class="value-icon mb-3">
+                            <i class="fas fa-shield-alt fa-4x text-primary"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Конфиденциальность</h5>
+                        <p class="text-muted">
+                            Мы гарантируем полную защиту личных данных и уважаем privacy каждой семьи
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="value-card text-center p-4">
+                        <div class="value-icon mb-3">
+                            <i class="fas fa-heart fa-4x text-danger"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Эмпатия</h5>
+                        <p class="text-muted">
+                            Мы понимаем чувствительность темы и относимся к каждой истории с уважением и заботой
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="value-card text-center p-4">
+                        <div class="value-icon mb-3">
+                            <i class="fas fa-infinity fa-4x text-success"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Вечность</h5>
+                        <p class="text-muted">
+                            Наши технологии обеспечивают сохранность данных на долгие годы
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section bg-primary text-white py-5">
+        <div class="container text-center">
+            <h2 class="display-5 fw-bold mb-4">Присоединяйтесь к нашему сообществу</h2>
+            <p class="lead mb-4">
+                Помогите сохранить память о близких и стать частью большого сообщества,
+                которое ценит семейные традиции и историю.
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{{ path('security_login') }}" class="btn btn-light btn-lg px-5">
+                    <i class="fas fa-sign-in-alt me-2"></i>Войти
+                </a>
+                <a href="{{ path('company_register') }}" class="btn btn-primary btn-lg px-5">
+                    <i class="fas fa-building me-2"></i>Регистрация компании
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .mission-section .mission-image {
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-icon, .value-icon {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-section .card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+
+        .value-card {
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+{% endblock %}
