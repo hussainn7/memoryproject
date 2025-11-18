@@ -1,0 +1,43 @@
+{
+    "name": "webinarium/datatables-bundle",
+    "description": "DataTables Symfony bundle",
+    "type": "symfony-bundle",
+    "keywords": [
+        "datatable",
+        "datatables"
+    ],
+    "homepage": "https://github.com/webinarium/DataTablesBundle",
+    "license": "MIT",
+    "support": {
+        "source": "https://github.com/webinarium/DataTablesBundle",
+        "wiki": "https://github.com/webinarium/DataTablesBundle/wiki",
+        "issues": "https://github.com/webinarium/DataTablesBundle/issues"
+    },
+    "require": {
+        "php": ">=7.2",
+        "ext-json": "*",
+        "psr/log": "^2.0",
+        "symfony/config": "^5.4|^6.0",
+        "symfony/dependency-injection": "^5.4|^6.0",
+        "symfony/http-foundation": "^5.4|^6.0",
+        "symfony/http-kernel": "^5.4|^6.0",
+        "symfony/validator": "^5.4|^6.0",
+        "symfony/yaml": "^5.4|^6.0"
+    },
+    "require-dev": {
+        "doctrine/annotations": "^1.0",
+        "friendsofphp/php-cs-fixer": "^3.13",
+        "phpunit/phpunit": "^9.5",
+        "symfony/cache": "^5.4|^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DataTables\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DataTables\\": "tests/"
+        }
+    }
+}

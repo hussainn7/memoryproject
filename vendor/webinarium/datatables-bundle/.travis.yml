@@ -1,0 +1,12 @@
+language: php
+
+php:
+    - 8.1
+
+install:
+    - composer --no-interaction install
+
+script:
+    - ./vendor/bin/phpunit --coverage-clover=coverage.clover
+    - composer global require scrutinizer/ocular:^1.9
+    - php ~/.config/composer/vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover

@@ -1,0 +1,36 @@
+<div class="modal fade" id="changeRequestModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Предложить изменения / Фото</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="changeRequestForm" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Ваше имя</label>
+                        <input class="form-control text-black" type="text" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Ваш e-mail</label>
+                        <input class="form-control text-black" type="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Сообщение</label>
+                        <textarea class="form-control text-black" name="message" rows="4" placeholder="Опишите изменения или приложите комментарий"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Фотографии (необязательно)</label>
+                        <input class="form-control" type="file" name="photos[]" multiple accept="image/*">
+                        <div class="form-text text-dark">До 5 изображений</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

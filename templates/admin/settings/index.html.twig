@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'admin_settings' %}
+
+{% block main %}
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title mb-4">Настройки системы</h2>
+
+                <form method="post" action="{{ path('admin_settings_index') }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="photo_extension_price" class="form-label">Цена расширения фото (₽)</label>
+                                <input type="number" 
+                                       class="form-control" 
+                                       id="photo_extension_price" 
+                                       name="photo_extension_price" 
+                                       value="{{ photo_extension_price }}" 
+                                       min="0" 
+                                       step="1"
+                                       required>
+                                <div class="form-text">Цена за расширенный доступ к загрузке фотографий (более 5 фото)</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save me-1"></i> Сохранить
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

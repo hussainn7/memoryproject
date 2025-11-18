@@ -1,0 +1,66 @@
+{% extends 'front-base.html.twig' %}
+
+{% block body %}
+<div class="container my-4">
+    <h2 class="mb-3">Заявки на изменения для моих страниц</h2>
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Страница</th>
+                <th>Отправитель</th>
+                <th>Email</th>
+                <th>Сообщение</th>
+                <th>Вложения</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for r in requests %}
+                {% if r is iterable %}
+                    <tr>
+                        <td>{{ r.createdAt ? r.createdAt|date('d.m.Y H:i') : '—' }}</td>
+                        <td><a href="{{ path('person_code', {uuid: r.uuid}) }}" target="_blank">{{ r.uuid }}</a></td>
+                        <td>{{ r.requesterName ?? '—' }}</td>
+                        <td>{{ r.requesterEmail ?? '—' }}</td>
+                        <td class="text-truncate" style="max-width: 300px;">{{ r.message ?? '—' }}</td>
+                        <td>
+                            {% if r.attachments and r.attachments|length %}
+                                {% for a in r.attachments %}
+                                    <a href="{{ a }}" target="_blank">Фото {{ loop.index }}</a>{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                —
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{ r.createdAt ? r.createdAt|date('d.m.Y H:i') : '—' }}</td>
+                        <td>{% if r.memory %}{{ r.memory.firstName }} {{ r.memory.lastName }}{% else %}—{% endif %}</td>
+                        <td>{{ r.requesterName }}</td>
+                        <td>{{ r.requesterEmail }}</td>
+                        <td class="text-truncate" style="max-width: 300px;">{{ r.message ?? '—' }}</td>
+                        <td>
+                            {% if r.attachments and r.attachments|length %}
+                                {% for a in r.attachments %}
+                                    <a href="{{ a }}" target="_blank">Фото {{ loop.index }}</a>{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                —
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="6" class="text-center text-muted py-4">Заявок пока нет</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+

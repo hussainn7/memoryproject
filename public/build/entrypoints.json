@@ -1,0 +1,50 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js-node_modules_moment_locale_af_js-node_modules_mome-74ecea.js",
+        "/build/vendors-node_modules_eonasdan_tempus-dominus_dist_js_tempus-dominus_esm_js-node_modules_boots-e6293d.js",
+        "/build/app.js"
+      ],
+      "css": [
+        "/build/vendors-node_modules_eonasdan_tempus-dominus_dist_js_tempus-dominus_esm_js-node_modules_boots-e6293d.css"
+      ]
+    },
+    "plugins": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js-node_modules_moment_locale_af_js-node_modules_mome-74ecea.js",
+        "/build/vendors-node_modules_bootstrap-tagsinput_dist_bootstrap-tagsinput_js-node_modules_bootstrap4--1b7f1d.js",
+        "/build/assets_extra-libs_sparkline_sparkline_js-assets_js_admin_js-assets_js_common_js-assets_js_cus-d41fe4.js",
+        "/build/plugins.js"
+      ]
+    },
+    "frontend-plugins": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js-node_modules_moment_locale_af_js-node_modules_mome-74ecea.js",
+        "/build/vendors-node_modules_bootstrap-tagsinput_dist_bootstrap-tagsinput_js-node_modules_bootstrap4--1b7f1d.js",
+        "/build/assets_extra-libs_sparkline_sparkline_js-assets_js_admin_js-assets_js_common_js-assets_js_cus-d41fe4.js",
+        "/build/frontend-plugins.js"
+      ]
+    },
+    "app-styles": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/vendors-node_modules_uppy_core_dist_style_min_css-node_modules_uppy_dashboard_dist_style_min_-170224.css",
+        "/build/app-styles.css"
+      ]
+    },
+    "pdf-styles": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/pdf-styles.css"
+      ]
+    }
+  }
+}

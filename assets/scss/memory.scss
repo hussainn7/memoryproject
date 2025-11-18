@@ -1,0 +1,1701 @@
+//bg-option-1
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+#bg-option-1 .gradient-info-bg3 {
+  background-image: url('../images/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#bg-option-1 .gredient-info-bg2 {
+  background: linear-gradient(148deg, #7c5e61 0%, rgba(255, 255, 255, 0) 50%);
+}
+
+#bg-option-1 .memory {
+  background: linear-gradient(148deg, #686868 0%, rgba(255, 255, 255, 0) 50%);
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  text-shadow: 3px 3px 3px #737373;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: radial-gradient(circle, rgba(120, 119, 198, 0.1) 0%, transparent 70%);
+    border-radius: 15px;
+    z-index: -1;
+  }
+
+  .actions {
+    margin-top: 20px;
+  }
+
+  .memory-nav {
+    margin-bottom: 10px;
+  }
+
+  .memory--last-name {
+    color: #fff;
+    text-shadow: 3px 3px 3px #737373;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, #fff, transparent);
+      border-radius: 2px;
+    }
+  }
+
+  .memory--full-name {
+    border-bottom: solid 5px #fff;
+    text-shadow: 3px 3px 3px #737373;
+    padding-bottom: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+  }
+
+  .memory--live {
+    text-align: right;
+    font-style: italic;
+    color: #fff;
+    text-shadow: 3px 3px 3px #737373;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .memory--epitaph {
+    margin-top: auto;
+    font-style: italic;
+    text-shadow: 3px 3px 3px #737373;
+    border-left: 4px solid #fff;
+    padding-left: 15px;
+    font-style: italic;
+    position: relative;
+
+    &::before {
+      content: '"';
+      font-size: 3em;
+      position: absolute;
+      left: -10px;
+      top: -20px;
+      color: rgba(255, 255, 255, 0.3);
+      font-family: serif;
+    }
+  }
+
+  .memory--photo {
+    max-width: 100%;
+    border-radius: 15px;
+    -webkit-box-shadow: 10px 15px 24px #525968;
+    -moz-box-shadow: 10px 15px 24px #525968;
+    box-shadow: 10px 15px 24px #525968;
+    border: 3px solid #fff;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      z-index: -1;
+    }
+  }
+
+  .memory--photoArhive-photo {
+    max-width: 250px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+    border-radius: 10px;
+    -webkit-box-shadow: 5px 8px 15px rgba(0,0,0,0.3);
+    -moz-box-shadow: 5px 8px 15px rgba(0,0,0,0.3);
+    box-shadow: 5px 8px 15px rgba(0,0,0,0.3);
+    border: 2px solid #fff;
+    transition: transform 0.3s ease;
+    object-fit: cover;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .memory--biography {
+    text-shadow: none;
+    line-height: 1.8;
+    text-align: justify;
+  }
+
+  .memory--words {
+    text-shadow: none;
+    font-style: italic;
+    border-right: 3px solid rgba(255, 255, 255, 0.3);
+    padding-right: 15px;
+  }
+
+  .memory--burialPlace-map {
+    height: 600px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .memory--burialPlace {
+    text-shadow: none;
+  }
+
+  .memory--burialPlace-adress {
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .font-bold {
+    font-weight: bold;
+  }
+
+}
+
+
+//bg-option-2
+
+@font-face {
+  font-family: 'bookmancregular';
+  src: url('fonts/bookmanclight-webfont.woff2') format('woff2'),
+  url('fonts/bookmanclight-webfont.woff') format('woff'),
+  url('fonts/bookmanclight-webfont.ttf') format('truetype'),
+  url('fonts/bookmanclight-webfont.svg#bookmancregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: '1isadora_m_boldregular';
+  src: url('fonts/ofont.ru_1isadora_m_bold-webfont.woff2') format('woff2'),
+  url('fonts/ofont.ru_1isadora_m_bold-webfont.woff') format('woff'),
+  url('fonts/ofont.ru_1isadora_m_bold-webfont.ttf') format('truetype'),
+  url('fonts/ofont.ru_1isadora_m_bold-webfont.svg#1isadora_m_boldregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#bg-option-2 .gradient-info-bg3 {
+  background-color: #222a34 !important;
+  border: none !important;
+}
+
+#bg-option-2 .gredient-info-bg2 {
+  //background: linear-gradient(148deg, #7c5e61 0%, rgba(255, 255, 255, 0) 50%);
+}
+body#bg-option-2{
+  background: #131d26;
+  color: #fff;
+}
+body#bg-option-2 #main-wrapper{
+  background: #131d26;
+}
+
+#bg-option-2 .memory {
+  background: linear-gradient(135deg, #131d26 0%, #1a2430 50%, #131d26 100%);
+  font-family: "bookmancregular", serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    right: -30px;
+    bottom: -30px;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(247, 202, 162, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(247, 202, 162, 0.08) 0%, transparent 50%);
+    border-radius: 25px;
+    z-index: -1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="luxury" patternUnits="userSpaceOnUse" width="40" height="40"><circle cx="20" cy="20" r="1" fill="rgba(247,202,162,0.03)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23luxury)"/></svg>');
+    opacity: 0.3;
+    z-index: -1;
+  }
+
+  &--first-name {
+    font-family: "1isadora_m_boldregular", serif;
+    color: #f7cca2;
+    text-shadow: 0 0 10px rgba(247, 202, 162, 0.3);
+  }
+
+  &--last-name {
+    font-family: "1isadora_m_boldregular", serif;
+    text-transform: initial !important;
+    color: #f7cca2 !important;
+    text-shadow: 0 0 15px rgba(247, 202, 162, 0.4);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, #f7cca2, #d4a574, transparent);
+      border-radius: 3px;
+      box-shadow: 0 0 10px rgba(247, 202, 162, 0.3);
+    }
+  }
+
+  &--patronymic {
+    font-family: "1isadora_m_boldregular", serif;
+    color: #f7cca2;
+    text-shadow: 0 0 8px rgba(247, 202, 162, 0.2);
+  }
+
+  .actions {
+    margin-top: 20px;
+  }
+
+  &--full-name {
+    border: none !important;
+    border-bottom: solid 5px #f7cca2 !important;
+    padding-bottom: 5px;
+    background: linear-gradient(135deg, rgba(247, 202, 162, 0.1), rgba(247, 202, 162, 0.05));
+    padding: 20px;
+    border-radius: 15px;
+    margin: 15px 0;
+    box-shadow: 0 0 20px rgba(247, 202, 162, 0.1);
+  }
+
+  &--live {
+    text-align: right;
+    color: #f7cca2 !important;
+    font-family: "bookmancregular", serif;
+    margin-top: 5px;
+    background: linear-gradient(135deg, rgba(247, 202, 162, 0.15), rgba(247, 202, 162, 0.08));
+    padding: 10px 20px;
+    border-radius: 25px;
+    display: inline-block;
+    text-shadow: 0 0 8px rgba(247, 202, 162, 0.3);
+    border: 1px solid rgba(247, 202, 162, 0.2);
+  }
+  .col-md-9{
+    border: none !important;
+  }
+  .mapboxgl-marker{
+    border:  none !important;
+  }
+
+
+
+  .btn-dark {
+    color: #f7cca2;
+    font-family: "bookmancregular", serif;
+    background-color: #222a34;
+    border-color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+
+  &--epitaph {
+    margin-top: auto;
+    font-family: "1isadora_m_boldregular", serif;
+
+  }
+
+  .memory-nav {
+    margin-bottom: 10px;
+  }
+
+  &--photo {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+
+  &--photoArhive-photo {
+    max-width: 350px;
+    margin: 10px auto;
+    border-radius: 5px;
+    -webkit-box-shadow: 10px 15px 24px #525968;
+    -moz-box-shadow: 10px 15px 24px #525968;
+    box-shadow: 10px 15px 24px #525968;
+  }
+
+  .bg-secondary {
+    background-color: #222a34 !important;
+    border: solid 1px #222a34;
+    border-radius: initial !important;
+    line-height: 1.2;
+    letter-spacing: 1.5px;
+    font-family: "bookmancregular", serif;
+
+    h4 {
+      font-weight: 300;
+    }
+  }
+
+  &--biography {
+    text-shadow: none;
+    text-align: center;
+  }
+
+  &--words {
+    text-shadow: none;
+    font-family: "1isadora_m_boldregular", serif;
+  }
+
+  &--burialPlace-map {
+    height: 600px;
+    @media (max-width: 768px) {
+      height: 300px;
+    }
+  }
+
+  &--burialPlace {
+    text-shadow: none;
+    border-bottom: none !important;
+  }
+
+
+
+  &--burialPlace-adress {
+    font-style: italic;
+  }
+
+  .card {
+    background: #131d26;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    @media (min-width: 1000px) {
+      border-right: solid 2px #f5caa1;
+      border-left: solid 2px #f5caa1;
+      border-bottom: solid 2px #f5caa1;
+    }
+
+    &:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card div:nth-child(2) {
+      border: solid 2px #f5caa1;
+      border-top: none;
+    }
+    #burialPlace .container {
+      border-right: solid 2px #f5caa1;
+      border-left: solid 2px #f5caa1;
+      border-bottom: solid 2px #f5caa1;
+    }
+  }
+
+  .font-bold {
+    font-weight: bold;
+  }
+  .blockquote-footer{
+    color: #fff;
+  }
+
+}
+
+
+//bg-option-3
+
+$bg-option-3-color1: #32432b;
+$bg-option-3-color2: #7b8154;
+$bg-option-3-color3: #fff;
+
+$bg-option-3-font1: 'pragmaticalightcbold';
+$bg-option-3-font2: 'aGroticRoughBold';
+
+@font-face {
+  font-family: 'pragmaticalightcbold';
+  src: url('fonts/pragmaticalightc_bold-webfont.woff2') format('woff2'),
+  url('fonts/pragmaticalightc_bold-webfont.woff') format('woff'),
+  url('fonts/pragmaticalightc_bold-webfont.ttf') format('truetype'),
+  url('fonts/pragmaticalightc_bold-webfont.svg#pragmaticalightcbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'aGroticRoughBold';
+  src: url('fonts/a_GroticRough_Bold.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#bg-option-3 .gradient-info-bg3 {
+  background-color: $bg-option-3-color1 !important;
+  border: none !important;
+}
+
+#bg-option-3 .gredient-info-bg2 {
+  //background: linear-gradient(148deg, #7c5e61 0%, rgba(255, 255, 255, 0) 50%);
+}
+body#bg-option-3{
+  background: $bg-option-3-color2;
+  color: #fff;
+}
+body#bg-option-3 #main-wrapper{
+  background: $bg-option-3-color2;
+}
+
+#bg-option-3 .memory {
+  background: linear-gradient(135deg, $bg-option-3-color2 0%, darken($bg-option-3-color2, 10%) 50%, $bg-option-3-color2 100%);
+  font-family: $bg-option-3-font1;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    right: -25px;
+    bottom: -25px;
+    background:
+      radial-gradient(ellipse at 30% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 30%, rgba(50, 67, 43, 0.1) 0%, transparent 50%);
+    border-radius: 30px;
+    z-index: -1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="leaves" patternUnits="userSpaceOnUse" width="60" height="60"><path d="M30,10 Q40,5 45,15 Q50,25 40,30 Q30,35 25,25 Q20,15 30,10 Z" fill="rgba(255,255,255,0.02)"/><circle cx="70" cy="40" r="2" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23leaves)"/></svg>');
+    opacity: 0.4;
+    z-index: -1;
+  }
+
+  &--first-name {
+    font-family: $bg-option-3-font1;
+    color: $bg-option-3-color3;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+
+  &--last-name {
+    font-family: $bg-option-3-font1;
+    text-transform: initial !important;
+    color: $bg-option-3-color3 !important;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 110px;
+      height: 3px;
+      background: linear-gradient(90deg, $bg-option-3-color3, lighten($bg-option-3-color2, 20%), transparent);
+      border-radius: 2px;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  &--patronymic {
+    font-family: $bg-option-3-font1;
+    color: $bg-option-3-color3;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+  }
+
+  .actions {
+    margin-top: 20px;
+  }
+
+  &--full-name {
+    border: none !important;
+    border-bottom: solid 5px $bg-option-3-color3 !important;
+    padding-bottom: 5px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+    padding: 18px;
+    border-radius: 20px;
+    margin: 12px 0;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    position: relative;
+
+    &::before {
+      content: '🌿';
+      position: absolute;
+      top: -8px;
+      right: 15px;
+      font-size: 16px;
+      opacity: 0.6;
+    }
+  }
+
+  &--live {
+    text-align: right;
+    color: $bg-option-3-color3 !important;
+    font-family: "bookmancregular", serif;
+    margin-top: 5px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+    padding: 8px 18px;
+    border-radius: 30px;
+    display: inline-block;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .col-md-9{
+    border: none !important;
+  }
+  .mapboxgl-marker{
+    border:  none !important;
+  }
+
+
+
+  .btn-dark {
+    color: $bg-option-3-color3;
+    font-family: $bg-option-3-font2;
+    background-color: $bg-option-3-color1;
+    border-color: $bg-option-3-color3;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+
+  &--epitaph {
+    margin-top: auto;
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+  }
+
+  .memory-nav {
+    margin-bottom: 10px;
+  }
+
+  &--photo {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+
+  &--photoArhive-photo {
+    max-width: 350px;
+    margin: 10px auto;
+    border-radius: 5px;
+  }
+
+  .bg-secondary {
+    background-color: $bg-option-3-color1 !important;
+    border: solid 1px $bg-option-3-color1;
+    border-radius: initial !important;
+    line-height: 1.2;
+    letter-spacing: 1.5px;
+    font-family: $bg-option-3-font2;
+
+    h4 {
+      font-weight: 300;
+    }
+  }
+
+  &--biography {
+    text-shadow: none;
+    text-align: center;
+  }
+
+  &--words {
+    text-shadow: none;
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+  }
+
+  &--burialPlace-map {
+    height: 600px;
+    @media (max-width: 768px) {
+      height: 300px;
+    }
+  }
+
+  &--burialPlace {
+    text-shadow: none;
+    border-bottom: none !important;
+  }
+
+
+
+  &--burialPlace-adress {
+    font-style: italic;
+  }
+
+  .card {
+    background: $bg-option-3-color2;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    @media (min-width: 1000px) {
+      border-right: solid 2px $bg-option-3-color3;
+      border-left: solid 2px $bg-option-3-color3;
+      border-bottom: solid 2px $bg-option-3-color3;
+    }
+
+    &:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card div:nth-child(2) {
+      border: solid 2px $bg-option-3-color3;
+      border-top: none;
+    }
+    #burialPlace .container {
+      border-right: solid 2px $bg-option-3-color3;
+      border-left: solid 2px $bg-option-3-color3;
+      border-bottom: solid 2px $bg-option-3-color3;
+    }
+  }
+
+  .font-bold {
+    font-weight: bold;
+  }
+  .blockquote-footer{
+    color: #fff;
+  }
+
+}
+
+
+//bg-option-4
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&display=swap');
+
+$bg-option-4-color1: #2f2013;
+$bg-option-4-color2: #b9996b;
+$bg-option-4-color3: #f5efe7;
+$bg-option-4-color4: #4c3523;
+
+body#bg-option-4 {
+  background: radial-gradient(circle at top, rgba(185, 153, 107, 0.25) 0%, transparent 55%), #1e1309;
+  color: $bg-option-4-color3;
+}
+
+body#bg-option-4 #main-wrapper {
+  background: transparent;
+}
+
+#bg-option-4 .gradient-info-bg3 {
+  background: linear-gradient(160deg, rgba(79, 55, 37, 0.95) 0%, rgba(46, 31, 21, 0.9) 60%, rgba(46, 31, 21, 0.7) 100%) !important;
+  border: none;
+}
+
+#bg-option-4 .gredient-info-bg2 {
+  background: linear-gradient(145deg, rgba(185, 153, 107, 0.35), transparent 60%);
+}
+
+#bg-option-4 .memory {
+  background: linear-gradient(135deg, rgba(47, 32, 19, 0.95) 0%, rgba(41, 28, 17, 0.85) 40%, rgba(32, 20, 12, 0.95) 100%);
+  font-family: 'Cormorant Garamond', serif;
+  color: $bg-option-4-color3;
+  position: relative;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -35px;
+    background: linear-gradient(140deg, rgba(185, 153, 107, 0.3) 0%, transparent 65%);
+    border-radius: 28px;
+    z-index: -1;
+  }
+
+  .card {
+    background: rgba(28, 18, 11, 0.85);
+    color: $bg-option-4-color3;
+    border: 1px solid rgba(185, 153, 107, 0.3);
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .btn-dark,
+  .btn-secondary {
+    background: linear-gradient(90deg, $bg-option-4-color2, lighten($bg-option-4-color2, 10%));
+    color: $bg-option-4-color1;
+    border: none;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .memory-nav {
+    gap: 0.75rem;
+
+    .btn {
+      font-family: 'Cormorant Garamond', serif;
+      border-radius: 999px;
+      padding: 0.35rem 1.35rem;
+      background: rgba(185, 153, 107, 0.12);
+      color: $bg-option-4-color2;
+      border: 1px solid rgba(185, 153, 107, 0.45);
+
+      &:hover {
+        background: rgba(185, 153, 107, 0.2);
+      }
+    }
+  }
+
+  .memory--photo {
+    border: 6px double rgba(185, 153, 107, 0.65);
+    border-radius: 16px;
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.45);
+  }
+
+  .memory--last-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    color: lighten($bg-option-4-color2, 15%);
+    letter-spacing: 0.08em;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 140px;
+      height: 2px;
+      background: linear-gradient(90deg, $bg-option-4-color2, transparent);
+    }
+  }
+
+  .memory--full-name {
+    border: none;
+    background: rgba(185, 153, 107, 0.08);
+    padding: 1.5rem;
+    border-radius: 14px;
+    box-shadow: inset 0 0 0 1px rgba(185, 153, 107, 0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+  }
+
+  .memory--live {
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 231, 0.85);
+    padding: 0.45rem 1.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(185, 153, 107, 0.3);
+    background: rgba(185, 153, 107, 0.12);
+  }
+
+  .memory--epitaph {
+    font-style: italic;
+    border-left: 3px solid rgba(185, 153, 107, 0.3);
+    padding-left: 1.25rem;
+    margin-top: 1.5rem;
+    color: rgba(245, 239, 231, 0.85);
+  }
+
+  .memory--words blockquote {
+    border-left: 3px solid rgba(185, 153, 107, 0.4);
+    padding-left: 1.25rem;
+  }
+
+  .memory--photoArhive-photo {
+    border-radius: 14px;
+    border: 1px solid rgba(185, 153, 107, 0.4);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  }
+
+  .bg-secondary {
+    background: linear-gradient(90deg, rgba(47, 32, 19, 0.95), rgba(36, 22, 12, 0.9));
+    border: none;
+    border-radius: 16px 16px 0 0;
+
+    h4 {
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+  }
+
+  .memory--burialPlace-map {
+    border-radius: 16px;
+    border: 1px solid rgba(185, 153, 107, 0.35);
+    overflow: hidden;
+  }
+
+  .memory--burialPlace-adress {
+    font-style: italic;
+    background: rgba(185, 153, 107, 0.12);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+}
+
+
+//bg-option-5
+$bg-option-5-color2: #f0f0e9;
+$bg-option-5-color1: #9d9d9e;
+$bg-option-5-color3: #fafaf7;
+
+$bg-option-5-font2: 'Circe';
+$bg-option-5-font1: 'Circe';
+
+@font-face {
+  font-family: 'Circe';
+  src: local('Circe Regular'), local('Circe-Regular'),
+  url('fonts/Circe-Regular.woff2') format('woff2'),
+  url('fonts/Circe-Regular.woff') format('woff'),
+  url('fonts/Circe-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+#bg-option-5 .gradient-info-bg3 {
+  background-color: $bg-option-5-color1 !important;
+  border: none !important;
+}
+
+#bg-option-5 .gredient-info-bg2 {
+  //background: linear-gradient(148deg, #7c5e61 0%, rgba(255, 255, 255, 0) 50%);
+}
+body#bg-option-5{
+  background: $bg-option-5-color2;
+  color: $bg-option-5-color3;
+}
+body#bg-option-5 #main-wrapper{
+  background: $bg-option-5-color2;
+}
+
+#bg-option-5 .memory {
+  background: linear-gradient(135deg, $bg-option-5-color2 0%, lighten($bg-option-5-color2, 2%) 50%, $bg-option-5-color2 100%);
+  font-family: $bg-option-5-font1;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background:
+      linear-gradient(45deg, transparent 40%, rgba(157, 157, 158, 0.05) 50%, transparent 60%),
+      linear-gradient(-45deg, transparent 40%, rgba(157, 157, 158, 0.03) 50%, transparent 60%);
+    border-radius: 20px;
+    z-index: -1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="geometric" patternUnits="userSpaceOnUse" width="50" height="50"><rect x="10" y="10" width="30" height="30" fill="none" stroke="rgba(157,157,158,0.03)" stroke-width="1"/><circle cx="25" cy="25" r="8" fill="none" stroke="rgba(157,157,158,0.02)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23geometric)"/></svg>');
+    opacity: 0.5;
+    z-index: -1;
+  }
+
+  &--first-name {
+    font-family: $bg-option-5-font1;
+    text-transform: uppercase;
+    color: $bg-option-5-color3;
+    letter-spacing: 1px;
+  }
+
+  &--last-name {
+    font-family: $bg-option-5-font1;
+    color: $bg-option-5-color3 !important;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, $bg-option-5-color1, $bg-option-5-color3, transparent);
+      border-radius: 1px;
+    }
+  }
+
+  &--patronymic {
+    font-family: $bg-option-5-font1;
+    text-transform: uppercase;
+    color: $bg-option-5-color3;
+    letter-spacing: 0.5px;
+  }
+
+  .actions {
+    margin-top: 20px;
+  }
+
+  &--full-name {
+    border: none !important;
+    border-bottom: solid 5px $bg-option-5-color2 !important;
+    padding-bottom: 5px;
+    background: linear-gradient(135deg, rgba(157, 157, 158, 0.08), rgba(157, 157, 158, 0.04));
+    padding: 16px;
+    border-radius: 12px;
+    margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(157, 157, 158, 0.1);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      width: 6px;
+      height: 6px;
+      background: $bg-option-5-color1;
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+  }
+
+  &--live {
+    text-align: right;
+    color: $bg-option-5-color3 !important;
+    font-family: $bg-option-5-font2, serif;
+    font-weight: bold;
+    margin-top: 5px;
+    background: linear-gradient(135deg, rgba(157, 157, 158, 0.1), rgba(157, 157, 158, 0.05));
+    padding: 6px 16px;
+    border-radius: 20px;
+    display: inline-block;
+    border: 1px solid rgba(157, 157, 158, 0.2);
+  }
+  .col-md-9{
+    border: none !important;
+  }
+  .mapboxgl-marker{
+    border:  none !important;
+  }
+
+
+
+  .btn-dark {
+    color: $bg-option-5-color3;
+    font-family: $bg-option-5-font2;
+    background-color: $bg-option-5-color1;
+    border-color: $bg-option-5-color3;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &--epitaph {
+    margin-top: auto;
+    font-family: $bg-option-5-font2;
+  }
+
+  .text-white{
+    color: $bg-option-5-color3 !important;
+  }
+
+  .memory-nav {
+    margin-bottom: 10px;
+  }
+
+  &--photo {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+
+  &--photoArhive-photo {
+    max-width: 350px;
+    margin: 10px auto;
+    border-radius: 5px;
+  }
+
+  .bg-secondary {
+    background-color: $bg-option-5-color1 !important;
+    border: solid 1px $bg-option-5-color1;
+    border-radius: initial !important;
+    line-height: 1.2;
+    letter-spacing: 1.5px;
+    font-family: $bg-option-5-font1;
+
+    h4 {
+      font-weight: 300;
+    }
+  }
+
+  &--biography {
+    text-shadow: none;
+    text-align: center;
+  }
+
+  &--words {
+    text-shadow: none;
+    font-family: $bg-option-5-font2;
+    font-style: italic;
+  }
+
+  &--burialPlace-map {
+    height: 600px;
+    @media (max-width: 768px) {
+      height: 300px;
+    }
+  }
+
+  &--burialPlace {
+    text-shadow: none;
+    border-bottom: none !important;
+  }
+
+
+
+  &--burialPlace-adress {
+    font-style: italic;
+  }
+
+  .card {
+    background: $bg-option-5-color2;
+    color: $bg-option-5-color1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    @media (min-width: 1000px) {
+      border-right: solid 2px $bg-option-5-color1;
+      border-left: solid 2px $bg-option-5-color1;
+      border-bottom: solid 2px $bg-option-5-color1;
+    }
+
+    &:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card div:nth-child(2) {
+      border: solid 2px $bg-option-5-color1;
+      border-top: none;
+    }
+    #burialPlace .container {
+      border-right: solid 2px $bg-option-5-color1;
+      border-left: solid 2px $bg-option-5-color1;
+      border-bottom: solid 2px $bg-option-5-color1;
+    }
+  }
+
+  .font-bold {
+    font-weight: bold;
+  }
+  .blockquote-footer{
+    color: $bg-option-5-color1;
+  }
+
+}
+
+//bg-option-7
+$bg-option-7-color1: #e4f2f9;
+$bg-option-7-color2: #a4bdc7;
+$bg-option-7-color3: #2f4458;
+
+$bg-option-7-font2: 'adventureregular';
+$bg-option-7-font1: 'officetypesansregular';
+
+@font-face {
+  font-family: 'adventureregular';
+  src: url('fonts/adventure-webfont.woff2') format('woff2'),
+  url('fonts/adventure-webfont.woff') format('woff'),
+  url('fonts/adventure-webfont.ttf') format('truetype'),
+  url('fonts/adventure-webfont.svg#adventureregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+@font-face {
+  font-family: 'officetypesansregular';
+  src: url('fonts/officetypesans-webfont.woff2') format('woff2'),
+  url('fonts/officetypesans-webfont.woff') format('woff'),
+  url('fonts/officetypesans-webfont.ttf') format('truetype'),
+  url('fonts/officetypesans-webfont.svg#officetypesansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+#bg-option-7 .gradient-info-bg3 {
+  background-color: $bg-option-7-color1 !important;
+  border: none !important;
+}
+
+#bg-option-7 .gredient-info-bg2 {
+  //background: linear-gradient(148deg, #7c5e61 0%, rgba(255, 255, 255, 0) 50%);
+}
+body#bg-option-7{
+  background: $bg-option-7-color2;
+  color: $bg-option-7-color3;
+}
+body#bg-option-7 #main-wrapper{
+  background: $bg-option-7-color2;
+}
+
+#bg-option-7 .memory {
+  background: linear-gradient(135deg, $bg-option-7-color2 0%, lighten($bg-option-7-color2, 5%) 50%, $bg-option-7-color2 100%);
+  font-family: $bg-option-7-font1;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    right: -25px;
+    bottom: -25px;
+    background:
+      radial-gradient(circle at 25% 75%, rgba(228, 242, 249, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 75% 25%, rgba(47, 88, 88, 0.1) 0%, transparent 40%);
+    border-radius: 20px;
+    z-index: -1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="waves" patternUnits="userSpaceOnUse" width="80" height="20"><path d="M0,10 Q20,0 40,10 T80,10 V20 H0 Z" fill="rgba(228,242,249,0.03)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23waves)"/></svg>');
+    opacity: 0.4;
+    z-index: -1;
+  }
+
+  &--first-name {
+    font-family: $bg-option-7-font2;
+    color: $bg-option-7-color3;
+    text-shadow: 0 0 6px rgba(47, 88, 88, 0.2);
+  }
+
+  &--last-name {
+    font-family: $bg-option-7-font2;
+    text-transform: initial !important;
+    color: $bg-option-7-color3 !important;
+    text-shadow: 0 0 10px rgba(47, 88, 88, 0.3);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, $bg-option-7-color3, $bg-option-7-color1, transparent);
+      border-radius: 2px;
+      box-shadow: 0 0 6px rgba(47, 88, 88, 0.2);
+    }
+  }
+
+  &--patronymic {
+    font-family: $bg-option-7-font2;
+    color: $bg-option-7-color3;
+    text-shadow: 0 0 4px rgba(47, 88, 88, 0.15);
+  }
+
+  .actions {
+    margin-top: 20px;
+  }
+
+  &--full-name {
+    border: none !important;
+    border-bottom: solid 5px $bg-option-7-color3 !important;
+    padding-bottom: 5px;
+    background: linear-gradient(135deg, rgba(228, 242, 249, 0.12), rgba(228, 242, 249, 0.06));
+    padding: 18px;
+    border-radius: 15px;
+    margin: 12px 0;
+    box-shadow: 0 0 12px rgba(47, 88, 88, 0.08);
+    position: relative;
+
+    &::before {
+      content: '⚓';
+      position: absolute;
+      top: -5px;
+      right: 18px;
+      font-size: 14px;
+      opacity: 0.5;
+    }
+  }
+
+  &--live {
+    text-align: right;
+    color: $bg-option-7-color3 !important;
+    font-family: $bg-option-7-font2, serif;
+    font-weight: bold;
+    margin-top: 5px;
+    background: linear-gradient(135deg, rgba(228, 242, 249, 0.15), rgba(228, 242, 249, 0.08));
+    padding: 8px 18px;
+    border-radius: 22px;
+    display: inline-block;
+    text-shadow: 0 0 5px rgba(47, 88, 88, 0.2);
+    border: 1px solid rgba(47, 88, 88, 0.15);
+  }
+  .col-md-9{
+    border: none !important;
+  }
+  .mapboxgl-marker{
+    border:  none !important;
+  }
+
+
+
+  .btn-dark {
+    color: $bg-option-7-color3;
+    font-family: $bg-option-7-font1;
+    background-color: $bg-option-7-color1;
+    border-color: $bg-option-7-color3;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &--epitaph {
+    margin-top: auto;
+    font-family: $bg-option-7-font2;
+  }
+
+  .text-white{
+    color: $bg-option-7-color3 !important;
+  }
+
+  .memory-nav {
+    margin-bottom: 10px;
+  }
+
+  &--photo {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+
+  &--photoArhive-photo {
+    max-width: 350px;
+    margin: 10px auto;
+    border-radius: 5px;
+  }
+
+  .bg-secondary {
+    background-color: $bg-option-7-color1 !important;
+    border: solid 1px $bg-option-7-color1;
+    border-radius: initial !important;
+    line-height: 1.2;
+    letter-spacing: 1.5px;
+    font-family: $bg-option-7-font1;
+
+    h4 {
+      font-weight: 300;
+    }
+  }
+
+  &--biography {
+    text-shadow: none;
+    text-align: center;
+  }
+
+  &--words {
+    text-shadow: none;
+    font-family: $bg-option-7-font2;
+    font-style: italic;
+  }
+
+  &--burialPlace-map {
+    height: 600px;
+    @media (max-width: 768px) {
+      height: 300px;
+    }
+  }
+
+  &--burialPlace {
+    text-shadow: none;
+    border-bottom: none !important;
+  }
+
+
+
+  &--burialPlace-adress {
+    font-style: italic;
+  }
+
+  .card {
+    background: $bg-option-7-color2;
+    color: $bg-option-7-color3;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    @media (min-width: 1000px) {
+      border-right: solid 2px $bg-option-7-color3;
+      border-left: solid 2px $bg-option-7-color3;
+      border-bottom: solid 2px $bg-option-7-color3;
+    }
+
+    &:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card div:nth-child(2) {
+      border: solid 2px $bg-option-7-color3;
+      border-top: none;
+    }
+    #burialPlace .container {
+      border-right: solid 2px $bg-option-7-color3;
+      border-left: solid 2px $bg-option-7-color3;
+      border-bottom: solid 2px $bg-option-7-color3;
+    }
+  }
+
+  .font-bold {
+    font-weight: bold;
+  }
+  .blockquote-footer{
+    color: $bg-option-7-color3;
+  }
+
+}
+
+
+//bg-option-6
+$bg-option-6-color2: #dad0cd;
+$bg-option-6-color1: #faf5f3;
+$bg-option-6-color3: #4a4746;
+
+$bg-option-6-font2: 'petersburgcitalic';
+$bg-option-6-font1: 'a_AntiqueTradyRgh';
+
+@font-face {
+  font-family: 'petersburgcitalic';
+  src: url('fonts/petersburgc_italic-webfont.woff2') format('woff2'),
+  url('fonts/petersburgc_italic-webfont.woff') format('woff'),
+  url('fonts/petersburgc_italic-webfont.ttf') format('truetype'),
+  url('fonts/petersburgc_italic-webfont.svg#petersburgcitalic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+@font-face {
+  font-family: 'a_AntiqueTradyRgh';
+  src: url('fonts/a_AntiqueTradyRgh.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+#bg-option-6 .gradient-info-bg3 {
+  background-color: $bg-option-6-color1 !important;
+  border: none !important;
+}
+
+#bg-option-6 .gredient-info-bg2 {
+  //background: linear-gradient(148deg, #7c5e61 0%, rgba(255, 255, 255, 0) 50%);
+}
+body#bg-option-6{
+  background: $bg-option-6-color2;
+  color: $bg-option-6-color3;
+}
+body#bg-option-6 #main-wrapper{
+  background: $bg-option-6-color2;
+}
+
+#bg-option-6 .memory {
+  background: linear-gradient(135deg, $bg-option-6-color2 0%, lighten($bg-option-6-color2, 3%) 50%, $bg-option-6-color2 100%);
+  font-family: $bg-option-6-font1;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background:
+      radial-gradient(circle at 15% 85%, rgba(250, 245, 243, 0.12) 0%, transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(74, 71, 70, 0.08) 0%, transparent 45%);
+    border-radius: 25px;
+    z-index: -1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="vintage" patternUnits="userSpaceOnUse" width="30" height="30"><circle cx="15" cy="15" r="1.5" fill="none" stroke="rgba(74,71,70,0.04)" stroke-width="0.5"/><path d="M5,5 L25,25 M25,5 L5,25" stroke="rgba(74,71,70,0.03)" stroke-width="0.3"/></pattern></defs><rect width="100%" height="100%" fill="url(%23vintage)"/></svg>');
+    opacity: 0.5;
+    z-index: -1;
+  }
+
+  &--first-name {
+    font-family: $bg-option-6-font2;
+    color: $bg-option-6-color3;
+    text-shadow: 0 0 5px rgba(74, 71, 70, 0.15);
+  }
+
+  &--last-name {
+    font-family: $bg-option-6-font2;
+    text-transform: initial !important;
+    color: $bg-option-6-color3 !important;
+    text-shadow: 0 0 8px rgba(74, 71, 70, 0.2);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 90px;
+      height: 2px;
+      background: linear-gradient(90deg, $bg-option-6-color3, darken($bg-option-6-color2, 10%), transparent);
+      border-radius: 1px;
+      box-shadow: 0 0 5px rgba(74, 71, 70, 0.15);
+    }
+  }
+
+  &--patronymic {
+    font-family: $bg-option-6-font2;
+    color: $bg-option-6-color3;
+    text-shadow: 0 0 4px rgba(74, 71, 70, 0.12);
+  }
+
+  .actions {
+    margin-top: 20px;
+  }
+
+  &--full-name {
+    border: none !important;
+    border-bottom: solid 5px $bg-option-6-color2 !important;
+    padding-bottom: 5px;
+    background: linear-gradient(135deg, rgba(250, 245, 243, 0.1), rgba(250, 245, 243, 0.05));
+    padding: 17px;
+    border-radius: 18px;
+    margin: 11px 0;
+    box-shadow: 0 0 10px rgba(74, 71, 70, 0.06);
+    position: relative;
+
+    &::before {
+      content: '📜';
+      position: absolute;
+      top: -6px;
+      right: 16px;
+      font-size: 12px;
+      opacity: 0.4;
+    }
+  }
+
+  &--live {
+    text-align: right;
+    color: $bg-option-6-color3 !important;
+    font-family: $bg-option-6-font2, serif;
+    font-weight: bold;
+    margin-top: 5px;
+    background: linear-gradient(135deg, rgba(250, 245, 243, 0.13), rgba(250, 245, 243, 0.07));
+    padding: 7px 17px;
+    border-radius: 24px;
+    display: inline-block;
+    text-shadow: 0 0 4px rgba(74, 71, 70, 0.18);
+    border: 1px solid rgba(74, 71, 70, 0.12);
+  }
+  .col-md-9{
+    border: none !important;
+  }
+  .mapboxgl-marker{
+    border:  none !important;
+  }
+
+
+
+  .btn-dark {
+    color: $bg-option-6-color3;
+    font-family: $bg-option-6-font1;
+    background-color: $bg-option-6-color1;
+    border-color: $bg-option-6-color3;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &--epitaph {
+    margin-top: auto;
+    font-family: $bg-option-6-font2;
+  }
+
+  .text-white{
+    color: $bg-option-6-color3 !important;
+  }
+
+  .memory-nav {
+    margin-bottom: 10px;
+  }
+
+  &--photo {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+
+  &--photoArhive-photo {
+    max-width: 350px;
+    margin: 10px auto;
+    border-radius: 5px;
+  }
+
+  .bg-secondary {
+    background-color: $bg-option-6-color1 !important;
+    border: solid 1px $bg-option-6-color1;
+    border-radius: initial !important;
+    line-height: 1.2;
+    letter-spacing: 1.5px;
+    font-family: $bg-option-6-font1;
+
+    h4 {
+      font-weight: 300;
+    }
+  }
+
+  &--biography {
+    text-shadow: none;
+    text-align: center;
+  }
+
+  &--words {
+    text-shadow: none;
+    font-family: $bg-option-6-font2;
+    font-style: italic;
+  }
+
+  &--burialPlace-map {
+    height: 600px;
+    @media (max-width: 768px) {
+      height: 300px;
+    }
+  }
+
+  &--burialPlace {
+    text-shadow: none;
+    border-bottom: none !important;
+  }
+
+
+
+  &--burialPlace-adress {
+    font-style: italic;
+  }
+
+  .card {
+    background: $bg-option-6-color2;
+    color: $bg-option-6-color3;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    @media (min-width: 1000px) {
+      border-right: solid 2px $bg-option-6-color3;
+      border-left: solid 2px $bg-option-6-color3;
+      border-bottom: solid 2px $bg-option-6-color3;
+    }
+
+    &:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card div:nth-child(2) {
+      border: solid 2px $bg-option-6-color3;
+      border-top: none;
+    }
+    #burialPlace .container {
+      border-right: solid 2px $bg-option-6-color3;
+      border-left: solid 2px $bg-option-6-color3;
+      border-bottom: solid 2px $bg-option-6-color3;
+    }
+  }
+
+  .font-bold {
+    font-weight: bold;
+  }
+  .blockquote-footer{
+    color: $bg-option-6-color3;
+  }
+
+}
+
+/* QR sizing so it never takes over the layout */
+.memory-qr {
+  max-width: 420px;   /* tune if you like */
+  width: 100%;
+  height: auto;
+}
+
+/* Ensure the top header card sits below the QR, not on top of it */
+.gradient-info-bg3 { position: relative; z-index: 0; }
+
+/* Add scroll margin for anchor sections */
+#wordsMemory,
+#photoArhive,
+#linksMemory,
+#biography,
+#burialPlace {
+  scroll-margin-top: 2rem;
+}
