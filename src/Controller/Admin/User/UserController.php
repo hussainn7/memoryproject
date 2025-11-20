@@ -3,8 +3,9 @@
 namespace App\Controller\Admin\User;
 
 use App\Entity\User;
-
+use App\Entity\QrCode;
 use App\Repository\UserRepository;
+use App\Repository\QrCodeRepository;
 
 use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
@@ -129,9 +130,31 @@ class UserController extends AbstractController
      */
     #[Route(path: '/{id}/delete', name: 'admin_user_delete', methods: ['POST', 'GET'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function delete(User $user): Response
+    public function delete(User $user, QrCodeRepository $qrCodeRepository): Response
     {
-
+        // Find all QR codes where this user is the client
+        $qrCodesAsClient = $qrCodeRepository->findBy(['client' => $user]);
+        
+        // Set client to NULL for all QR codes that reference this user as client
+        foreach ($qrCodesAsClient as $qrCode) {
+            $qrCode->setClient(null);
+            $this->manager->persist($qrCode);
+        }
+        
+        // Find all QR codes where this user is the creator (user field)
+        $qrCodesAsCreator = $qrCodeRepository->findBy(['user' => $user]);
+        
+        // Delete QR codes created by this user (since user field is NOT nullable)
+        foreach ($qrCodesAsCreator as $qrCode) {
+            $this->manager->remove($qrCode);
+        }
+        
+        // Flush all changes (client null updates and QR code deletions)
+        if (count($qrCodesAsClient) > 0 || count($qrCodesAsCreator) > 0) {
+            $this->manager->flush();
+        }
+        
+        // Now safe to delete the user
         $this->manager->remove($user);
         $this->manager->flush();
 

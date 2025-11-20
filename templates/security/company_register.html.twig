@@ -1,128 +1,464 @@
+{# templates/security/company_register.html.twig #}
 {% extends 'frontend/base-login.html.twig' %}
 
 {% block title %}Регистрация компании - Небесный Архив{% endblock %}
-
 {% block body_id 'company-register' %}
 
 {% block main %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <form class="form-horizontal m-t-20" action="{{ path('company_register') }}" method="post">
-                    <fieldset>
-                        <legend><h4><i class="fas fa-building" aria-hidden="true"></i> Регистрация ритуальной компании</h4></legend>
+<div class="na-cred-page">
+  <div class="na-cred-overlay"></div>
 
-                        <div class="mb-3">
-                            <p class="text-muted">
-                                Регистрация для ритуальных компаний: учёт баланса, генерация QR-кодов с оплатой, история генераций.
-                            </p>
-                        </div>
+  <div class="na-cred-content">
+    <div class="na-cred-panel">
+      {# logo + heading #}
+      <div class="na-cred-logo">
+        <div class="na-cred-logo__mark">НА</div>
+        <div class="na-cred-logo__text">Небесный Архив</div>
+      </div>
 
-                        {% for flash_error in app.flashes('error') %}
-                            <div class="alert alert-danger">{{ flash_error }}</div>
-                        {% endfor %}
+      <div class="na-cred-heading">
+        <span class="na-cred-heading__pill">РЕГИСТРАЦИЯ</span>
+      </div>
 
-                        {{ form_start(form) }}
+      {# flash errors #}
+      {% for flash_error in app.flashes('error') %}
+        <div class="na-cred-alert">{{ flash_error }}</div>
+      {% endfor %}
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
-                                    </div>
-                                    {{ form_widget(form.firstName, {'attr': {'class': 'form-control form-control-md', 'placeholder': 'Имя контактного лица'}}) }}
-                                </div>
-                                {{ form_errors(form.firstName) }}
-                            </div>
+      {{ form_start(form, {
+        attr: { class: 'na-cred-form', novalidate: 'novalidate' },
+        action: path('company_register')
+      }) }}
 
-                            <div class="col-md-6">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-user"></i></span>
-                                    </div>
-                                    {{ form_widget(form.lastName, {'attr': {'class': 'form-control form-control-md', 'placeholder': 'Фамилия контактного лица'}}) }}
-                                </div>
-                                {{ form_errors(form.lastName) }}
-                            </div>
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon3"><i class="fas fa-building"></i></span>
-                            </div>
-                            {{ form_widget(form.username, {'attr': {'class': 'form-control form-control-md', 'placeholder': 'Название компании'}}) }}
-                        </div>
-                        {{ form_errors(form.username) }}
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon4"><i class="mdi mdi-email"></i></span>
-                            </div>
-                            {{ form_widget(form.email, {'attr': {'class': 'form-control form-control-md', 'placeholder': 'Email'}}) }}
-                        </div>
-                        {{ form_errors(form.email) }}
-
-                        {# Hide role field - set automatically #}
-                        {{ form_widget(form.role, {'attr': {'style': 'display: none'}}) }}
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="mdi mdi-shield-outline"></i></span>
-                                    </div>
-                                    {{ form_widget(form.newPassword.first, {'attr': {'class': 'form-control form-control-md', 'placeholder': 'Пароль'}}) }}
-                                    <label class="form-label">{{ form_label(form.newPassword.first) }}</label>
-                                </div>
-                                {{ form_errors(form.newPassword.first) }}
-                            </div>
-                            <div class="col-md-6">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="mdi mdi-shield-check-outline"></i></span>
-                                    </div>
-                                    {{ form_widget(form.newPassword.second, {'attr': {'class': 'form-control form-control-md', 'placeholder': 'Подтвердите пароль'}}) }}
-                                    <label class="form-label">{{ form_label(form.newPassword.second) }}</label>
-                                </div>
-                                {{ form_errors(form.newPassword.second) }}
-                            </div>
-                        </div>
-
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="termsCheck" required>
-                            <label class="form-check-label" for="termsCheck">
-                                Я согласен с <a href="#" target="_blank">условиями использования</a>
-                            </label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-user-plus" aria-hidden="true"></i> Зарегистрировать компанию
-                        </button>
-
-                        {{ form_end(form) }}
-
-                        <div class="text-center mt-3">
-                            <p>Уже есть аккаунт? <a href="{{ path('security_login') }}">Войти</a></p>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
+      {# MAIN 3 FIELDS ONLY #}
+      <div class="na-cred-field">
+        <div class="na-cred-field__label">ЛОГИН</div>
+        <div class="na-cred-field__input">
+          {{ form_widget(form.username, {
+            attr: {
+              class: 'na-cred-input',
+              placeholder: 'Введите логин (будет использоваться для входа)'
+            }
+          }) }}
         </div>
+      </div>
+      {{ form_errors(form.username) }}
+
+      <div class="na-cred-field">
+        <div class="na-cred-field__label">ПАРОЛЬ</div>
+        <div class="na-cred-field__input">
+          {{ form_widget(form.newPassword.first, {
+            attr: {
+              class: 'na-cred-input',
+              placeholder: 'Придумайте пароль'
+            }
+          }) }}
+        </div>
+      </div>
+      {{ form_errors(form.newPassword.first) }}
+
+      <div class="na-cred-field">
+        <div class="na-cred-field__label">НОМЕР ТЕЛЕФОНА</div>
+        <div class="na-cred-field__input">
+          <input 
+            type="tel" 
+            class="na-cred-input na-cred-phone-input" 
+            placeholder="Например, 89001234567"
+            pattern="[0-9]*"
+            autocomplete="tel"
+            id="phone-number-input"
+          />
+        </div>
+      </div>
+
+      {# Hidden fields needed for backend - set default values to pass validation #}
+      {{ form_widget(form.email, { attr: { style: 'position:absolute;left:-9999px;width:1px;height:1px;', id: 'hidden-email-field', value: 'user@company.local' } }) }}
+      {{ form_widget(form.firstName, { attr: { style: 'position:absolute;left:-9999px;width:1px;height:1px;', value: 'Company' } }) }}
+      {{ form_widget(form.lastName, { attr: { style: 'position:absolute;left:-9999px;width:1px;height:1px;', value: 'User' } }) }}
+      {{ form_widget(form.role, { attr: { style: 'display:none' } }) }}
+      {{ form_widget(form.newPassword.second, { attr: { style: 'position:absolute;left:-9999px;width:1px;height:1px;' } }) }}
+
+      <div class="na-cred-terms">
+        <label>
+          <input type="checkbox" required>
+          <span>Я согласен с <a href="#" target="_blank">условиями использования</a></span>
+        </label>
+      </div>
+
+      <button type="submit" class="na-cred-submit">
+        ЗАВЕРШИТЬ РЕГИСТРАЦИЮ
+      </button>
+
+      {{ form_end(form) }}
+
+      <div class="na-cred-login-link">
+        Уже есть аккаунт? <a href="{{ path('security_login') }}">Войти</a>
+      </div>
     </div>
+  </div>
+</div>
 {% endblock %}
 
-{% block sidebar %}
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Преимущества для компаний</h5>
-            <ul class="list-unstyled">
-                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Учёт баланса</li>
-                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Генерация QR-кодов</li>
-                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Оплата за услуги</li>
-                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>История генераций</li>
-                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Управление клиентами</li>
-                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Статистика и отчёты</li>
-            </ul>
-        </div>
-    </div>
+{# Убираем старый сайдбар #}
+{% block sidebar %}{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style>
+    /* RESET DEFAULT AUTH LAYOUT JUST FOR THIS PAGE */
+    #company-register .auth-wrapper{
+      background:none !important;   /* kill startpage.jpg */
+      align-items:stretch;          /* full height, no vertical centering */
+      min-height:100vh;
+    }
+
+    #company-register .auth-box{
+      width:100%;
+      max-width:none;
+      margin:0;
+      padding:0;
+      background:transparent;
+      box-shadow:none;
+      border-radius:0;
+    }
+
+    #company-register #loginform{
+      width:100%;
+      height:100%;
+    }
+
+    /* ===== your existing registration styles below ===== */
+    :root{
+      --na-cred-blue:#21324b;
+      --na-cred-blue-dark:#101823;
+      --na-cred-outline:rgba(255,255,255,.75);
+      --na-cred-text-soft:rgba(255,255,255,.85);
+    }
+
+    /* ---------- PAGE BACKGROUND ---------- */
+    .na-cred-page{
+      position:relative;
+      min-height:100vh;
+      padding:0;
+      margin:0;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      background:url('{{ asset('images/credential-bg.png') }}') center center / cover no-repeat fixed;
+      color:#fff;
+      overflow:hidden;
+    }
+    .na-cred-overlay{
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 80% 40%, rgba(255,255,255,.1), transparent 60%),
+                 linear-gradient(to bottom right, rgba(0,0,0,.55), rgba(0,0,0,.3));
+      mix-blend-mode:multiply;
+      pointer-events:none;
+    }
+
+    .na-cred-content{
+      position:relative;
+      z-index:5;
+      width:100%;
+      max-width:1320px;
+      margin:0 auto;
+      padding:60px 40px;
+      display:flex;
+      justify-content:flex-end;
+      box-sizing:border-box;
+    }
+
+    .na-cred-panel{
+      width:100%;
+      max-width:430px;
+      margin-right:40px;
+    }
+
+    /* ---------- LOGO & HEADING ---------- */
+    .na-cred-logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:26px;
+    }
+    .na-cred-logo__mark{
+      border:1px solid var(--na-cred-outline);
+      border-radius:.4rem;
+      padding:.25rem .6rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      background:rgba(0,0,0,.35);
+    }
+    .na-cred-logo__text{
+      font-size:.85rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      opacity:.9;
+    }
+
+    .na-cred-heading{
+      margin-bottom:24px;
+    }
+    .na-cred-heading__pill{
+      display:inline-block;
+      padding:.75rem 2.6rem;
+      border-radius:999px;
+      font-size:1rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      background:radial-gradient(circle at 50% 0%, #5f8cff, #305399);
+      box-shadow:0 0 24px rgba(90,135,255,.9), 0 14px 32px rgba(0,0,0,.75);
+      border:1px solid rgba(255,255,255,.7);
+    }
+
+    /* ---------- FORM FIELDS ---------- */
+    .na-cred-form{
+      margin-top:10px;
+    }
+
+    .na-cred-alert{
+      background:rgba(255,72,72,.16);
+      border:1px solid rgba(255,120,120,.7);
+      border-radius:10px;
+      padding:.6rem .9rem;
+      font-size:.85rem;
+      margin-bottom:.75rem;
+    }
+
+    .na-cred-field{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.85);
+      background:rgba(0,0,0,.35);
+      box-shadow:0 8px 24px rgba(0,0,0,.7);
+      padding:.55rem 1.4rem;
+    }
+    .na-cred-field__label{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      white-space:nowrap;
+      color:var(--na-cred-text-soft);
+    }
+    .na-cred-field__input{
+      flex:1;
+      margin-left:1.2rem;
+    }
+
+    .na-cred-input{
+      width:100%;
+      border:none;
+      background:transparent;
+      color:#fff;
+      font-size:.95rem;
+      padding:.2rem 0;
+      outline:none;
+    }
+    .na-cred-input::placeholder{
+      color:rgba(255,255,255,.55);
+    }
+
+    /* extra fields block */
+    .na-cred-extra{
+      margin-top:18px;
+      margin-bottom:14px;
+      font-size:.8rem;
+      color:var(--na-cred-text-soft);
+    }
+    .na-cred-extra-row{
+      display:flex;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .na-cred-extra-row--single{
+      flex-direction:column;
+      gap:0;
+    }
+    .na-cred-extra-input{
+      flex:1;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.45);
+      background:rgba(0,0,0,.35);
+      padding:.4rem .7rem;
+      font-size:.8rem;
+      color:#fff;
+      outline:none;
+    }
+    .na-cred-extra-input::placeholder{
+      color:rgba(255,255,255,.55);
+    }
+
+    .na-cred-terms{
+      font-size:.8rem;
+      margin:8px 2px 18px;
+      color:var(--na-cred-text-soft);
+    }
+    .na-cred-terms input{
+      margin-right:.45rem;
+    }
+    .na-cred-terms a{
+      color:#aac7ff;
+      text-decoration:underline;
+    }
+
+    .na-cred-submit{
+      width:260px;
+      max-width:100%;
+      border:none;
+      border-radius:999px;
+      padding:.9rem 1rem;
+      margin-top:6px;
+      margin-bottom:10px;
+      font-size:.9rem;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      background:radial-gradient(circle at 50% 0%, #5f8cff, #305399);
+      color:#fff;
+      box-shadow:0 12px 28px rgba(0,0,0,.85), 0 0 22px rgba(90,135,255,.9);
+      cursor:pointer;
+    }
+    .na-cred-submit:hover{
+      transform:translateY(-1px);
+    }
+
+    .na-cred-login-link{
+      margin-top:8px;
+      font-size:.8rem;
+      color:var(--na-cred-text-soft);
+    }
+    .na-cred-login-link a{
+      color:#fff;
+      text-decoration:underline;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width:991.98px){
+      .na-cred-content{
+        justify-content:center;
+        padding:40px 20px;
+      }
+      .na-cred-panel{
+        margin-right:0;
+      }
+      .na-cred-page{
+        background-position:center top;
+      }
+    }
+    @media (max-width:575.98px){
+      .na-cred-heading__pill{
+        padding:.6rem 1.6rem;
+        font-size:.9rem;
+      }
+      .na-cred-field{
+        padding:.5rem 1rem;
+      }
+      .na-cred-field__label{
+        font-size:.68rem;
+      }
+    }
+  </style>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    (function() {
+      // Phone number input (custom field, not the email field)
+      const phoneInput = document.querySelector('#phone-number-input');
+      const hiddenEmailField = document.querySelector('#hidden-email-field');
+      
+      // Function to update email field from phone
+      function updateEmailFromPhone() {
+        if (phoneInput && hiddenEmailField) {
+          const phoneValue = phoneInput.value.replace(/\D/g, ''); // Remove non-digits
+          if (phoneValue) {
+            hiddenEmailField.value = phoneValue + '@company.local';
+          } else {
+            // Fallback: use username if phone is empty
+            const usernameField = document.querySelector('input[name="user_create[username]"]');
+            if (usernameField && usernameField.value) {
+              hiddenEmailField.value = usernameField.value + '@company.local';
+            } else {
+              hiddenEmailField.value = 'user@company.local';
+            }
+          }
+          // Trigger change event to ensure validation sees the value
+          hiddenEmailField.dispatchEvent(new Event('change', { bubbles: true }));
+          hiddenEmailField.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+      }
+      
+      // Update email when phone changes
+      if (phoneInput) {
+        phoneInput.addEventListener('input', updateEmailFromPhone);
+        phoneInput.addEventListener('blur', updateEmailFromPhone);
+      }
+      
+      // Sync password confirmation with first password field
+      const passwordFirst = document.querySelector('input[name="user_create[newPassword][first]"]');
+      const passwordSecond = document.querySelector('input[name="user_create[newPassword][second]"]');
+      
+      if (passwordFirst && passwordSecond) {
+        // Sync on input
+        passwordFirst.addEventListener('input', function() {
+          passwordSecond.value = this.value;
+          passwordSecond.dispatchEvent(new Event('change', { bubbles: true }));
+          passwordSecond.dispatchEvent(new Event('input', { bubbles: true }));
+        });
+      }
+      
+      // Ensure all fields are set before form submission
+      const form = document.querySelector('.na-cred-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          // Ensure password confirmation matches
+          if (passwordFirst && passwordSecond && passwordSecond.value !== passwordFirst.value) {
+            passwordSecond.value = passwordFirst.value;
+            passwordSecond.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+          
+          // Update email from phone before submission
+          updateEmailFromPhone();
+          
+          // Validate phone is filled
+          if (phoneInput && !phoneInput.value.trim()) {
+            e.preventDefault();
+            alert('Пожалуйста, введите номер телефона');
+            phoneInput.focus();
+            return false;
+          }
+          
+          // Validate username is filled
+          const usernameField = document.querySelector('input[name="user_create[username]"]');
+          if (usernameField && !usernameField.value.trim()) {
+            e.preventDefault();
+            alert('Пожалуйста, введите логин');
+            usernameField.focus();
+            return false;
+          }
+          
+          // Validate password is filled
+          if (passwordFirst && !passwordFirst.value.trim()) {
+            e.preventDefault();
+            alert('Пожалуйста, введите пароль');
+            passwordFirst.focus();
+            return false;
+          }
+          
+          // Small delay to ensure all values are set
+          setTimeout(function() {
+            // Form will submit normally if we reach here
+          }, 10);
+        });
+      }
+      
+      // Initialize email field on page load
+      updateEmailFromPhone();
+    })();
+  </script>
 {% endblock %}
