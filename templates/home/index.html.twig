@@ -8,8 +8,7 @@
   <div class="na-hero__topbar container">
     <div class="d-flex align-items-center gap-3">
       <div class="na-logo fw-semibold">
-        <span class="na-logo__mark">НА</span>
-        <span class="na-logo__text">Небесный Архив</span>
+        <img src="{{ asset('images/logo.png') }}" alt="Небесный Архив" class="na-logo__img" loading="eager" fetchpriority="high" decoding="sync">
       </div>
 
       <div class="na-lang-switch">
@@ -83,6 +82,9 @@
             alt=""
             class="na-angel__circle"
             aria-hidden="true"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
           >
 
           {# FRONT FOG FROM RIGHT #}
@@ -91,6 +93,8 @@
             alt=""
             class="na-angel__fog-front"
             aria-hidden="true"
+            loading="eager"
+            decoding="async"
           >
 
           {# main statue #}
@@ -98,6 +102,9 @@
             src="{{ asset('images/angel.png') }}"
             alt="Ангел хранитель"
             class="na-angel__img"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
           >
 
           {# fog at the bottom of hero #}
@@ -106,6 +113,8 @@
             alt=""
             class="na-angel__fog"
             aria-hidden="true"
+            loading="eager"
+            decoding="async"
           >
 
           
@@ -116,6 +125,8 @@
               src="{{ asset('images/play-button.png') }}"
               alt=""
               class="na-play__img"
+              loading="eager"
+              decoding="async"
             >
           </button>
         </div>
@@ -132,6 +143,8 @@
           src="{{ asset('images/option-two.png') }}"
           alt="Пример страницы памяти Небесного Архива"
           class="na-option-visual__img"
+          loading="eager"
+          decoding="async"
         >
       </div>
     </div>
@@ -149,11 +162,15 @@
               alt=""
               class="na-benefits-visual__circle"
               aria-hidden="true"
+              loading="eager"
+              decoding="async"
             >
             <img
               src="{{ asset('images/angel-three.png') }}"
               alt="Ангел с телефоном"
               class="na-benefits-visual__angel"
+              loading="eager"
+              decoding="async"
             >
           </div>
         </div>
@@ -228,7 +245,7 @@
               data-phone-prev
               aria-label="Предыдущий дизайн"
             >
-              <img src="{{ asset('images/left-right-button.png') }}" alt="" />
+              <img src="{{ asset('images/left-right-button.png') }}" alt="" loading="eager" decoding="async" />
             </button>
 
             <div class="na-phone-frame">
@@ -236,12 +253,16 @@
                 src="{{ asset('images/phone.png') }}"
                 alt="Смартфон"
                 class="na-phone-frame__img"
+                loading="eager"
+                decoding="async"
               >
               <img
                 src="{{ asset('images/1.png') }}"
                 alt="Превью страницы памяти"
                 class="na-phone-preview"
                 data-phone-preview
+                loading="eager"
+                decoding="async"
               >
             </div>
 
@@ -251,7 +272,7 @@
               data-phone-next
               aria-label="Следующий дизайн"
             >
-              <img src="{{ asset('images/left-right-button.png') }}" alt="" />
+              <img src="{{ asset('images/left-right-button.png') }}" alt="" loading="eager" decoding="async" />
             </button>
           </div>
         </div>
@@ -289,6 +310,8 @@
         src="{{ asset('images/contacts.png') }}"
         alt="Контактные данные и публичная оферта"
         class="na-footer-card"
+        loading="eager"
+        decoding="async"
       >
     </div>
   </section>
@@ -296,6 +319,20 @@
 
 {% block stylesheets %}
   {{ parent() }}
+  {# Aggressive preload for instant image display #}
+  <link rel="preload" as="image" href="{{ asset('images/logo.png') }}" fetchpriority="high">
+  <link rel="preload" as="image" href="{{ asset('images/angel.png') }}" fetchpriority="high">
+  <link rel="preload" as="image" href="{{ asset('images/circle.png') }}" fetchpriority="high">
+  <link rel="preload" as="image" href="{{ asset('images/front-fog.png') }}">
+  <link rel="preload" as="image" href="{{ asset('images/bottom-fog.png') }}">
+  <link rel="preload" as="image" href="{{ asset('images/option-two.png') }}">
+  <link rel="preload" as="image" href="{{ asset('images/circle-three.png') }}">
+  <link rel="preload" as="image" href="{{ asset('images/angel-three.png') }}">
+  <link rel="preload" as="image" href="{{ asset('images/phone.png') }}">
+  <link rel="preload" as="image" href="{{ asset('images/1.png') }}">
+  <link rel="preload" as="image" href="{{ asset('images/play-button.png') }}">
+  <link rel="preload" as="image" href="{{ asset('images/left-right-button.png') }}">
+  <link rel="preload" as="image" href="{{ asset('images/contacts.png') }}">
   <style>
     :root{
       --na-blue-1:#314664;
@@ -334,6 +371,24 @@
       padding:18px 0 10px;
       position:relative;
       z-index:20;
+    }
+
+    .na-logo{
+      display:flex;
+      align-items:center;
+    }
+    .na-logo__img{
+      height:auto;
+      max-height:80px;
+      width:auto;
+      max-width:200px;
+      display:block;
+      image-rendering:auto;
+      content-visibility:auto;
+    }
+    img{
+      image-rendering:auto;
+      will-change:auto;
     }
 
     .na-logo__mark{
@@ -681,7 +736,7 @@
         margin-bottom:32px;
       }
       .na-angel{ min-height:520px; }
-      .na-angel__circle{ top:8%; right:16%; }
+      .na-angel__circle{ top:1%; right:16%; }
       .na-badge{ bottom:17%; left:10%; width:115px; height:115px; }
       .na-badge__center{ font-size:22px; }
       .na-play{ top:21%; right:15%; width:64px; height:64px; }

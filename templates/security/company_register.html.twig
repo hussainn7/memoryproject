@@ -12,8 +12,7 @@
     <div class="na-cred-panel">
       {# logo + heading #}
       <div class="na-cred-logo">
-        <div class="na-cred-logo__mark">НА</div>
-        <div class="na-cred-logo__text">Небесный Архив</div>
+        <img src="{{ asset('images/logo.png') }}" alt="Небесный Архив" class="na-cred-logo__img" loading="eager" fetchpriority="high" decoding="sync">
       </div>
 
       <div class="na-cred-heading">
@@ -104,6 +103,9 @@
 
 {% block stylesheets %}
   {{ parent() }}
+  {# Aggressive preload for instant image display #}
+  <link rel="preload" as="image" href="{{ asset('images/logo.png') }}" fetchpriority="high">
+  <link rel="preload" as="image" href="{{ asset('images/credential-bg.png') }}" fetchpriority="high">
   <style>
     /* RESET DEFAULT AUTH LAYOUT JUST FOR THIS PAGE */
     #company-register .auth-wrapper{
@@ -144,7 +146,7 @@
       display:flex;
       align-items:center;
       justify-content:flex-end;
-      background:url('{{ asset('images/credential-bg.png') }}') center center / cover no-repeat fixed;
+      background:url('{{ asset('images/credential-bg.png') }}') center center / cover no-repeat;
       color:#fff;
       overflow:hidden;
     }
@@ -179,22 +181,14 @@
     .na-cred-logo{
       display:flex;
       align-items:center;
-      gap:12px;
       margin-bottom:26px;
     }
-    .na-cred-logo__mark{
-      border:1px solid var(--na-cred-outline);
-      border-radius:.4rem;
-      padding:.25rem .6rem;
-      font-weight:700;
-      letter-spacing:.08em;
-      background:rgba(0,0,0,.35);
-    }
-    .na-cred-logo__text{
-      font-size:.85rem;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      opacity:.9;
+    .na-cred-logo__img{
+      height:auto;
+      max-height:60px;
+      width:auto;
+      max-width:180px;
+      display:block;
     }
 
     .na-cred-heading{

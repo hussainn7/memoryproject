@@ -65,6 +65,32 @@ class SecurityController extends AbstractController
             $user = $form->getData();
             $password = $form->get('newPassword')->getData();
 
+            // Generate unique email if it ends with @company.local
+            $currentEmail = $user->getEmail();
+            if (str_ends_with($currentEmail, '@company.local')) {
+                // Extract base part (could be "user" or phone number)
+                $emailParts = explode('@', $currentEmail);
+                $basePart = $emailParts[0];
+                
+                // If it's already in format "user123", extract the number
+                if (preg_match('/^user(\d+)$/', $basePart, $matches)) {
+                    $counter = (int)$matches[1] + 1;
+                } else {
+                    // Start from 1 for new users
+                    $counter = 1;
+                }
+                
+                $uniqueEmail = 'user' . $counter . '@company.local';
+                
+                // Find a unique email by incrementing counter
+                while ($this->userRepository->findOneBy(['email' => $uniqueEmail])) {
+                    $counter++;
+                    $uniqueEmail = 'user' . $counter . '@company.local';
+                }
+                
+                $user->setEmail($uniqueEmail);
+            }
+
             // Set company role
             $role = $this->roleRepository->findOneBy(['name' => 'ROLE_MANAGER']);
             $user->setRole($role);
