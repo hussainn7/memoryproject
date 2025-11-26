@@ -6,18 +6,35 @@
 {% block body %}
 <div class="na-hero">
   <div class="na-hero__topbar container">
-    <div class="d-flex align-items-center gap-3">
+    <div class="na-topline">
+      <button
+        class="na-nav-toggle"
+        type="button"
+        aria-label="Переключить меню"
+        aria-controls="naTopPanel"
+        aria-expanded="false"
+        data-nav-toggle
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <div class="na-logo fw-semibold">
         <img src="{{ asset('images/logo.png') }}" alt="Небесный Архив" class="na-logo__img" loading="eager" fetchpriority="high" decoding="sync">
       </div>
 
-      <div class="na-lang-switch">
-        <a class="na-lang-switch__item active" href="#" data-lang="ru">RU</a>
-        <a class="na-lang-switch__item" href="#" data-lang="en">EN</a>
-      </div>
+      <div class="na-topline__panel" id="naTopPanel" data-nav-panel aria-hidden="false">
+        <div class="na-lang-switch" role="navigation" aria-label="Переключение языка">
+          <a class="na-lang-switch__item active" href="#" data-lang="ru">RU</a>
+          <a class="na-lang-switch__item" href="#" data-lang="en">EN</a>
+        </div>
 
-      <a class="na-chip small" href="{{ path('company_register') }}">РЕГИСТРАЦИЯ</a>
-      <a class="na-chip small" href="{{ path('security_login') }}">ВОЙТИ</a>
+        <div class="na-top-links">
+          <button class="na-chip small" type="button" data-modal-open="register">РЕГИСТРАЦИЯ</button>
+          <button class="na-chip small" type="button" data-modal-open="login">ВОЙТИ</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -94,6 +111,7 @@
             class="na-angel__fog-front"
             aria-hidden="true"
             loading="eager"
+            fetchpriority="high"
             decoding="async"
           >
 
@@ -114,6 +132,7 @@
             class="na-angel__fog"
             aria-hidden="true"
             loading="eager"
+            fetchpriority="high"
             decoding="async"
           >
 
@@ -143,7 +162,7 @@
           src="{{ asset('images/option-two.png') }}"
           alt="Пример страницы памяти Небесного Архива"
           class="na-option-visual__img"
-          loading="eager"
+          loading="lazy"
           decoding="async"
         >
       </div>
@@ -162,14 +181,14 @@
               alt=""
               class="na-benefits-visual__circle"
               aria-hidden="true"
-              loading="eager"
+              loading="lazy"
               decoding="async"
             >
             <img
               src="{{ asset('images/angel-three.png') }}"
               alt="Ангел с телефоном"
               class="na-benefits-visual__angel"
-              loading="eager"
+              loading="lazy"
               decoding="async"
             >
           </div>
@@ -245,7 +264,7 @@
               data-phone-prev
               aria-label="Предыдущий дизайн"
             >
-              <img src="{{ asset('images/left-right-button.png') }}" alt="" loading="eager" decoding="async" />
+              <img src="{{ asset('images/left-right-button.png') }}" alt="" loading="lazy" decoding="async" />
             </button>
 
             <div class="na-phone-frame">
@@ -253,7 +272,7 @@
                 src="{{ asset('images/phone.png') }}"
                 alt="Смартфон"
                 class="na-phone-frame__img"
-                loading="eager"
+                loading="lazy"
                 decoding="async"
               >
               <img
@@ -261,7 +280,7 @@
                 alt="Превью страницы памяти"
                 class="na-phone-preview"
                 data-phone-preview
-                loading="eager"
+                loading="lazy"
                 decoding="async"
               >
             </div>
@@ -272,7 +291,7 @@
               data-phone-next
               aria-label="Следующий дизайн"
             >
-              <img src="{{ asset('images/left-right-button.png') }}" alt="" loading="eager" decoding="async" />
+              <img src="{{ asset('images/left-right-button.png') }}" alt="" loading="lazy" decoding="async" />
             </button>
           </div>
         </div>
@@ -310,43 +329,187 @@
         src="{{ asset('images/contacts.png') }}"
         alt="Контактные данные и публичная оферта"
         class="na-footer-card"
-        loading="eager"
+        loading="lazy"
         decoding="async"
       >
     </div>
   </section>
+
+  {# ---------- MODALS ---------- #}
+  {# Login Modal #}
+  <div class="na-modal" id="na-modal-login" data-modal="login" aria-hidden="true">
+    <div class="na-modal__overlay" data-modal-close></div>
+    <div class="na-modal__content">
+      <button class="na-modal__close" type="button" data-modal-close aria-label="Закрыть">&times;</button>
+      <div class="na-modal__panel">
+        <div class="na-auth-logo">
+          <img src="{{ asset('images/logo.png') }}" alt="Небесный Архив" class="na-auth-logo__img" loading="eager" fetchpriority="high" decoding="sync">
+        </div>
+        <div class="na-auth-heading">АВТОРИЗАЦИЯ</div>
+        <form action="{{ path('security_login') }}" method="post" class="na-auth-form" id="na-login-form">
+          <div id="na-login-error" class="na-auth-error" style="display:none;"></div>
+          <div class="na-auth-field">
+            <div class="na-auth-field-label">ЛОГИН</div>
+            <input
+              type="text"
+              id="modal-username"
+              name="_username"
+              placeholder="Логин"
+              autocomplete="username"
+              required
+            >
+          </div>
+          <div class="na-auth-field">
+            <div class="na-auth-field-label">ПАРОЛЬ</div>
+            <input
+              type="password"
+              id="modal-password"
+              name="_password"
+              placeholder="Пароль"
+              autocomplete="current-password"
+              required
+            >
+          </div>
+          <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+          <button type="submit" class="na-auth-submit">ВОЙТИ</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {# Registration Modal #}
+  <div class="na-modal" id="na-modal-register" data-modal="register" aria-hidden="true">
+    <div class="na-modal__overlay" data-modal-close></div>
+    <div class="na-modal__content na-modal__content--wide">
+      <button class="na-modal__close" type="button" data-modal-close aria-label="Закрыть">&times;</button>
+      <div class="na-modal__panel">
+        <div class="na-cred-logo">
+          <img src="{{ asset('images/logo.png') }}" alt="Небесный Архив" class="na-cred-logo__img" loading="eager" fetchpriority="high" decoding="sync">
+        </div>
+        <div class="na-cred-heading">
+          <span class="na-cred-heading__pill">РЕГИСТРАЦИЯ</span>
+        </div>
+        <div id="na-register-error" class="na-cred-alert" style="display:none;"></div>
+        <form action="{{ path('company_register') }}" method="post" class="na-cred-form" id="na-register-form">
+          <div class="na-cred-field">
+            <div class="na-cred-field__label">ЛОГИН</div>
+            <div class="na-cred-field__input">
+              <input
+                type="text"
+                name="user_create[username]"
+                class="na-cred-input"
+                placeholder="Введите логин (будет использоваться для входа)"
+                required
+              >
+            </div>
+          </div>
+          <div class="na-cred-field">
+            <div class="na-cred-field__label">ПАРОЛЬ</div>
+            <div class="na-cred-field__input">
+              <input
+                type="password"
+                name="user_create[newPassword][first]"
+                class="na-cred-input"
+                placeholder="Придумайте пароль"
+                required
+              >
+            </div>
+          </div>
+          <div class="na-cred-field">
+            <div class="na-cred-field__label">НОМЕР ТЕЛЕФОНА</div>
+            <div class="na-cred-field__input">
+              <input
+                type="tel"
+                class="na-cred-input na-cred-phone-input"
+                placeholder="Например, 89001234567"
+                pattern="[0-9]*"
+                autocomplete="tel"
+                id="modal-phone-number-input"
+              >
+            </div>
+          </div>
+          {# Hidden fields #}
+          <input type="hidden" name="user_create[email]" id="modal-hidden-email-field" value="user@company.local">
+          <input type="hidden" name="user_create[firstName]" value="Company">
+          <input type="hidden" name="user_create[lastName]" value="User">
+          <input type="hidden" name="user_create[newPassword][second]" id="modal-password-confirm" value="">
+          {{ form_widget(registerForm._token) }}
+          <div class="na-cred-terms">
+            <label>
+              <input type="checkbox" required>
+              <span>Я согласен с <a href="#" target="_blank">условиями использования</a></span>
+            </label>
+          </div>
+          <button type="submit" class="na-cred-submit">ЗАВЕРШИТЬ РЕГИСТРАЦИЮ</button>
+        </form>
+        <div class="na-cred-login-link">
+          Уже есть аккаунт? <button type="button" class="na-link-button" data-modal-open="login" data-modal-close="register">Войти</button>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
-  {# Aggressive preload for instant image display #}
+  {# Preload only above-the-fold imagery to keep mobile payloads lean #}
   <link rel="preload" as="image" href="{{ asset('images/logo.png') }}" fetchpriority="high">
   <link rel="preload" as="image" href="{{ asset('images/angel.png') }}" fetchpriority="high">
   <link rel="preload" as="image" href="{{ asset('images/circle.png') }}" fetchpriority="high">
   <link rel="preload" as="image" href="{{ asset('images/front-fog.png') }}">
   <link rel="preload" as="image" href="{{ asset('images/bottom-fog.png') }}">
-  <link rel="preload" as="image" href="{{ asset('images/option-two.png') }}">
-  <link rel="preload" as="image" href="{{ asset('images/circle-three.png') }}">
-  <link rel="preload" as="image" href="{{ asset('images/angel-three.png') }}">
+  <link rel="preload" as="image" href="{{ asset('images/play-button.png') }}">
   <link rel="preload" as="image" href="{{ asset('images/phone.png') }}">
   <link rel="preload" as="image" href="{{ asset('images/1.png') }}">
-  <link rel="preload" as="image" href="{{ asset('images/play-button.png') }}">
-  <link rel="preload" as="image" href="{{ asset('images/left-right-button.png') }}">
-  <link rel="preload" as="image" href="{{ asset('images/contacts.png') }}">
+  
+  {# IMMEDIATE JavaScript preloading for fastest possible load #}
+  <script>
+    (function() {
+      const prefersDataSaver = navigator.connection && navigator.connection.saveData;
+      if (prefersDataSaver) {
+        return;
+      }
+
+      const criticalImages = [
+        "{{ asset('images/logo.png') }}",
+        "{{ asset('images/angel.png') }}",
+        "{{ asset('images/circle.png') }}",
+        "{{ asset('images/front-fog.png') }}",
+        "{{ asset('images/bottom-fog.png') }}",
+        "{{ asset('images/play-button.png') }}",
+        "{{ asset('images/phone.png') }}",
+        "{{ asset('images/1.png') }}"
+      ];
+      
+      criticalImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+    })();
+  </script>
   <style>
-    :root{
+    /* Scoped to homepage only - prevents affecting dashboard and other pages */
+    body#homepage{
       --na-blue-1:#314664;
       --na-blue-2:#111b27;
       --na-ink:#e4edf9;
       --na-ink-weak:#c1ccdd;
       --na-outline:rgba(255,255,255,.55);
       --na-chip:#3b4e6a;
+      background-color:#040913;
+      color:#fff;
+      min-height:100vh;
+    }
+    body.na-nav-open{
+      overflow:hidden;
     }
 
     /* ---------- HERO BACKGROUND ---------- */
     .na-hero{
       position:relative;
       min-height:100vh;
+      min-height:100svh;
       background:
         radial-gradient(1400px 900px at 90% 5%, #516a8b 0%, var(--na-blue-1) 30%, var(--na-blue-2) 100%);
       color:#fff;
@@ -371,6 +534,51 @@
       padding:18px 0 10px;
       position:relative;
       z-index:20;
+    }
+    .na-topline{
+      width:100%;
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+      flex-wrap:wrap;
+    }
+    .na-topline__panel{
+      display:flex;
+      align-items:center;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+    .na-top-links{
+      display:flex;
+      align-items:center;
+      gap:.45rem;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .na-nav-toggle{
+      display:none;
+      width:42px;
+      height:42px;
+      border-radius:6px;
+      border:1px solid rgba(255,255,255,.55);
+      background:transparent;
+      padding:0;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      gap:5px;
+      transition:background .2s ease, border-color .2s ease;
+    }
+    .na-nav-toggle span{
+      display:block;
+      width:18px;
+      height:2px;
+      border-radius:999px;
+      background:#fff;
+    }
+    .na-nav-toggle[aria-expanded="true"]{
+      background:rgba(255,255,255,.15);
+      border-color:#fff;
     }
 
     .na-logo{
@@ -438,6 +646,16 @@
       border-radius:.5rem;
       letter-spacing:.04em;
       font-size:.8rem;
+      border:none;
+      cursor:pointer;
+      display:inline-block;
+      transition:background .2s ease;
+    }
+    .na-chip:hover{
+      background:#4a5f7a;
+    }
+    button.na-chip{
+      font-family:inherit;
     }
 
     .na-hero__inner{
@@ -740,6 +958,55 @@
       .na-badge{ bottom:17%; left:10%; width:115px; height:115px; }
       .na-badge__center{ font-size:22px; }
       .na-play{ top:21%; right:15%; width:64px; height:64px; }
+    }
+
+    @media (max-width:767.98px){
+      .na-left{
+        padding:0 1rem;
+        text-align:center;
+      }
+      .na-left-main__title br{
+        display:none;
+      }
+      .na-left-pill{
+        width:100%;
+        justify-content:center;
+      }
+      .na-copy{
+        margin-left:auto;
+        margin-right:auto;
+      }
+      .na-nav-toggle{display:flex;}
+      .na-topline__panel{
+        width:100%;
+        flex-direction:column;
+        align-items:flex-start;
+        display:none;
+        gap:.7rem;
+        padding-top:.35rem;
+      }
+      .na-topline__panel.is-open{
+        display:flex;
+      }
+      .na-angel{
+        min-height:420px;
+      }
+      .na-angel__circle{
+        left:10%;
+        right:auto;
+      }
+      .na-top-links{
+        flex-direction:column;
+        width:100%;
+      }
+      .na-chip{
+        width:100%;
+        text-align:center;
+      }
+      .na-lang-switch{
+        width:100%;
+        justify-content:space-between;
+      }
     }
 
     /* ---------- THIRD SECTION: BENEFITS ---------- */
@@ -1073,6 +1340,305 @@
         max-width:90%;
       }
     }
+
+    /* ---------- MODALS ---------- */
+    .na-modal{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      box-sizing:border-box;
+    }
+    .na-modal[aria-hidden="false"]{
+      display:flex;
+    }
+    .na-modal__overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.85);
+      backdrop-filter:blur(4px);
+    }
+    .na-modal__content{
+      position:relative;
+      z-index:1;
+      width:100%;
+      max-width:480px;
+      max-height:90vh;
+      overflow-y:auto;
+      background:url('{{ asset('images/credential-bg.png') }}') center center / cover no-repeat;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.2);
+      box-shadow:0 24px 60px rgba(0,0,0,.9);
+      position:relative;
+    }
+    .na-modal__content::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 80% 40%, rgba(255,255,255,.1), transparent 60%),
+                 linear-gradient(to bottom right, rgba(0,0,0,.55), rgba(0,0,0,.3));
+      mix-blend-mode:multiply;
+      pointer-events:none;
+      border-radius:20px;
+    }
+    .na-modal__content--wide{
+      max-width:520px;
+    }
+    .na-modal__close{
+      position:absolute;
+      top:16px;
+      right:16px;
+      width:36px;
+      height:36px;
+      border:none;
+      background:rgba(255,255,255,.15);
+      border-radius:50%;
+      color:#fff;
+      font-size:24px;
+      line-height:1;
+      cursor:pointer;
+      z-index:10;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:background .2s ease;
+    }
+    .na-modal__close:hover{
+      background:rgba(255,255,255,.25);
+    }
+    .na-modal__panel{
+      position:relative;
+      z-index:2;
+      padding:40px 32px 32px;
+    }
+
+    /* Auth form styles in modal */
+    .na-modal__panel .na-auth-logo{
+      display:inline-flex;
+      align-items:center;
+      margin-bottom:26px;
+    }
+    .na-modal__panel .na-auth-logo__img{
+      height:auto;
+      max-height:60px;
+      width:auto;
+      max-width:180px;
+      display:block;
+    }
+    .na-modal__panel .na-auth-heading{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.9rem 2.4rem;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.9);
+      background:radial-gradient(circle at 50% 0, #4f7ff6, #1f3a87);
+      box-shadow:0 0 24px rgba(63,119,255,.75);
+      font-family:"Times New Roman", Georgia, serif;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:40px;
+      font-size:1.1rem;
+    }
+    .na-modal__panel .na-auth-form{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    .na-modal__panel .na-auth-field{
+      display:flex;
+      align-items:center;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.75);
+      background:rgba(0,0,0,.35);
+      box-shadow:0 16px 32px rgba(0,0,0,.65);
+      overflow:hidden;
+      min-height:64px;
+    }
+    .na-modal__panel .na-auth-field-label{
+      padding:0 24px;
+      font-size:.8rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      white-space:nowrap;
+      border-right:1px solid rgba(255,255,255,.4);
+      color:rgba(255,255,255,.85);
+    }
+    .na-modal__panel .na-auth-field input{
+      flex:1;
+      border:none;
+      background:transparent;
+      color:#fff;
+      padding:14px 22px;
+      font-size:.95rem;
+      outline:none;
+    }
+    .na-modal__panel .na-auth-field input::placeholder{
+      color:rgba(255,255,255,.55);
+    }
+    .na-modal__panel .na-auth-submit{
+      margin-top:26px;
+      align-self:flex-start;
+      min-width:220px;
+      padding:14px 36px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.9);
+      background:radial-gradient(circle at 50% 0, #4f7ff6, #1f3a87);
+      box-shadow:0 18px 40px rgba(0,0,0,.75), 0 0 32px rgba(63,119,255,.7);
+      color:#fff;
+      font-weight:600;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      font-size:.9rem;
+      cursor:pointer;
+    }
+    .na-modal__panel .na-auth-submit:hover{
+      filter:brightness(1.05);
+    }
+    .na-modal__panel .na-auth-error{
+      background:rgba(220,53,69,.95);
+      border-radius:8px;
+      padding:.6rem .9rem;
+      font-size:.85rem;
+      margin-bottom:4px;
+    }
+
+    /* Cred form styles in modal */
+    .na-modal__panel .na-cred-logo{
+      display:flex;
+      align-items:center;
+      margin-bottom:26px;
+    }
+    .na-modal__panel .na-cred-logo__img{
+      height:auto;
+      max-height:60px;
+      width:auto;
+      max-width:180px;
+      display:block;
+    }
+    .na-modal__panel .na-cred-heading{
+      margin-bottom:24px;
+    }
+    .na-modal__panel .na-cred-heading__pill{
+      display:inline-block;
+      padding:.75rem 2.6rem;
+      border-radius:999px;
+      font-size:1rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      background:radial-gradient(circle at 50% 0%, #5f8cff, #305399);
+      box-shadow:0 0 24px rgba(90,135,255,.9), 0 14px 32px rgba(0,0,0,.75);
+      border:1px solid rgba(255,255,255,.7);
+    }
+    .na-modal__panel .na-cred-form{
+      margin-top:10px;
+    }
+    .na-modal__panel .na-cred-alert{
+      background:rgba(255,72,72,.16);
+      border:1px solid rgba(255,120,120,.7);
+      border-radius:10px;
+      padding:.6rem .9rem;
+      font-size:.85rem;
+      margin-bottom:.75rem;
+    }
+    .na-modal__panel .na-cred-field{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.85);
+      background:rgba(0,0,0,.35);
+      box-shadow:0 8px 24px rgba(0,0,0,.7);
+      padding:.55rem 1.4rem;
+    }
+    .na-modal__panel .na-cred-field__label{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      white-space:nowrap;
+      color:rgba(255,255,255,.85);
+    }
+    .na-modal__panel .na-cred-field__input{
+      flex:1;
+      margin-left:1.2rem;
+    }
+    .na-modal__panel .na-cred-input{
+      width:100%;
+      border:none;
+      background:transparent;
+      color:#fff;
+      font-size:.95rem;
+      padding:.2rem 0;
+      outline:none;
+    }
+    .na-modal__panel .na-cred-input::placeholder{
+      color:rgba(255,255,255,.55);
+    }
+    .na-modal__panel .na-cred-terms{
+      font-size:.8rem;
+      margin:8px 2px 18px;
+      color:rgba(255,255,255,.85);
+    }
+    .na-modal__panel .na-cred-terms input{
+      margin-right:.45rem;
+    }
+    .na-modal__panel .na-cred-terms a{
+      color:#aac7ff;
+      text-decoration:underline;
+    }
+    .na-modal__panel .na-cred-submit{
+      width:260px;
+      max-width:100%;
+      border:none;
+      border-radius:999px;
+      padding:.9rem 1rem;
+      margin-top:6px;
+      margin-bottom:10px;
+      font-size:.9rem;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      background:radial-gradient(circle at 50% 0%, #5f8cff, #305399);
+      color:#fff;
+      box-shadow:0 12px 28px rgba(0,0,0,.85), 0 0 22px rgba(90,135,255,.9);
+      cursor:pointer;
+    }
+    .na-modal__panel .na-cred-submit:hover{
+      transform:translateY(-1px);
+    }
+    .na-modal__panel .na-cred-login-link{
+      margin-top:8px;
+      font-size:.8rem;
+      color:rgba(255,255,255,.85);
+    }
+    .na-link-button{
+      background:none;
+      border:none;
+      color:#fff;
+      text-decoration:underline;
+      cursor:pointer;
+      padding:0;
+      font-size:inherit;
+    }
+    .na-link-button:hover{
+      color:#aac7ff;
+    }
+
+    @media (max-width:575.98px){
+      .na-modal__content{
+        max-width:100%;
+        border-radius:16px;
+        max-height:95vh;
+      }
+      .na-modal__panel{
+        padding:32px 24px 24px;
+      }
+    }
   </style>
 {% endblock %}
 
@@ -1080,6 +1646,7 @@
   {{ parent() }}
   <script>
     (function () {
+      // Phone slider functionality - images already preloaded
       const slides = [
         "{{ asset('images/1.png') }}",
         "{{ asset('images/2.png') }}",
@@ -1132,6 +1699,441 @@
           // window.location.href = '?locale=' + selectedLang;
         });
       });
+    })();
+
+    // Mobile navigation toggle
+    (function () {
+      const toggle = document.querySelector('[data-nav-toggle]');
+      const panel = document.querySelector('[data-nav-panel]');
+      if (!toggle || !panel || !window.matchMedia) {
+        return;
+      }
+
+      const body = document.body;
+      const mobileQuery = window.matchMedia('(max-width: 767.98px)');
+      let isMobile = false;
+
+      const closePanel = () => {
+        if (!isMobile) {
+          return;
+        }
+        toggle.setAttribute('aria-expanded', 'false');
+        panel.classList.remove('is-open');
+        panel.setAttribute('aria-hidden', 'true');
+        body.classList.remove('na-nav-open');
+      };
+
+      const openPanel = () => {
+        if (!isMobile) {
+          return;
+        }
+        toggle.setAttribute('aria-expanded', 'true');
+        panel.classList.add('is-open');
+        panel.setAttribute('aria-hidden', 'false');
+        body.classList.add('na-nav-open');
+      };
+
+      const syncState = () => {
+        isMobile = mobileQuery.matches;
+        if (isMobile) {
+          closePanel();
+        } else {
+          panel.classList.remove('is-open');
+          panel.setAttribute('aria-hidden', 'false');
+          toggle.setAttribute('aria-expanded', 'false');
+          body.classList.remove('na-nav-open');
+        }
+      };
+
+      syncState();
+      if (mobileQuery.addEventListener) {
+        mobileQuery.addEventListener('change', syncState);
+      } else if (mobileQuery.addListener) {
+        mobileQuery.addListener(syncState);
+      }
+
+      toggle.addEventListener('click', () => {
+        if (!isMobile) {
+          return;
+        }
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        if (expanded) {
+          closePanel();
+        } else {
+          openPanel();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closePanel();
+        }
+      });
+    })();
+
+    // Modal functionality
+    (function() {
+      const openButtons = document.querySelectorAll('[data-modal-open]');
+      const closeButtons = document.querySelectorAll('[data-modal-close]');
+      const modals = document.querySelectorAll('.na-modal');
+      const body = document.body;
+
+      function openModal(modalId) {
+        const modal = document.getElementById('na-modal-' + modalId);
+        if (modal) {
+          // Remove focus from any element before showing modal
+          if (document.activeElement && document.activeElement.blur) {
+            document.activeElement.blur();
+          }
+          modal.setAttribute('aria-hidden', 'false');
+          body.style.overflow = 'hidden';
+          
+          // Refresh CSRF token for login form if it's the login modal
+          if (modalId === 'login') {
+            const csrfInput = modal.querySelector('input[name="_csrf_token"]');
+            if (csrfInput) {
+              // Fetch fresh CSRF token
+              fetch('{{ path('security_login') }}', {
+                method: 'GET',
+                credentials: 'same-origin'
+              })
+              .then(response => response.text())
+              .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const newTokenInput = doc.querySelector('input[name="_csrf_token"]');
+                if (newTokenInput && csrfInput) {
+                  csrfInput.value = newTokenInput.value;
+                  console.log('CSRF token refreshed');
+                }
+              })
+              .catch(err => console.error('Failed to refresh CSRF token:', err));
+            }
+          }
+          
+          // Focus first input after a short delay
+          setTimeout(() => {
+            const firstInput = modal.querySelector('input[type="text"], input[type="password"], input[type="tel"]');
+            if (firstInput) {
+              firstInput.focus();
+            }
+          }, 100);
+        }
+      }
+
+      function closeModal(modalId) {
+        const modal = modalId ? document.getElementById('na-modal-' + modalId) : document.querySelector('.na-modal[aria-hidden="false"]');
+        if (modal) {
+          // Remove focus from any element in modal before hiding
+          const focusedElement = modal.querySelector(':focus');
+          if (focusedElement && focusedElement.blur) {
+            focusedElement.blur();
+          }
+          // Small delay to ensure focus is removed before setting aria-hidden
+          setTimeout(() => {
+            modal.setAttribute('aria-hidden', 'true');
+            body.style.overflow = '';
+            // Clear form errors
+            const errorDiv = modal.querySelector('[id$="-error"]');
+            if (errorDiv) {
+              errorDiv.style.display = 'none';
+              errorDiv.textContent = '';
+            }
+            // Reset forms
+            const forms = modal.querySelectorAll('form');
+            forms.forEach(form => form.reset());
+          }, 50);
+        }
+      }
+
+      openButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const modalId = this.getAttribute('data-modal-open');
+          const closeId = this.getAttribute('data-modal-close');
+          if (closeId) {
+            closeModal(closeId);
+          }
+          openModal(modalId);
+        });
+      });
+
+      closeButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const modalId = this.getAttribute('data-modal-close');
+          closeModal(modalId);
+        });
+      });
+
+      // Close on overlay click
+      modals.forEach(modal => {
+        const overlay = modal.querySelector('.na-modal__overlay');
+        if (overlay) {
+          overlay.addEventListener('click', () => {
+            closeModal();
+          });
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+        }
+      });
+
+      // Registration form phone number handling
+      const phoneInput = document.getElementById('modal-phone-number-input');
+      const hiddenEmailField = document.getElementById('modal-hidden-email-field');
+      const passwordFirst = document.querySelector('input[name="user_create[newPassword][first]"]');
+      const passwordConfirm = document.getElementById('modal-password-confirm');
+
+      if (phoneInput && hiddenEmailField) {
+        function updateEmailFromPhone() {
+          const phoneValue = phoneInput.value.replace(/\D/g, '');
+          if (phoneValue) {
+            hiddenEmailField.value = phoneValue + '@company.local';
+          } else {
+            const usernameField = document.querySelector('input[name="user_create[username]"]');
+            if (usernameField && usernameField.value) {
+              hiddenEmailField.value = usernameField.value + '@company.local';
+            } else {
+              hiddenEmailField.value = 'user@company.local';
+            }
+          }
+        }
+        phoneInput.addEventListener('input', updateEmailFromPhone);
+        phoneInput.addEventListener('blur', updateEmailFromPhone);
+      }
+
+      // Sync password confirmation
+      if (passwordFirst && passwordConfirm) {
+        passwordFirst.addEventListener('input', function() {
+          passwordConfirm.value = this.value;
+        });
+      }
+
+      // Handle form submissions with AJAX
+      const loginForm = document.getElementById('na-login-form');
+      if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const formData = new FormData(this);
+          const errorDiv = document.getElementById('na-login-error');
+          errorDiv.style.display = 'none';
+          errorDiv.textContent = '';
+          
+          // Debug: log form data
+          console.log('Submitting login form:');
+          for (let [key, value] of formData.entries()) {
+            if (key === '_password') {
+              console.log(key + ':', '***');
+            } else {
+              console.log(key + ':', value);
+            }
+          }
+          
+          // Use XMLHttpRequest instead of fetch for better compatibility
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', this.action, true);
+          xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+          xhr.withCredentials = true;
+          
+          xhr.onload = function() {
+            console.log('XHR status:', xhr.status);
+            console.log('XHR response length:', xhr.responseText.length);
+            console.log('XHR response preview:', xhr.responseText.substring(0, 200));
+            
+            // Check for redirect (302, 301, etc.) - this means success
+            if (xhr.status >= 300 && xhr.status < 400) {
+              const location = xhr.getResponseHeader('Location');
+              console.log('XHR redirect to:', location);
+              if (location) {
+                if (location.includes('/login')) {
+                  // Redirected back to login = failure
+                  errorDiv.textContent = 'Неверный логин или пароль';
+                  errorDiv.style.display = 'block';
+                  return;
+                } else {
+                  // Redirect to dashboard = success
+                  window.location.href = location;
+                  return;
+                }
+              }
+            }
+            
+            // Try to parse as JSON first
+            let data;
+            const contentType = xhr.getResponseHeader('Content-Type') || '';
+            if (contentType.includes('application/json')) {
+              try {
+                data = JSON.parse(xhr.responseText);
+                console.log('XHR JSON response:', data);
+              } catch (e) {
+                console.error('Failed to parse JSON:', e);
+                data = { success: false, error: 'Ошибка обработки ответа' };
+              }
+            } else {
+              // Not JSON - check if it's HTML with error or success
+              if (xhr.status >= 200 && xhr.status < 300) {
+                // Check if response contains login form (failure) or dashboard (success)
+                if (xhr.responseText.includes('dashboard') || xhr.responseText.includes('admin')) {
+                  // Success - redirect to dashboard
+                  window.location.href = '{{ path('admin_dashboard') }}';
+                  return;
+                } else if (xhr.responseText.includes('АВТОРИЗАЦИЯ') || xhr.responseText.includes('login')) {
+                  // Still on login page - parse for errors
+                  const parser = new DOMParser();
+                  const doc = parser.parseFromString(xhr.responseText, 'text/html');
+                  const errorMsg = doc.querySelector('.na-auth-error');
+                  if (errorMsg) {
+                    data = { success: false, error: errorMsg.textContent };
+                  } else {
+                    data = { success: false, error: 'Неверный логин или пароль' };
+                  }
+                } else {
+                  // Unknown response - assume success and redirect
+                  window.location.href = '{{ path('admin_dashboard') }}';
+                  return;
+                }
+              } else {
+                // Error status
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(xhr.responseText, 'text/html');
+                const errorMsg = doc.querySelector('.na-auth-error');
+                data = { 
+                  success: false, 
+                  error: errorMsg ? errorMsg.textContent : 'Ошибка входа' 
+                };
+              }
+            }
+            
+            // Handle the response data
+            if (data && !data.success) {
+              errorDiv.textContent = data.error || 'Ошибка входа';
+              errorDiv.style.display = 'block';
+              if (data.debug) {
+                console.error('Login error details:', data.debug);
+              }
+              const passwordField = document.getElementById('modal-password');
+              if (passwordField) {
+                passwordField.value = '';
+                passwordField.focus();
+              }
+            } else if (data && data.success) {
+              // Success - redirect
+              if (data.redirect) {
+                window.location.href = data.redirect;
+              } else {
+                window.location.href = '{{ path('admin_dashboard') }}';
+              }
+            }
+          };
+          
+          xhr.onerror = function() {
+            console.error('XHR error');
+            errorDiv.textContent = 'Ошибка соединения. Попробуйте еще раз.';
+            errorDiv.style.display = 'block';
+          };
+          
+          xhr.send(formData);
+        });
+      }
+
+      const registerForm = document.getElementById('na-register-form');
+      if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const formData = new FormData(this);
+          const errorDiv = document.getElementById('na-register-error');
+          errorDiv.style.display = 'none';
+          errorDiv.textContent = '';
+          
+          // Update email from phone before submission
+          if (phoneInput && hiddenEmailField) {
+            const phoneValue = phoneInput.value.replace(/\D/g, '');
+            if (phoneValue) {
+              hiddenEmailField.value = phoneValue + '@company.local';
+            }
+          }
+          
+          // Sync password confirmation
+          if (passwordFirst && passwordConfirm) {
+            passwordConfirm.value = passwordFirst.value;
+          }
+
+          fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            credentials: 'same-origin',
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest'
+            },
+            redirect: 'manual'
+          })
+          .then(response => {
+            // Check if response is a redirect (302, 301, etc.)
+            if (response.status >= 300 && response.status < 400) {
+              const location = response.headers.get('Location');
+              if (location) {
+                window.location.href = location;
+                return;
+              }
+            }
+            
+            // Check for JSON response
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+              return response.json();
+            }
+            
+            // If status is 200, try to parse as JSON first, then HTML
+            if (response.ok) {
+              return response.text().then(text => {
+                try {
+                  return JSON.parse(text);
+                } catch (e) {
+                  const parser = new DOMParser();
+                  const doc = parser.parseFromString(text, 'text/html');
+                  const errorMsg = doc.querySelector('.na-cred-alert, .form-error');
+                  if (errorMsg) {
+                    return { success: false, errors: [errorMsg.textContent] };
+                  }
+                  return { success: true };
+                }
+              });
+            }
+            
+            // For error status codes, try to get JSON error
+            return response.json().catch(() => {
+              return { success: false, errors: ['Ошибка регистрации'] };
+            });
+          })
+          .then(data => {
+            if (data && !data.success) {
+              const errorText = Array.isArray(data.errors) ? data.errors.join(', ') : (data.error || 'Ошибка регистрации');
+              errorDiv.textContent = errorText;
+              errorDiv.style.display = 'block';
+            } else if (data && data.success) {
+              // Success - show message and open login modal
+              alert(data.message || 'Регистрация успешна! Теперь вы можете войти в систему.');
+              closeModal('register');
+              // Clear registration form
+              this.reset();
+              // Open login modal
+              setTimeout(() => {
+                openModal('login');
+              }, 300);
+            }
+          })
+          .catch((error) => {
+            console.error('Registration error:', error);
+            errorDiv.textContent = 'Ошибка соединения. Попробуйте еще раз.';
+            errorDiv.style.display = 'block';
+          });
+        });
+      }
     })();
   </script>
 {% endblock %}

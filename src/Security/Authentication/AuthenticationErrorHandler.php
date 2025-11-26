@@ -22,9 +22,31 @@ class AuthenticationErrorHandler implements AuthenticationFailureHandlerInterfac
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
     {
-
         if ($exception->getMessageKey() === 'Invalid or expired login link.') {
             return new RedirectResponse($this->urlGenerator->generate('security_invalid_link'));
+        }
+
+        // If AJAX request, return JSON error instead of redirecting
+        if ($request->isXmlHttpRequest()) {
+            $errorMessage = 'Неверный логин или пароль';
+            $messageKey = $exception->getMessageKey();
+            
+            // Map common error keys to user-friendly messages
+            if (in_array($messageKey, ['Invalid credentials.', 'Bad credentials.', 'Username could not be found.'])) {
+                $errorMessage = 'Неверный логин или пароль';
+            } else {
+                // For debugging, include the actual message key
+                $errorMessage = 'Ошибка входа: ' . $messageKey;
+            }
+            
+            return new JsonResponse([
+                'success' => false,
+                'error' => $errorMessage,
+                'debug' => [
+                    'messageKey' => $messageKey,
+                    'message' => $exception->getMessage()
+                ]
+            ], 401);
         }
 
         return new RedirectResponse($this->urlGenerator->generate('security_login'));

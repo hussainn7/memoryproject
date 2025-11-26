@@ -26,8 +26,13 @@ class HomeController extends AbstractController
     #[Route(path: '/', name: 'homepage', methods: ['GET'])]
     public function index(): Response
     {
+        // Create registration form to get CSRF token for modal
+        $form = $this->createForm(\App\Form\Admin\User\UserCreateType::class);
+        
         // Show homepage for all users, they can login/register from there
-        return $this->render('home/index.html.twig');
+        return $this->render('home/index.html.twig', [
+            'registerForm' => $form->createView(),
+        ]);
     }
 
     #[Route(path: '/about', name: 'about', methods: ['GET'])]

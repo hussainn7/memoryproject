@@ -18,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Controller used to manage the application security.
@@ -42,15 +43,51 @@ class SecurityController extends AbstractController
 
     }
 
-    #[Route(path: '/login', name: 'security_login')]
-    public function login(AuthenticationUtils $helper): Response
+    #[Route(path: '/login', name: 'security_login', methods: ['GET', 'POST'])]
+    public function login(AuthenticationUtils $helper, Request $request): Response
     {
+        $error = $helper->getLastAuthenticationError();
+        
+        // If AJAX request and there's an error, return JSON
+        if ($request->isXmlHttpRequest() && $error) {
+            return $this->json([
+                'success' => false,
+                'error' => $error->getMessageKey() === 'Invalid credentials.' 
+                    ? 'Неверный логин или пароль' 
+                    : $error->getMessageKey(),
+                'debug' => [
+                    'messageKey' => $error->getMessageKey(),
+                    'message' => $error->getMessage()
+                ]
+            ], 401);
+        }
+        
+        // If AJAX POST request (form submission), let Symfony handle it
+        // The form_login authenticator will process it
+        if ($request->isXmlHttpRequest() && $request->isMethod('POST')) {
+            // If we reach here, authentication might have succeeded
+            // Check if user is authenticated
+            if ($this->security->getUser()) {
+                return $this->json([
+                    'success' => true,
+                    'redirect' => $this->generateUrl('admin_dashboard')
+                ]);
+            }
+            // If not authenticated and no error, something went wrong
+            if (!$error) {
+                return $this->json([
+                    'success' => false,
+                    'error' => 'Ошибка аутентификации'
+                ], 401);
+            }
+        }
+        
         //dump($helper);
         return $this->render('security/login.html.twig', [
             // last username entered by the user (if any)
             'last_username' => $helper->getLastUsername(),
             // last authentication error (if any)
-            'error' => $helper->getLastAuthenticationError(),
+            'error' => $error,
         ]);
     }
 
@@ -60,6 +97,18 @@ class SecurityController extends AbstractController
         $form = $this->createForm(\App\Form\Admin\User\UserCreateType::class);
 
         $form->handleRequest($request);
+
+        // If AJAX request and form has errors, return JSON
+        if ($request->isXmlHttpRequest() && $form->isSubmitted() && !$form->isValid()) {
+            $errors = [];
+            foreach ($form->getErrors(true) as $error) {
+                $errors[] = $error->getMessage();
+            }
+            return $this->json([
+                'success' => false,
+                'errors' => $errors
+            ], 400);
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
@@ -91,9 +140,31 @@ class SecurityController extends AbstractController
                 $user->setEmail($uniqueEmail);
             }
 
-            // Set company role
+            // Set company role - try ROLE_MANAGER first, then ROLE_MEMBER as fallback
             $role = $this->roleRepository->findOneBy(['name' => 'ROLE_MANAGER']);
+            if (!$role) {
+                // Fallback to ROLE_MEMBER if ROLE_MANAGER doesn't exist
+                $role = $this->roleRepository->findOneBy(['name' => 'ROLE_MEMBER']);
+            }
+            if (!$role) {
+                // If no roles exist, throw an error
+                if ($request->isXmlHttpRequest()) {
+                    return $this->json([
+                        'success' => false,
+                        'errors' => ['Ошибка: роль не найдена в системе. Обратитесь к администратору.']
+                    ], 500);
+                }
+                $this->addFlash('error', 'Ошибка: роль не найдена в системе. Обратитесь к администратору.');
+                return $this->render('security/company_register.html.twig', [
+                    'form' => $form->createView(),
+                ]);
+            }
             $user->setRole($role);
+
+            // Set UUID if not set
+            if (!$user->getUuid()) {
+                $user->setUuid(\Ramsey\Uuid\Uuid::uuid4()->toString());
+            }
 
             // Hash password
             $hashedPassword = $hasher->hashPassword($user, $password);
@@ -104,7 +175,24 @@ class SecurityController extends AbstractController
 
             $this->addFlash('success', 'Компания успешно зарегистрирована! Теперь вы можете войти в систему.');
 
+            // If AJAX request, return JSON success
+            if ($request->isXmlHttpRequest()) {
+                return $this->json([
+                    'success' => true,
+                    'message' => 'Компания успешно зарегистрирована! Теперь вы можете войти в систему.'
+                ]);
+            }
+
             return $this->redirectToRoute('security_login');
+        }
+
+        // If AJAX request on GET, return form HTML
+        if ($request->isXmlHttpRequest()) {
+            return $this->json([
+                'html' => $this->renderView('security/company_register.html.twig', [
+                    'form' => $form->createView(),
+                ])
+            ]);
         }
 
         return $this->render('security/company_register.html.twig', [

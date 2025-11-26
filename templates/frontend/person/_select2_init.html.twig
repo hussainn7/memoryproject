@@ -3,6 +3,31 @@
 (function() {
     'use strict';
     
+    function updatePreviewImage() {
+        var themeSelect = $('.js--select-memory-thema');
+        var previewImg = $('.js--preview-memory-bg');
+        
+        if (!themeSelect.length || !previewImg.length) {
+            console.log('Theme select or preview image not found');
+            return;
+        }
+        
+        // Get the selected option
+        var selectedOption = themeSelect.find('option:selected');
+        var previewPath = selectedOption.attr('data-preview');
+        
+        console.log('Selected option data-preview:', previewPath);
+        
+        if (previewPath) {
+            previewImg.attr('src', previewPath);
+            console.log('Updated preview image to:', previewPath);
+        } else {
+            // Fallback to default
+            previewImg.attr('src', '/option-bg/v-1.jpg');
+            console.log('No preview path, using default');
+        }
+    }
+    
     function forceInitThemeSelect() {
         var themeSelect = $('.js--select-memory-thema');
         
@@ -44,6 +69,15 @@
             
             // Force it to be interactive
             themeSelect.prop('disabled', false);
+            
+            // Update preview image on change
+            themeSelect.off('change.themePreview').on('change.themePreview', function() {
+                console.log('Theme changed, updating preview');
+                updatePreviewImage();
+            });
+            
+            // Set initial preview
+            updatePreviewImage();
             
         } catch (e) {
             console.error('Failed to initialize Select2:', e);

@@ -1,4 +1,64 @@
-# Типы файлов
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/public/build/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+
+###> User uploads and generated content ###
+/public/img/
+/public/uploads/
+###< User uploads and generated content ###
+
+###> Beget hosting specific ###
+/public_html/
+###< Beget hosting specific ###
+
+###> IDE and Editor files ###
+/.vscode/*
+!.vscode/extensions.json
+/.idea/
+/.mc/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+###< IDE and Editor files ###
+
+###> System and temporary files ###
+Thumbs.db
+*.log
+*.log.*
+*~
+*.bak
+*.tmp
+*.temp
+###< System and temporary files ###
+
+###> Archive files ###
 *.sql
 *.tar
 *.tgz
@@ -7,40 +67,41 @@
 *.rar
 *.bz2
 *.jar
-*.app
-*.exe
-*.[Mm][Pp]4
-*.tiff
+*.7z
+###< Archive files ###
+
+###> Media files (large) ###
+*.mp4
+*.MP4
 *.avi
-*.flv
 *.mov
 *.wmv
-Thumbs.db
+*.flv
+*.mkv
+*.webm
+*.tiff
+*.psd
+###< Media files (large) ###
 
-# Backup entities generated with doctrine:generate:entities command
+###> Backup and generated files ###
 **/Entity/*~
+composer-setup.php
+webpack.config.js.bak
+*.backup
+###< Backup and generated files ###
 
-###> symfony/webpack-encore-bundle ###
-/node_modules/
-/public/img/
-/public_html
-/var/cache/
-/var/log/
-.env
-.env.local
-
-*.log*
-webpack.config.js
-
-# Editor directories and files
-/.mc
-/.vscode/*
-!.vscode/extensions.json
-/.idea
-/.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+###> Server configuration (keep templates, ignore specific) ###
 *_vhost.conf
+php-dev.ini
+.phpversion
+###< Server configuration ###
+
+###> Symfony cache and logs (comprehensive) ###
+/var/cache/*
+/var/log/*
+/var/sessions/*
+!/var/cache/.gitkeep
+!/var/log/.gitkeep
+!/var/sessions/.gitkeep
+###< Symfony cache and logs ###
+composer.phar

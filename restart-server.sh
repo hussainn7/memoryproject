@@ -6,14 +6,16 @@ cd "$(dirname "$0")"
 # Kill any existing PHP server on port 8000
 echo "Stopping existing server..."
 pkill -f "php.*8000" 2>/dev/null
-sleep 1
+pkill -f "php8.1.*8000" 2>/dev/null
+fuser -k 8000/tcp 2>/dev/null
+sleep 3
 
 # Start the server with router script and custom php.ini
 echo "Starting PHP server on port 8000 with increased upload limits..."
-nohup php -c php-dev.ini -S 0.0.0.0:8000 -t public public/router.php > var/log/php-server.log 2>&1 &
+nohup php8.1 -c php-dev.ini -S 127.0.0.1:8000 -t public public/router.php > var/log/php-server.log 2>&1 &
 echo $! > var/php-server.pid
 
-sleep 2
+sleep 3
 
 # Check if server is running
 if ps -p $(cat var/php-server.pid) > /dev/null 2>&1; then
