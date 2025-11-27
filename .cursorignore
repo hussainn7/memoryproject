@@ -1,3 +1,5 @@
 # Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
 /Users/h/Desktop/nebesniy-arhiv.ru-main 6.39.17 PM/assets/js/modules/random_file(DONT TOUCH).js
 random_file(DONT TOUCH).js
+!.env
+!.env.local

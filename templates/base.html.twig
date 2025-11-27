@@ -30,7 +30,7 @@
     {{ include('partials/preloader.html.twig') }}
 {% endblock %}
 
-<div id="main-wrapper">
+<div id="main-wrapper" data-sidebartype="overlay">
 
     {% block header %}
         <header class="topbar">
@@ -38,6 +38,13 @@
         </header>
     {% endblock %}
 
+    <aside class="left-sidebar">
+        <div class="scroll-sidebar">
+            <nav class="sidebar-nav">
+                {{ knp_menu_render('sidebarnav') }}
+            </nav>
+        </div>
+    </aside>
 
     <div class="page-wrapper">
         {% block body %}

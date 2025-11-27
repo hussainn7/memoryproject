@@ -1,5 +1,32 @@
 <?php
 //exit();
+
+// CRITICAL: Serve static assets BEFORE loading Symfony (Beget nginx workaround)
+$requestUri = $_SERVER['REQUEST_URI'] ?? '';
+$path = parse_url($requestUri, PHP_URL_PATH);
+if (preg_match('#^/(img|option-bg|images|assets|build|bundles|js)/(.+)$#', $path, $matches)) {
+    $dir = $matches[1];
+    $file = $matches[2];
+    // Don't use basename - preserve full nested path
+    $fullPath = __DIR__ . '/' . $dir . '/' . $file;
+    
+    // Security: prevent directory traversal
+    $realBase = realpath(__DIR__);
+    $realPath = realpath($fullPath);
+    
+    if ($realPath && $realBase && strpos($realPath, $realBase) === 0 && is_file($realPath)) {
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mimeType = finfo_file($finfo, $realPath);
+        finfo_close($finfo);
+        
+        header('Content-Type: ' . $mimeType);
+        header('Content-Length: ' . filesize($realPath));
+        header('Cache-Control: public, max-age=31536000');
+        readfile($realPath);
+        exit;
+    }
+}
+
 use App\Kernel;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;

@@ -105,17 +105,6 @@ class PersonService
                 $fullPath = $targetDirectory . '/' . $saveFileName;
                 @chmod($fullPath, 0644);
 
-                // Also copy to live public_html directory if it exists (for Beget hosting)
-                $liveImgDir = '/home/c/craft53/craft53.beget.tech/public_html/img';
-                if (is_dir($liveImgDir) && is_writable($liveImgDir)) {
-                    $livePath = $liveImgDir . '/' . $saveFileName;
-                    @copy($fullPath, $livePath);
-                    @chmod($livePath, 0644);
-                    $this->logger->info('File also copied to live directory', [
-                        'livePath' => $livePath,
-                    ]);
-                }
-
                 $this->logger->info('File saved successfully', [
                     'path' => $fullPath,
                 ]);

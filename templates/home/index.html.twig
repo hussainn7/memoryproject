@@ -21,7 +21,7 @@
       </button>
 
       <div class="na-logo fw-semibold">
-        <img src="{{ asset('images/logo.png') }}" alt="Небесный Архив" class="na-logo__img" loading="eager" fetchpriority="high" decoding="sync">
+        <img src="{{ asset('images/logo.webp') }}" alt="Небесный Архив" class="na-logo__img" loading="eager" fetchpriority="high" decoding="sync">
       </div>
 
       <div class="na-topline__panel" id="naTopPanel" data-nav-panel aria-hidden="false">
@@ -93,46 +93,43 @@
       <div class="col-lg-6 position-relative">
         <div class="na-angel">
 
-          {# circle pattern behind angel #}
+          {# circle pattern behind angel - lazy on mobile #}
           <img
-            src="{{ asset('images/circle.png') }}"
+            src="{{ asset('images/circle.webp') }}"
             alt=""
             class="na-angel__circle"
             aria-hidden="true"
-            loading="eager"
-            fetchpriority="high"
-            decoding="sync"
-          >
-
-          {# FRONT FOG FROM RIGHT #}
-          <img
-            src="{{ asset('images/front-fog.png') }}"
-            alt=""
-            class="na-angel__fog-front"
-            aria-hidden="true"
-            loading="eager"
-            fetchpriority="high"
+            loading="lazy"
             decoding="async"
           >
 
-          {# main statue #}
+          {# FRONT FOG FROM RIGHT - lazy on mobile #}
           <img
-            src="{{ asset('images/angel.png') }}"
-            alt="Ангел хранитель"
-            class="na-angel__img"
-            loading="eager"
-            fetchpriority="high"
-            decoding="sync"
+            src="{{ asset('images/front-fog.webp') }}"
+            alt=""
+            class="na-angel__fog-front"
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
           >
 
-          {# fog at the bottom of hero #}
+          {# main statue - critical, always eager #}
           <img
-            src="{{ asset('images/bottom-fog.png') }}"
+          src="{{ asset('images/angel.webp') }}"
+          alt="Ангел хранитель"
+          class="na-angel__img"
+          loading="eager"
+          fetchpriority="high"
+          decoding="sync"
+          >
+
+          {# fog at the bottom of hero - lazy on mobile #}
+          <img
+            src="{{ asset('images/bottom-fog.webp') }}"
             alt=""
             class="na-angel__fog"
             aria-hidden="true"
-            loading="eager"
-            fetchpriority="high"
+            loading="lazy"
             decoding="async"
           >
 
@@ -141,7 +138,7 @@
           {# play button near shoulder #}
           <button class="na-play" type="button" aria-label="Как это работает">
             <img
-              src="{{ asset('images/play-button.png') }}"
+              src="{{ asset('images/play-button.webp') }}"
               alt=""
               class="na-play__img"
               loading="eager"
@@ -159,7 +156,7 @@
     <div class="container-fluid px-0">
       <div class="na-option-visual">
         <img
-          src="{{ asset('images/option-two.png') }}"
+          src="{{ asset('images/option-two.webp') }}"
           alt="Пример страницы памяти Небесного Архива"
           class="na-option-visual__img"
           loading="lazy"
@@ -177,7 +174,7 @@
         <div class="col-lg-5">
           <div class="na-benefits-visual">
             <img
-              src="{{ asset('images/circle-three.png') }}"
+              src="{{ asset('images/circle-three.webp') }}"
               alt=""
               class="na-benefits-visual__circle"
               aria-hidden="true"
@@ -185,7 +182,7 @@
               decoding="async"
             >
             <img
-              src="{{ asset('images/angel-three.png') }}"
+              src="{{ asset('images/angel-three.webp') }}"
               alt="Ангел с телефоном"
               class="na-benefits-visual__angel"
               loading="lazy"
@@ -264,19 +261,19 @@
               data-phone-prev
               aria-label="Предыдущий дизайн"
             >
-              <img src="{{ asset('images/left-right-button.png') }}" alt="" loading="lazy" decoding="async" />
+              <img src="{{ asset('images/left-right-button.webp') }}" alt="" loading="lazy" decoding="async" />
             </button>
 
             <div class="na-phone-frame">
               <img
-                src="{{ asset('images/phone.png') }}"
+                src="{{ asset('images/phone.webp') }}"
                 alt="Смартфон"
                 class="na-phone-frame__img"
                 loading="lazy"
                 decoding="async"
               >
               <img
-                src="{{ asset('images/1.png') }}"
+                src="{{ asset('images/1.webp') }}"
                 alt="Превью страницы памяти"
                 class="na-phone-preview"
                 data-phone-preview
@@ -291,7 +288,7 @@
               data-phone-next
               aria-label="Следующий дизайн"
             >
-              <img src="{{ asset('images/left-right-button.png') }}" alt="" loading="lazy" decoding="async" />
+              <img src="{{ asset('images/left-right-button.webp') }}" alt="" loading="lazy" decoding="async" />
             </button>
           </div>
         </div>
@@ -326,7 +323,7 @@
 
     <div class="na-footer-inner">
       <img
-        src="{{ asset('images/contacts.png') }}"
+        src="{{ asset('images/contacts.webp') }}"
         alt="Контактные данные и публичная оферта"
         class="na-footer-card"
         loading="lazy"
@@ -343,7 +340,7 @@
       <button class="na-modal__close" type="button" data-modal-close aria-label="Закрыть">&times;</button>
       <div class="na-modal__panel">
         <div class="na-auth-logo">
-          <img src="{{ asset('images/logo.png') }}" alt="Небесный Архив" class="na-auth-logo__img" loading="eager" fetchpriority="high" decoding="sync">
+          <img src="{{ asset('images/logo.webp') }}" alt="Небесный Архив" class="na-auth-logo__img" loading="eager" fetchpriority="high" decoding="sync">
         </div>
         <div class="na-auth-heading">АВТОРИЗАЦИЯ</div>
         <form action="{{ path('security_login') }}" method="post" class="na-auth-form" id="na-login-form">
@@ -385,7 +382,7 @@
       <button class="na-modal__close" type="button" data-modal-close aria-label="Закрыть">&times;</button>
       <div class="na-modal__panel">
         <div class="na-cred-logo">
-          <img src="{{ asset('images/logo.png') }}" alt="Небесный Архив" class="na-cred-logo__img" loading="eager" fetchpriority="high" decoding="sync">
+          <img src="{{ asset('images/logo.webp') }}" alt="Небесный Архив" class="na-cred-logo__img" loading="eager" fetchpriority="high" decoding="sync">
         </div>
         <div class="na-cred-heading">
           <span class="na-cred-heading__pill">РЕГИСТРАЦИЯ</span>
@@ -453,39 +450,76 @@
 
 {% block stylesheets %}
   {{ parent() }}
-  {# Preload only above-the-fold imagery to keep mobile payloads lean #}
-  <link rel="preload" as="image" href="{{ asset('images/logo.png') }}" fetchpriority="high">
-  <link rel="preload" as="image" href="{{ asset('images/angel.png') }}" fetchpriority="high">
-  <link rel="preload" as="image" href="{{ asset('images/circle.png') }}" fetchpriority="high">
-  <link rel="preload" as="image" href="{{ asset('images/front-fog.png') }}">
-  <link rel="preload" as="image" href="{{ asset('images/bottom-fog.png') }}">
-  <link rel="preload" as="image" href="{{ asset('images/play-button.png') }}">
-  <link rel="preload" as="image" href="{{ asset('images/phone.png') }}">
-  <link rel="preload" as="image" href="{{ asset('images/1.png') }}">
-  
-  {# IMMEDIATE JavaScript preloading for fastest possible load #}
+  {# Mobile-optimized conditional preloading - only critical above-the-fold images #}
   <script>
     (function() {
+      'use strict';
+      
+      // Detect mobile and data-saver mode
+      const isMobile = window.innerWidth <= 768;
       const prefersDataSaver = navigator.connection && navigator.connection.saveData;
-      if (prefersDataSaver) {
+      const slowConnection = navigator.connection && (navigator.connection.effectiveType === 'slow-2g' || navigator.connection.effectiveType === '2g');
+      
+      // Skip aggressive preloading on slow connections or data-saver mode
+      if (prefersDataSaver || slowConnection) {
+        console.log('⚡ Data-saver mode or slow connection detected - minimal image loading');
         return;
       }
-
-      const criticalImages = [
-        "{{ asset('images/logo.png') }}",
-        "{{ asset('images/angel.png') }}",
-        "{{ asset('images/circle.png') }}",
-        "{{ asset('images/front-fog.png') }}",
-        "{{ asset('images/bottom-fog.png') }}",
-        "{{ asset('images/play-button.png') }}",
-        "{{ asset('images/phone.png') }}",
-        "{{ asset('images/1.png') }}"
+      
+      // Only preload critical above-the-fold images based on device
+      const criticalImages = isMobile ? [
+      "{{ asset('images/logo.webp') }}"
+      ] : [
+      "{{ asset('images/logo.webp') }}",
+      "{{ asset('images/angel.webp') }}",
+      "{{ asset('images/circle.webp') }}"
       ];
       
+      // Preload critical images
       criticalImages.forEach(src => {
-        const img = new Image();
-        img.src = src;
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = src;
+        document.head.appendChild(link);
       });
+    
+      // Intersection Observer for smart lazy loading
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              
+              // Load image if not already loaded
+              if (img.dataset.src && !img.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+              }
+              
+              // Mark as observed to prevent reloading
+              img.classList.add('na-img-loaded');
+              observer.unobserve(img);
+            }
+          });
+        }, {
+          // Start loading 300px before image enters viewport
+          rootMargin: '300px 0px',
+          threshold: 0.01
+        });
+    
+        // Observe all lazy-load images
+        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+        lazyImages.forEach(img => {
+          // Add cache class to prevent reloading
+          img.classList.add('na-img-cacheable');
+          // Only observe if not in critical above-fold area
+          const rect = img.getBoundingClientRect();
+          if (rect.top > window.innerHeight) {
+            imageObserver.observe(img);
+          }
+        });
+      }
     })();
   </script>
   <style>
@@ -594,9 +628,65 @@
       image-rendering:auto;
       content-visibility:auto;
     }
-    img{
-      image-rendering:auto;
-      will-change:auto;
+    /* Prevent image reloading and repainting during scroll */
+    body#homepage img {
+      /* Force GPU acceleration for smoother scrolling */
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      /* Prevent layout shifts */
+      content-visibility: auto;
+      /* Cache rendered image to prevent reloading */
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+    
+    /* Mark loaded images to prevent re-fetching */
+    body#homepage img.na-img-loaded,
+    body#homepage img.na-img-cacheable {
+      will-change: auto; /* Reset will-change after load */
+    }
+    
+    /* Contain layout for large decorative images */
+    body#homepage .na-angel,
+    body#homepage .na-angel__circle,
+    body#homepage .na-angel__fog,
+    body#homepage .na-angel__fog-front,
+    body#homepage .na-angel__img {
+      contain: layout style paint;
+      will-change: transform;
+    }
+    
+    /* Optimize sections with images */
+    body#homepage .na-section-option,
+    body#homepage .na-section-benefits,
+    body#homepage .na-section-design {
+      contain: layout style;
+    }
+    
+    /* Prevent reflow on lazy-loaded images */
+    body#homepage img[loading="lazy"] {
+      /* Remove placeholder box background to avoid visible squares */
+      min-height: 0;
+      background: none;
+      background-size: auto;
+    }
+    
+    /* Mobile-specific optimizations */
+    @media (max-width: 768px) {
+      /* Further reduce repaints on mobile */
+      body#homepage img {
+        will-change: auto;
+        transform: translateZ(0) scale(1);
+      }
+      
+      /* Hide decorative images on slow connections */
+      @media (prefers-reduced-data: reduce) {
+        body#homepage .na-angel__fog,
+        body#homepage .na-angel__fog-front,
+        body#homepage .na-angel__circle {
+          display: none;
+        }
+      }
     }
 
     .na-logo__mark{
@@ -1028,7 +1118,7 @@
       width:170%;
       max-width:1800px;
       height:520px;
-      background:url('{{ asset('images/fog-three.png') }}') center bottom / cover no-repeat;
+      background:url('{{ asset('images/fog-three.webp') }}') center bottom / cover no-repeat;
       opacity:.80;
       pointer-events:none;
       z-index:1;
@@ -1292,7 +1382,7 @@
       width:140%;
       max-width:1700px;
       height:400px;
-      background:url('{{ asset('images/footer-fog.png') }}') center bottom / cover no-repeat;
+      background:url('{{ asset('images/footer-fog.webp') }}') center bottom / cover no-repeat;
       opacity:.9;
       pointer-events:none;
       z-index:1;
@@ -1368,7 +1458,7 @@
       max-width:480px;
       max-height:90vh;
       overflow-y:auto;
-      background:url('{{ asset('images/credential-bg.png') }}') center center / cover no-repeat;
+      background:url('{{ asset('images/credential-bg.webp') }}') center center / cover no-repeat;
       border-radius:20px;
       border:1px solid rgba(255,255,255,.2);
       box-shadow:0 24px 60px rgba(0,0,0,.9);
@@ -1646,14 +1736,34 @@
   {{ parent() }}
   <script>
     (function () {
-      // Phone slider functionality - images already preloaded
+      // Phone slider functionality with preloaded images for instant switching
       const slides = [
-        "{{ asset('images/1.png') }}",
-        "{{ asset('images/2.png') }}",
-        "{{ asset('images/3.png') }}",
-        "{{ asset('images/4.png') }}",
-        "{{ asset('images/5.png') }}",
+        "{{ asset('images/1.webp') }}",
+        "{{ asset('images/2.webp') }}",
+        "{{ asset('images/3.webp') }}",
+        "{{ asset('images/4.webp') }}",
+        "{{ asset('images/5.webp') }}",
       ];
+
+      // Preload all slider images for instant switching (mobile-optimized)
+      const isMobile = window.innerWidth <= 768;
+      const prefersDataSaver = navigator.connection && navigator.connection.saveData;
+      
+      if (!prefersDataSaver) {
+        slides.forEach((src, index) => {
+          // Preload first image immediately, others after a short delay
+          if (index === 0 || !isMobile) {
+            const img = new Image();
+            img.src = src;
+          } else if (index < 3) {
+            // Preload next 2 images after 500ms on mobile
+            setTimeout(() => {
+              const img = new Image();
+              img.src = src;
+            }, 500);
+          }
+        });
+      }
 
       let current = 0;
       const preview = document.querySelector('[data-phone-preview]');
@@ -1663,7 +1773,13 @@
       if (!preview || !prevBtn || !nextBtn) return;
 
       function updateSlide() {
-        preview.src = slides[current];
+        // Use cached image if available, otherwise load
+        const img = new Image();
+        img.onload = function() {
+          preview.src = slides[current];
+          preview.classList.add('na-slide-loaded');
+        };
+        img.src = slides[current];
       }
 
       prevBtn.addEventListener('click', function () {
@@ -1675,6 +1791,9 @@
         current = (current + 1) % slides.length;
         updateSlide();
       });
+      
+      // Initial load
+      updateSlide();
     })();
 
     // Language switcher

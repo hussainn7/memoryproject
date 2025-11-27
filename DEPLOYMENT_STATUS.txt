@@ -1,0 +1,101 @@
+=======================================================================
+MEMORYPROJECT DEPLOYMENT STATUS
+=======================================================================
+
+✅ PROJECT LOCATION: /home/c/craft53/memoryproject/
+✅ WEB ROOT: /home/c/craft53/memoryproject/public/
+✅ DOMAIN: http://craft53.beget.tech/
+
+=======================================================================
+ISSUES RESOLVED:
+=======================================================================
+
+1. ✅ Modal login/registration forms working
+2. ✅ User authentication working (admin/admin123)
+3. ✅ Dashboard buttons visible (menu database seeded)
+4. ✅ QR code creation working (status database seeded)
+5. ✅ Theme selection working (themes database seeded)
+6. ✅ IMAGE LOADING FIXED - All images now serve correctly
+7. ✅ Image upload working with correct permissions
+8. ✅ Git repository prepared (build/ in .gitignore)
+
+=======================================================================
+KEY TECHNICAL SOLUTIONS:
+=======================================================================
+
+IMAGES (Most Recent Fix):
+- Added static file serving to index.php BEFORE Symfony loads
+- Bypasses Symfony routing for /img/, /option-bg/, /images/, etc.
+- Works with Beget's Nginx + 700 permissions setup
+- No need to modify Nginx config or contact support
+
+AUTHENTICATION:
+- Custom success/error handlers for AJAX login
+- Modal forms submit via XHR
+- CSRF tokens properly handled
+
+DATABASE:
+- Seeded menu, status_qr_code, memory_thema tables
+- Created admin user command
+- Fixed NULL role issues
+
+IMAGE OPTIMIZATION:
+- Lazy loading with Intersection Observer
+- Conditional preloading based on device
+- Data-saver mode detection
+- GPU acceleration for smooth scrolling
+
+=======================================================================
+COMMANDS FOR FUTURE REFERENCE:
+=======================================================================
+
+Clear cache:
+  cd /home/c/craft53/memoryproject
+  /usr/local/bin/php8.1 bin/console cache:clear --env=prod
+
+Create admin user:
+  /usr/local/bin/php8.1 bin/console app:create-admin-user
+
+Fix user roles:
+  /usr/local/bin/php8.1 bin/console app:fix-user-roles
+
+Clear opcache (via web):
+  http://craft53.beget.tech/opcache-reset.php
+
+=======================================================================
+PROJECT STRUCTURE:
+=======================================================================
+
+/home/c/craft53/memoryproject/
+├── public/
+│   ├── index.php (serves static files FIRST, then Symfony)
+│   ├── img/ (user uploads, 755 permissions)
+│   ├── option-bg/ (theme previews)
+│   ├── images/ (site assets)
+│   └── assets/ (compiled assets)
+├── src/
+│   ├── Controller/ (Admin, Security, Person controllers)
+│   ├── Service/ (PersonService with file uploads)
+│   ├── Command/ (CLI commands)
+│   └── Security/ (Custom auth handlers)
+├── templates/
+│   ├── home/ (homepage with modals)
+│   └── frontend/person/ (memory pages)
+└── var/
+    ├── cache/
+    └── log/
+
+=======================================================================
+BEGET HOSTING SPECIFICS:
+=======================================================================
+
+- Server: Nginx + Apache (Nginx frontend, Apache backend)
+- PHP Version: 8.1 (use /usr/local/bin/php8.1 for CLI)
+- Database: MySQL 8.0
+- Permissions: 700 on project dir (root:root) - WORKING
+- Static files: Served via PHP in index.php (Nginx workaround)
+
+=======================================================================
+LAST UPDATED: 2025-11-26
+STATUS: ✅ FULLY OPERATIONAL
+=======================================================================
