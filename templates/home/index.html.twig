@@ -153,13 +153,7 @@
 
 <section class="na-section-how">
   <style>
-    @font-face {
-      font-family: "FranklinGothicCond";
-      src: url("{{ asset('fonts/ofont.ru_Franklin Gothic Medium Cond.ttf') }}") format("truetype");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
+    /* @font-face removed - font file not found, using fallback fonts from font-family declarations */
 
 
     .how-page {
@@ -363,27 +357,63 @@
 
     @media (max-width: 768px) {
       .how-page {
-        padding-bottom: 110px;
+        padding-bottom: 320px; /* чуть больше запаса снизу */
       }
+
       .how-title-text {
         font-size: 30px;
       }
+
       .how-center {
-        top: 250px;
-        transform: translate(-50%, 0) scale(.8);
+        top: 230px;
+        transform: translate(-50%, 0) scale(.75);
       }
+
       .how-steps {
-        margin-top: 270px;
+        margin-top: 260px;
         flex-wrap: wrap;
       }
+
       .how-hand-wrap {
         position: absolute;
-        right: -120px;
-        bottom: -324px;
-        transform: scale(.9);
+        left: 50%;
+        right: auto;
+        bottom: -420px;                 /* поднимаем руку выше */
+        transform: translate(-35%, 0) scale(.78);
+        z-index: 5;
+        pointer-events: none;
       }
+
+      /* ВАЖНО: двигаем ВЕСЬ шаг 5 вниз */
+      .how-step--5 {
+        margin-top: 240px; /* опустить блок ниже руки */
+        text-align: center;
+      }
+
+      .how-step--5 .how-step-badge {
+        display: block;
+        margin: 0 auto 14px; /* центр плашки над текстом */
+      }
+
+      .how-step--5 .how-step-caption {
+        margin: 0 auto;
+        max-width: 280px; /* чтобы текст не расползался по всей ширине */
+      }
+
       .how-bottom-text {
-        margin-top: 40px;
+        margin-top: 50px;
+      }
+    }
+
+    /* совсем узкие экраны */
+    @media (max-width: 480px) {
+      .how-hand-wrap {
+        bottom: -320px;                 /* поднимаем руку выше на узких экранах */
+        transform: translate(-30%, 0) scale(.72);
+      }
+
+      .how-step--5 {
+        margin-top: 220px; /* чуть меньше, чтобы не было огромной дыры */
       }
     }
   </style>
@@ -471,6 +501,15 @@
               src="{{ asset('images/circle-three.webp') }}"
               alt=""
               class="na-benefits-visual__circle"
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+            >
+            {# FRONT FOG FROM RIGHT - for section 3 #}
+            <img
+              src="{{ asset('images/front-fog.webp') }}"
+              alt=""
+              class="na-benefits-visual__fog-front"
               aria-hidden="true"
               loading="lazy"
               decoding="async"
@@ -1233,7 +1272,7 @@
       right:5%;
       width:85%;
       height:auto;
-      opacity:.8;
+      opacity:1;
       pointer-events:none;
       user-select:none;
       z-index:2; /* BELOW angel, same as circle */
@@ -1242,17 +1281,19 @@
       mask-image:linear-gradient(
         to right,
         rgba(0,0,0,1) 0%,
-        rgba(0,0,0,.95) 25%,
-        rgba(0,0,0,.7) 50%,
-        rgba(0,0,0,.3) 75%,
+        rgba(0,0,0,1) 30%,
+        rgba(0,0,0,.9) 50%,
+        rgba(0,0,0,.6) 75%,
+        rgba(0,0,0,.2) 90%,
         rgba(0,0,0,0) 100%
       );
       -webkit-mask-image:linear-gradient(
         to right,
         rgba(0,0,0,1) 0%,
-        rgba(0,0,0,.95) 25%,
-        rgba(0,0,0,.7) 50%,
-        rgba(0,0,0,.3) 75%,
+        rgba(0,0,0,1) 30%,
+        rgba(0,0,0,.9) 50%,
+        rgba(0,0,0,.6) 75%,
+        rgba(0,0,0,.2) 90%,
         rgba(0,0,0,0) 100%
       );
     }
@@ -1419,37 +1460,37 @@
       overflow:hidden;
     }
 
-    /* big fog behind everything, softly blended */
     .na-section-benefits::before{
       content:"";
       position:absolute;
-      left:50%;
-      bottom:-130px;
-      transform:translateX(-50%);
-      width:170%;
-      max-width:1800px;
-      height:520px;
-      background:url('{{ asset('images/fog-three.webp') }}') center bottom / cover no-repeat;
-      opacity:.80;
+      left:0;
+      right:0;
+      bottom:-100px;
+      height:650px;
+      background:url('{{ asset('images/fog-three.webp') }}')
+                 center bottom / cover no-repeat;
+      opacity:1;
       pointer-events:none;
-      z-index:1;
+      z-index:0;
 
-      /* fade the fog into the background so there is no hard line */
+      /* более видимый туман - меньше обрезаем */
       mask-image:linear-gradient(
         to top,
-        rgba(0,0,0,1) 0%,
-        rgba(0,0,0,1) 35%,
-        rgba(0,0,0,.7) 60%,
-        rgba(0,0,0,.3) 80%,
-        rgba(0,0,0,0) 100%
+        rgba(0,0,0,1)   0%,
+        rgba(0,0,0,1)  50%,
+        rgba(0,0,0,.8) 65%,
+        rgba(0,0,0,.5) 80%,
+        rgba(0,0,0,.2) 90%,
+        rgba(0,0,0,0)  100%
       );
       -webkit-mask-image:linear-gradient(
         to top,
-        rgba(0,0,0,1) 0%,
-        rgba(0,0,0,1) 35%,
-        rgba(0,0,0,.7) 60%,
-        rgba(0,0,0,.3) 80%,
-        rgba(0,0,0,0) 100%
+        rgba(0,0,0,1)   0%,
+        rgba(0,0,0,1)  50%,
+        rgba(0,0,0,.8) 65%,
+        rgba(0,0,0,.5) 80%,
+        rgba(0,0,0,.2) 90%,
+        rgba(0,0,0,0)  100%
       );
     }
     .na-section-benefits .container{
@@ -1474,6 +1515,30 @@
       pointer-events:none;
       user-select:none;
       z-index:1;
+    }
+    .na-benefits-visual__fog-front{
+      position:absolute;
+      bottom:0;
+      left:-500px;
+      right:auto;
+      width:200%;
+      height:auto;
+      max-height:60%;
+      object-fit:cover;
+      object-position:left bottom;
+      opacity:1;
+      pointer-events:none;
+      user-select:none;
+      z-index:10; /* on top of everything - section and angel */
+      /* Fade from left (fully visible) to right (transparent), and from bottom to top */
+      mask-image:
+        linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(0,0,0,.7) 50%, rgba(0,0,0,.3) 75%, rgba(0,0,0,0) 100%),
+        linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,.8) 40%, rgba(0,0,0,.5) 60%, rgba(0,0,0,.2) 80%, rgba(0,0,0,0) 100%);
+      -webkit-mask-image:
+        linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(0,0,0,.7) 50%, rgba(0,0,0,.3) 75%, rgba(0,0,0,0) 100%),
+        linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,.8) 40%, rgba(0,0,0,.5) 60%, rgba(0,0,0,.2) 80%, rgba(0,0,0,0) 100%);
+      mask-composite: intersect;
+      -webkit-mask-composite: source-in;
     }
     .na-benefits-visual__angel{
       position:relative;
