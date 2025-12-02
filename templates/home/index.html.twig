@@ -31,8 +31,8 @@
         </div>
 
         <div class="na-top-links">
-          <button class="na-chip small" type="button" data-modal-open="register">РЕГИСТРАЦИЯ</button>
-          <button class="na-chip small" type="button" data-modal-open="login">ВОЙТИ</button>
+          <button class="na-chip small" type="button" data-modal-open="register" data-i18n="btn_register">РЕГИСТРАЦИЯ</button>
+          <button class="na-chip small" type="button" data-modal-open="login" data-i18n="btn_login">ВОЙТИ</button>
         </div>
       </div>
     </div>
@@ -46,11 +46,11 @@
 
           {# top main marketing block #}
           <div class="na-left-main">
-            <h1 class="na-left-main__title">
+            <h1 class="na-left-main__title" data-i18n="hero_title">
               ПОВЫСЬТЕ<br/>
               ПРОДАЖИ
             </h1>
-            <p class="na-left-main__subtitle">
+            <p class="na-left-main__subtitle" data-i18n="hero_subtitle">
               по изготовлению памятников,<br/>
               предлагая дополнительную услугу<br/>
               виртуальной страницы памяти<br/>
@@ -59,7 +59,7 @@
 
             <div class="na-left-pill">
               <span class="na-left-pill__number">5</span>
-              <span class="na-left-pill__text">
+              <span class="na-left-pill__text" data-i18n="cta_try_get5">
                 попробуйте и получите<br/>
                 пять бесплатных QR-кодов
               </span>
@@ -68,13 +68,13 @@
 
           {# secondary "Небесный архив" card #}
           <div class="na-copy mt-4">
-            <h2 class="na-copy__title">НЕБЕСНЫЙ<br/>АРХИВ</h2>
-            <p class="na-copy__text">
+            <h2 class="na-copy__title" data-i18n="archive_title">НЕБЕСНЫЙ<br/>АРХИВ</h2>
+            <p class="na-copy__text" data-i18n="archive_p1">
               Онлайн-сервис сохранения памяти о близких.
               Наш сервис позволяет сохранять биографию,
               фото, видео, координаты захоронения.
             </p>
-            <p class="na-copy__text mb-0">
+            <p class="na-copy__text mb-0" data-i18n="archive_p2">
               Создание страницы памяти происходит автоматически
               при заполнении формы при первом переходе по QR-коду.
               В дальнейшем QR-код служит ссылкой на страницу
@@ -83,7 +83,7 @@
           </div>
 
           {# small quality badge text (optional) #}
-          <div class="na-quality mt-3">
+          <div class="na-quality mt-3" data-i18n="badge_quality">
             100% гарантия&nbsp;качества и надёжности сервиса
           </div>
         </div>
@@ -115,12 +115,12 @@
 
           {# main statue #}
           <img
-            src="{{ asset('images/angel.webp') }}"
-            alt="Ангел хранитель"
-            class="na-angel__img"
-            loading="eager"
-            fetchpriority="high"
-            decoding="sync"
+          src="{{ asset('images/angel.webp') }}"
+          alt="Ангел хранитель"
+          class="na-angel__img"
+          loading="eager"
+          fetchpriority="high"
+          decoding="sync"
           >
 
           {# front fog over the base of the statue #}
@@ -334,7 +334,7 @@
   }
   .how-step--5 .how-step-caption {
     margin-top: 15px;
-  }
+    }
 
     .how-bottom-text {
       margin-top: 60px;
@@ -465,7 +465,7 @@
     </div>
 
     <div class="how-inner">
-      <h2 class="how-title-text">
+      <h2 class="how-title-text" data-i18n="steps_title_easy">
         <span>ПРОСТО СКАЧАТЬ</span>
         <span>И ПРОСТО ИСПОЛЬЗОВАТЬ</span>
       </h2>
@@ -474,16 +474,15 @@
         <div class="how-step how-step--1">
           <img class="how-step-phone" src="{{ asset('images/1_section.webp') }}" alt="Шаг 1">
           <img class="how-step-badge" src="{{ asset('images/1 плашка.webp') }}" alt="1">
-          <p class="how-step-caption">
+          <p class="how-step-caption" data-i18n="step_1">
             Генерируйте код на нашем сайте
           </p>
         </div>
 
         <div class="how-step how-step--2">
-          <img class="how-step-flash" src="{{ asset('images/2 вспышки.png') }}" alt="">
-          <img class="how-step-phone" src="{{ asset('images/2_section.webp') }}" alt="Шаг 2">
+]          <img class="how-step-phone" src="{{ asset('images/2_section.webp') }}" alt="Шаг 2">
           <img class="how-step-badge" src="{{ asset('images/2 плашка.webp') }}" alt="2">
-          <p class="how-step-caption">
+          <p class="how-step-caption" data-i18n="step_2">
             Скачивайте и гравируйте код на памятнике
           </p>
         </div>
@@ -491,7 +490,7 @@
         <div class="how-step how-step--3">
           <img class="how-step-phone" src="{{ asset('images/3_section.webp') }}" alt="Шаг 3">
           <img class="how-step-badge" src="{{ asset('images/3 плашка.webp') }}" alt="3">
-          <p class="how-step-caption">
+          <p class="how-step-caption" data-i18n="step_3">
             Клиент сканирует QR-код
           </p>
         </div>
@@ -499,14 +498,14 @@
         <div class="how-step how-step--4">
           <img class="how-step-phone" src="{{ asset('images/4_section.webp') }}" alt="Шаг 4">
           <img class="how-step-badge" src="{{ asset('images/4 плашка.webp') }}" alt="4">
-          <p class="how-step-caption">
+          <p class="how-step-caption" data-i18n="step_4">
             Клиент заполняет форму и создает страницу
           </p>
         </div>
 
         <div class="how-step how-step--5">
           <img class="how-step-badge" src="{{ asset('images/5 плашка.webp') }}" alt="5">
-          <p class="how-step-caption">
+          <p class="how-step-caption" data-i18n="step_5_long">
             При наведении камеры на QR-код на памятнике
             клиент может открывать созданную им страницу
           </p>
@@ -563,7 +562,7 @@
         {# RIGHT: TEXT BENEFITS #}
         <div class="col-lg-7">
           <div class="na-benefits-copy">
-            <h2 class="na-benefits-title">
+            <h2 class="na-benefits-title" data-i18n="benefit_title_advantage">
               ИСПОЛЬЗУЯ<br/>
               QR КОД ВЫ<br/>
               ПОЛУЧИТЕ
@@ -571,10 +570,10 @@
 
             <div class="na-benefits-list">
               <div class="na-benefit">
-                <h3 class="na-benefit__title">
+                <h3 class="na-benefit__title" data-i18n="benefit_title_advantage">
                   КОНКУРЕНТНОЕ<br/>ПРЕИМУЩЕСТВО
                 </h3>
-                <p class="na-benefit__text">
+                <p class="na-benefit__text" data-i18n="benefit_text_advantage">
                   Прогресс не стоит на месте, и QR-код всё чаще
                   входит в нашу жизнь. Теперь он с нами и после.
                   Данное предложение сделает вас уникальными в глазах
@@ -583,20 +582,20 @@
               </div>
 
               <div class="na-benefit">
-                <h3 class="na-benefit__title">
+                <h3 class="na-benefit__title" data-i18n="benefit_title_check">
                   УВЕЛИЧЕНИЕ<br/>СРЕДНЕГО ЧЕКА
                 </h3>
-                <p class="na-benefit__text">
+                <p class="na-benefit__text" data-i18n="benefit_text_check">
                   Вы сможете продавать памятники дороже, затрачивая
                   на их изготовление столько же времени, сколько и раньше.
                 </p>
               </div>
 
               <div class="na-benefit mb-0">
-                <h3 class="na-benefit__title">
+                <h3 class="na-benefit__title" data-i18n="benefit_title_conversion">
                   ВЫСОКУЮ<br/>КОНВЕРСИЮ В ПРОДАЖУ
                 </h3>
-                <p class="na-benefit__text mb-0">
+                <p class="na-benefit__text mb-0" data-i18n="benefit_text_conversion">
                   Проект QR-кодов развивается, и в дальнейшем
                   фотографии будут оживать с помощью ИИ.
                   Такая услуга сделает ваши памятники дороже
@@ -614,7 +613,7 @@
   <section class="na-section-design">
     <div class="container">
 
-      <div class="na-design-heading">
+      <div class="na-design-heading" data-i18n="section_title_design_choice">
         ВЫБОР<br/>
         ИНДИВИДУАЛЬНОГО<br/>
         ОФОРМЛЕНИЯ СТРАНИЦ
@@ -652,22 +651,22 @@
                 decoding="async"
               >
 
-              <div class="na-phone-frame">
-                <img
-                  src="{{ asset('images/phone.webp') }}"
-                  alt="Смартфон"
-                  class="na-phone-frame__img"
-                  loading="lazy"
-                  decoding="async"
-                >
-                <img
-                  src="{{ asset('images/1.webp') }}"
-                  alt="Превью страницы памяти"
-                  class="na-phone-preview-main"
+            <div class="na-phone-frame">
+              <img
+                src="{{ asset('images/phone.webp') }}"
+                alt="Смартфон"
+                class="na-phone-frame__img"
+                loading="lazy"
+                decoding="async"
+              >
+              <img
+                src="{{ asset('images/1.webp') }}"
+                alt="Превью страницы памяти"
+                class="na-phone-preview-main"
                   data-phone-preview="main"
-                  loading="lazy"
-                  decoding="async"
-                >
+                loading="lazy"
+                decoding="async"
+              >
               </div>
             </div>
 
@@ -685,7 +684,7 @@
         {# RIGHT: TEXT CARD #}
         <div class="col-lg-7">
           <div class="na-design-card">
-            <p class="na-design-card__text">
+            <p class="na-design-card__text" data-i18n="design_choice_text">
               Клиент при заполнении формы самостоятельно выбирает,
               как будет выглядеть страница в итоге. Для этого
               изготовлены разные стилистические формы с разными
@@ -2480,33 +2479,160 @@
         current = (current + 1) % slides.length;
         updateSlides();
       });
-
+      
       // Initial state
       updateSlides();
     })();
 
-    // Language switcher
+    // Client-side language switcher with dictionary (RU / EN)
     (function () {
-      const langItems = document.querySelectorAll('.na-lang-switch__item');
-      
-      langItems.forEach(item => {
-        item.addEventListener('click', function (e) {
+      const translations = {
+        ru: {
+          /* БРЕНД / ХЕДЕР */
+          brand_name_plain: 'Небесный Архив',
+          hero_title: 'ПОВЫСЬТЕ<br/>ПРОДАЖИ',
+          hero_subtitle: 'по изготовлению памятников,<br/>предлагая дополнительную услугу<br/>виртуальной страницы памяти<br/>на памятнике.',
+
+          /* CTA 5 QR */
+          cta_try_get5: 'попробуйте и получите<br/>пять бесплатных QR-кодов',
+          cta_try_get5_big: 'ПОПРОБУЙТЕ И ПОЛУЧИТЕ<br/>ПЯТЬ БЕСПЛАТНЫХ QR КОДОВ',
+
+          /* Блок "Небесный архив" */
+          archive_title: 'НЕБЕСНЫЙ<br/>АРХИВ',
+          archive_p1: 'Онлайн-сервис сохранения памяти о близких. Наш сервис позволяет сохранять биографию, фото, видео, координаты захоронения.',
+          archive_p2: 'Создание страницы памяти происходит автоматически при заполнении формы при первом переходе по QR-коду. В дальнейшем QR-код служит ссылкой на страницу памяти об ушедшем.',
+          badge_quality: '100% гарантия качества и надёжности сервиса',
+
+          /* Маленькие подписи/лейблы */
+          label_guardian_angel: 'Ангел хранитель',
+          label_fog_headstone: 'тумантуманнадгробие',
+
+          /* Блок "Просто скачать и просто использовать" */
+          steps_title_easy: 'ПРОСТО СКАЧАТЬ<br/>И ПРОСТО ИСПОЛЬЗОВАТЬ',
+          step_1: 'Генерируйте код на нашем сайте',
+          step_2: 'Скачивайте и гравируйте код на памятнике',
+          step_3: 'Клиент сканирует QR-код',
+          step_4: 'Клиент заполняет форму и создает страницу',
+          step_5_long: 'При наведении камеры на QR-код на памятнике клиент может открывать созданную им страницу',
+          caption_phone_qr: 'Телефон с QR-кодом',
+
+          /* Блок про конкурентное преимущество */
+          benefit_title_advantage: 'ИСПОЛЬЗУЯ<br/>QR КОД ВЫ<br/>ПОЛУЧИТЕ<br/>КОНКУРЕНТНОЕ<br/>ПРЕИМУЩЕСТВО',
+          benefit_text_advantage: 'Прогресс не стоит на месте, и QR-код всё чаще входит в нашу жизнь. Теперь он с нами и после. Данное предложение сделает вас уникальными в глазах конкурентов — даже если ваши услуги выше рыночных.',
+
+          benefit_title_check: 'УВЕЛИЧЕНИЕ<br/>СРЕДНЕГО ЧЕКА',
+          benefit_text_check: 'Вы сможете продавать памятники дороже, затрачивая на их изготовление столько же времени, сколько и раньше.',
+
+          benefit_title_conversion: 'ВЫСОКУЮ<br/>КОНВЕРСИЮ В ПРОДАЖУ',
+          benefit_text_conversion: 'Проект QR-кодов развивается, и в дальнейшем фотографии будут оживать с помощью ИИ. Такая услуга сделает ваши памятники дороже на этапе изготовления.',
+
+          /* Блок выбора оформления */
+          section_title_design_choice: 'ВЫБОР<br/>ИНДИВИДУАЛЬНОГО<br/>ОФОРМЛЕНИЯ СТРАНИЦ',
+          caption_smartphone: 'Смартфон',
+          caption_preview_page: 'Превью страницы памяти',
+          design_choice_text: 'Клиент при заполнении формы самостоятельно выбирает, как будет выглядеть страница в итоге. Для этого изготовлены разные стилистические формы с разными шрифтами и цветами исполнения.',
+
+          /* Футер */
+          footer_contacts_offer: 'Контактные данные и публичная оферта',
+
+          /* Кнопки */
+          btn_register: 'РЕГИСТРАЦИЯ',
+          btn_login: 'ВОЙТИ'
+        },
+
+        en: {
+          /* BRAND / HEADER */
+          brand_name_plain: 'Heavenly Archive',
+          hero_title: 'BOOST<br/>YOUR SALES',
+          hero_subtitle: 'for headstone manufacturers<br/>by offering an additional service –<br/>a virtual memorial page<br/>on each monument.',
+
+          /* CTA 5 QR */
+          cta_try_get5: 'Try it and get<br/>five QR-codes for free',
+          cta_try_get5_big: 'TRY IT AND GET<br/>FIVE QR CODES FOR FREE',
+
+          /* "Heavenly Archive" block */
+          archive_title: 'HEAVENLY<br/>ARCHIVE',
+          archive_p1: 'An online service for preserving the memory of loved ones. Our platform lets you store a biography, photos, videos and the burial location.',
+          archive_p2: 'A memorial page is created automatically when the form is filled in after the first QR-code scan. Later the QR-code becomes a direct link to this page.',
+          badge_quality: '100% guarantee of service quality and reliability',
+
+          /* Small labels */
+          label_guardian_angel: 'Guardian angel',
+          label_fog_headstone: 'Fog over the headstone',
+
+          /* "Just download and use" block */
+          steps_title_easy: 'JUST DOWNLOAD<br/>AND JUST USE',
+          step_1: 'Generate the code on our website',
+          step_2: 'Download it and engrave the code on the headstone',
+          step_3: 'The client scans the QR code',
+          step_4: 'The client fills out the form and creates a page',
+          step_5_long: 'By pointing the camera at the QR code on the headstone, the client can open the page they created.',
+          caption_phone_qr: 'Phone with QR code',
+
+          /* Competitive advantage block */
+          benefit_title_advantage: 'BY USING<br/>A QR CODE YOU<br/>GAIN A<br/>COMPETITIVE<br/>ADVANTAGE',
+          benefit_text_advantage: 'Technology never stands still, and QR codes are becoming part of everyday life. Now they stay with us even after we are gone. This offer makes you unique in the eyes of competitors — even if your prices are above the market.',
+
+          benefit_title_check: 'HIGHER<br/>AVERAGE ORDER VALUE',
+          benefit_text_check: 'You can sell more expensive headstones while spending the same time on production as before.',
+
+          benefit_title_conversion: 'HIGH<br/>CONVERSION TO SALES',
+          benefit_text_conversion: 'The QR-code project is evolving, and in the future photos will come to life with the help of AI. This service will increase the value of your monuments at the production stage.',
+
+          /* Design choice block */
+          section_title_design_choice: 'CHOICE OF<br/>INDIVIDUAL<br/>PAGE DESIGN',
+          caption_smartphone: 'Smartphone',
+          caption_preview_page: 'Memorial page preview',
+          design_choice_text: 'When filling out the form, the client chooses how the page will look in the end. We have several design styles with different fonts and color schemes.',
+
+          /* Footer */
+          footer_contacts_offer: 'Contact details and public offer',
+
+          /* Buttons */
+          btn_register: 'SIGN UP',
+          btn_login: 'LOG IN'
+        }
+      };
+
+      const langLinks = document.querySelectorAll('.na-lang-switch__item');
+      if (!langLinks.length) return;
+
+      function applyLanguage(lang) {
+        const dict = translations[lang];
+        if (!dict) return;
+
+        langLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.lang === lang);
+        });
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.dataset.i18n;
+          const value = dict[key];
+          if (!value) return;
+
+          if (value.indexOf('<br') !== -1 || value.indexOf('&nbsp;') !== -1) {
+            el.innerHTML = value;
+          } else {
+            el.textContent = value;
+          }
+        });
+
+        try {
+          localStorage.setItem('na_lang', lang);
+        } catch (e) {}
+      }
+
+      langLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
           e.preventDefault();
-          
-          // Remove active from all
-          langItems.forEach(lang => lang.classList.remove('active'));
-          
-          // Add active to clicked
-          this.classList.add('active');
-          
-          // Here you can add actual language switching logic
-          const selectedLang = this.getAttribute('data-lang');
-          console.log('Language switched to:', selectedLang);
-          
-          // Optional: reload page with locale parameter or make AJAX call
-          // window.location.href = '?locale=' + selectedLang;
+          applyLanguage(this.dataset.lang);
         });
       });
+
+      const saved = (function () {
+        try { return localStorage.getItem('na_lang'); } catch (e) { return null; }
+      })();
+      applyLanguage(saved === 'en' ? 'en' : 'ru');
     })();
 
     // Mobile navigation toggle
