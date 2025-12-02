@@ -151,15 +151,6 @@
 
 <section class="na-section-how">
   <style>
-    @font-face {
-      font-family: "FranklinGothicCond";
-      src: url("{{ asset('fonts/ofont.ru_Franklin Gothic Medium Cond.ttf') }}") format("truetype");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
-
     /* second section pulled up a bit to hide any 1px gap */
     .na-section-how {
       position: relative;
@@ -642,22 +633,42 @@
               <img src="{{ asset('images/left-right-button.webp') }}" alt="" loading="lazy" decoding="async" />
             </button>
 
-            <div class="na-phone-frame">
+            <div class="na-phone-stage">
               <img
-                src="{{ asset('images/phone.webp') }}"
-                alt="Смартфон"
-                class="na-phone-frame__img"
+                src="{{ asset('images/2.webp') }}"
+                alt=""
+                class="na-phone-ghost na-phone-ghost--prev"
+                data-phone-preview="prev"
                 loading="lazy"
                 decoding="async"
               >
+
               <img
-                src="{{ asset('images/1.webp') }}"
-                alt="Превью страницы памяти"
-                class="na-phone-preview"
-                data-phone-preview
+                src="{{ asset('images/3.webp') }}"
+                alt=""
+                class="na-phone-ghost na-phone-ghost--next"
+                data-phone-preview="next"
                 loading="lazy"
                 decoding="async"
               >
+
+              <div class="na-phone-frame">
+                <img
+                  src="{{ asset('images/phone.webp') }}"
+                  alt="Смартфон"
+                  class="na-phone-frame__img"
+                  loading="lazy"
+                  decoding="async"
+                >
+                <img
+                  src="{{ asset('images/1.webp') }}"
+                  alt="Превью страницы памяти"
+                  class="na-phone-preview-main"
+                  data-phone-preview="main"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
             </div>
 
             <button
@@ -751,6 +762,9 @@
         </form>
       </div>
     </div>
+
+{# Override base footer for homepage – we don't need the global © footer here #}
+{% block footer %}{% endblock %}
   </div>
 
   {# Registration Modal #}
@@ -829,77 +843,7 @@
 {% block stylesheets %}
   {{ parent() }}
   {# Mobile-optimized conditional preloading - only critical above-the-fold images #}
-  <script>
-    (function() {
-      'use strict';
-      
-      // Detect mobile and data-saver mode
-      const isMobile = window.innerWidth <= 768;
-      const prefersDataSaver = navigator.connection && navigator.connection.saveData;
-      const slowConnection = navigator.connection && (navigator.connection.effectiveType === 'slow-2g' || navigator.connection.effectiveType === '2g');
-      
-      // Skip aggressive preloading on slow connections or data-saver mode
-      if (prefersDataSaver || slowConnection) {
-        console.log('⚡ Data-saver mode or slow connection detected - minimal image loading');
-        return;
-      }
-      
-      // Only preload critical above-the-fold images based on device
-      const criticalImages = isMobile ? [
-      "{{ asset('images/logo.webp') }}"
-      ] : [
-      "{{ asset('images/logo.webp') }}",
-      "{{ asset('images/angel.webp') }}",
-      "{{ asset('images/circle.webp') }}"
-      ];
-      
-      // Preload critical images
-      criticalImages.forEach(src => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = src;
-        document.head.appendChild(link);
-      });
-    
-      // Intersection Observer for smart lazy loading
-      if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const img = entry.target;
-              
-              // Load image if not already loaded
-              if (img.dataset.src && !img.src) {
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-              }
-              
-              // Mark as observed to prevent reloading
-              img.classList.add('na-img-loaded');
-              observer.unobserve(img);
-            }
-          });
-        }, {
-          // Start loading 300px before image enters viewport
-          rootMargin: '300px 0px',
-          threshold: 0.01
-        });
-    
-        // Observe all lazy-load images
-        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-        lazyImages.forEach(img => {
-          // Add cache class to prevent reloading
-          img.classList.add('na-img-cacheable');
-          // Only observe if not in critical above-fold area
-          const rect = img.getBoundingClientRect();
-          if (rect.top > window.innerHeight) {
-            imageObserver.observe(img);
-          }
-        });
-      }
-    })();
-  </script>
+ 
   <style>
     /* Scoped to homepage only - prevents affecting dashboard and other pages */
     body#homepage{
@@ -978,21 +922,22 @@
     }
     .na-nav-toggle{
       display:none;
-      width:42px;
-      height:42px;
-      border-radius:6px;
-      border:1px solid rgba(255,255,255,.55);
-      background:transparent;
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.7);
+      background:rgba(0,0,0,.45);
       padding:0;
       justify-content:center;
       align-items:center;
       flex-direction:column;
       gap:5px;
-      transition:background .2s ease, border-color .2s ease;
+      box-shadow:0 0 12px rgba(0,0,0,.8);
+      transition:background .2s ease, border-color .2s ease, transform .15s ease;
     }
     .na-nav-toggle span{
       display:block;
-      width:18px;
+      width:20px;
       height:2px;
       border-radius:999px;
       background:#fff;
@@ -1000,6 +945,7 @@
     .na-nav-toggle[aria-expanded="true"]{
       background:rgba(255,255,255,.15);
       border-color:#fff;
+      transform:scale(0.96);
     }
 
     .na-logo{
@@ -1015,7 +961,7 @@
       image-rendering:auto;
       content-visibility:auto;
     }
-    /* Prevent image reloading and repainting during scroll */
+    /* Basic responsive images on homepage */
     body#homepage img {
       /* Force GPU acceleration for smoother scrolling */
       transform: translateZ(0);
@@ -1058,12 +1004,6 @@
     
     /* Mobile-specific optimizations */
     @media (max-width: 768px) {
-      /* Further reduce repaints on mobile */
-      body#homepage img {
-        will-change: auto;
-        transform: translateZ(0) scale(1);
-      }
-      
       /* Hide decorative images on slow connections */
       @media (prefers-reduced-data: reduce) {
         body#homepage .na-angel__fog,
@@ -1754,12 +1694,12 @@
 
     .na-design-heading{
       font-family:"Times New Roman", Georgia, serif;
-      font-weight:800;
-      font-size:clamp(26px,3vw,34px);
+      font-weight:900;
+      font-size:clamp(32px,4vw,46px);
       line-height:1.1;
       letter-spacing:.06em;
       text-transform:uppercase;
-      text-align:right;
+      text-align:center;
       margin-bottom:42px;
       text-shadow:0 2px 6px rgba(0,0,0,.6);
     }
@@ -1772,51 +1712,124 @@
       gap:18px;
     }
 
-    .na-phone-frame{
-      position:relative;
-      display:inline-block;
-    }
-    .na-phone-frame__img{
-      display:block;
-      width:260px;
-      height:auto;
+    .na-phone-slider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
     }
 
-    /* preview inside phone screen */
-    .na-phone-preview{
-      position:absolute;
-      top:11%;
-      left:13%;
-      width:74%;
-      height:78%;
-      object-fit:cover;
-      border-radius:16px;
+    /* Stage with ghosts + main phone */
+    .na-phone-stage {
+      position: relative;
+      width: 460px;
+      height: 430px;
+      display: flex;
+      align-items: flex-end;      /* align everything by bottom */
+      justify-content: center;
     }
 
+    /* Main phone frame in the center */
+    .na-phone-frame {
+      position: relative;
+      z-index: 3;
+      height: 430px;          /* base for everything inside */
+    }
+    .na-phone-frame__img {
+      height: 110%;           /* make phone slightly larger than frame */
+      width: auto;
+      display: block;
+    }
+
+    /* Main inner slide inside the bezel */
+    .na-phone-preview-main {
+      position: absolute;
+      top: 9%;
+      bottom: 12%;
+      left: 8%;
+      right: 23%;
+      object-fit: cover;
+      border-radius: 22px;
+    }
+
+    /* Left / right previews – SAME HEIGHT, bottom-aligned */
+    .na-phone-ghost {
+      position: absolute;
+      bottom: 0;
+      top: auto;
+      transform: scale(.82);
+      height: 340px;          /* same height for all previews */
+      width: auto;
+      filter: grayscale(100%) brightness(.7);
+      opacity: .35;
+      z-index: 1;
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events: none;    /* prevent blocking arrow clicks */
+    }
+
+    .na-phone-ghost--prev {
+      left: -120px;           /* adjust to taste */
+    }
+    .na-phone-ghost--next {
+      right: -120px;
+    }
+
+    /* Slight “breathe” on hover */
+    .na-phone-slider:hover .na-phone-ghost {
+      opacity: .45;
+      transform: scale(.85);
+    }
+
+    /* Arrow buttons */
     .na-phone-arrow{
       border:none;
       padding:0;
       background:transparent;
       cursor:pointer;
-      width:32px;
-      height:32px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:transform .15s ease, opacity .15s ease;
-      opacity:.9;
+      position: relative;
+      z-index: 10; /* keep arrows above ghosts */
     }
-    .na-phone-arrow img{
-      width:100%;
-      height:100%;
-      display:block;
+    .na-phone-arrow img {
+      display: block;
+      width: 42px;
+      height: auto;
     }
-    .na-phone-arrow--right img{
-      transform:scaleX(-1); /* mirror for right arrow */
+    /* Force right arrow to be mirrored (→) */
+    .na-phone-arrow--right img {
+      transform: scaleX(-1) !important;
     }
-    .na-phone-arrow:hover{
-      transform:translateY(-1px) scale(1.03);
-      opacity:1;
+
+    /* Tablet tweak */
+    @media (max-width: 991.98px) {
+      .na-phone-stage {
+        width: 380px;
+        height: 400px;
+      }
+      .na-phone-frame {
+        height: 400px;
+      }
+      .na-phone-ghost {
+        height: 310px;
+      }
+      .na-phone-ghost--prev { left: -90px; }
+      .na-phone-ghost--next { right: -90px; }
+    }
+
+    /* Small mobile – keep only main phone to avoid clutter */
+    @media (max-width: 575.98px) {
+      .na-phone-slider {
+        gap: 18px;
+      }
+      .na-phone-stage {
+        width: 300px;
+        height: 360px;
+      }
+      .na-phone-frame {
+        height: 360px;
+      }
+      .na-phone-ghost {
+        display: none;
+      }
     }
 
     /* right text card */
@@ -1886,15 +1899,28 @@
       padding:70px 0 60px;
       background:#111214;
       overflow:hidden;
+      text-align:center;
+    }
+
+    /* Global base footer (from layout) - match dark bg and white text */
+    .footer.text-center{
+      background:#111214;
+      color:#fff;
+      margin:0;
+      padding:16px 0;
+    }
+    .footer.text-center p{
+      margin:0;
+      color:#fff;
     }
 
     /* fog behind everything */
     .na-footer-fog{
       position:absolute;
       left:50%;
-      bottom:-120px;
+      bottom:-90px;
       transform:translateX(-50%);
-      width:140%;
+      width:190%;
       max-width:1700px;
       height:400px;
       background:url('{{ asset('images/footer-fog.webp') }}') center bottom / cover no-repeat;
@@ -2382,6 +2408,30 @@
         transform: translateX(-50%);
       }
     }
+
+    /* MOBILE — shrink ONLY the inner card, NOT the phone */
+    @media (max-width: 575.98px) {
+      /* keep phone same size — DO NOT TOUCH */
+      body#homepage .na-phone-frame {
+        height: 360px; /* your usual mobile height */
+      }
+      body#homepage .na-phone-frame__img {
+        height: 110%; /* your original */
+        transform: none; /* NO scaling */
+      }
+
+      /* shrink ONLY the inner card */
+      body#homepage .na-phone-preview-main {
+        transform: scale(0.85);           /* <-- MAKE CARD SMALLER */
+        transform-origin: center top;
+
+        /* shift card inward so it fits inside bezel nicely */
+        top: 9%;                          /* push downward */
+        bottom: 20%;                       /* increase gap at bottom */
+        left: 1%;                         /* push right */
+        right: 30%;                        /* push left */
+      }
+    }
   </style>
 {% endblock %}
 
@@ -2389,7 +2439,7 @@
   {{ parent() }}
   <script>
     (function () {
-      // Phone slider functionality with preloaded images for instant switching
+      // All slide images
       const slides = [
         "{{ asset('images/1.webp') }}",
         "{{ asset('images/2.webp') }}",
@@ -2398,55 +2448,41 @@
         "{{ asset('images/5.webp') }}",
       ];
 
-      // Preload all slider images for instant switching (mobile-optimized)
-      const isMobile = window.innerWidth <= 768;
-      const prefersDataSaver = navigator.connection && navigator.connection.saveData;
-      
-      if (!prefersDataSaver) {
-        slides.forEach((src, index) => {
-          // Preload first image immediately, others after a short delay
-          if (index === 0 || !isMobile) {
-            const img = new Image();
-            img.src = src;
-          } else if (index < 3) {
-            // Preload next 2 images after 500ms on mobile
-            setTimeout(() => {
-              const img = new Image();
-              img.src = src;
-            }, 500);
-          }
-        });
-      }
-
       let current = 0;
-      const preview = document.querySelector('[data-phone-preview]');
+
+      const mainImg = document.querySelector('[data-phone-preview="main"]');
+      const prevImg = document.querySelector('[data-phone-preview="prev"]');
+      const nextImg = document.querySelector('[data-phone-preview="next"]');
+
       const prevBtn = document.querySelector('[data-phone-prev]');
       const nextBtn = document.querySelector('[data-phone-next]');
 
-      if (!preview || !prevBtn || !nextBtn) return;
+      if (!mainImg || !prevImg || !nextImg || !prevBtn || !nextBtn) return;
 
-      function updateSlide() {
-        // Use cached image if available, otherwise load
-        const img = new Image();
-        img.onload = function() {
-          preview.src = slides[current];
-          preview.classList.add('na-slide-loaded');
-        };
-        img.src = slides[current];
+      function updateSlides() {
+        const total = slides.length;
+
+        const idxCur  = current;
+        const idxPrev = (current - 1 + total) % total;
+        const idxNext = (current + 1) % total;
+
+        mainImg.src = slides[idxCur];
+        prevImg.src = slides[idxPrev];
+        nextImg.src = slides[idxNext];
       }
 
       prevBtn.addEventListener('click', function () {
         current = (current - 1 + slides.length) % slides.length;
-        updateSlide();
+        updateSlides();
       });
 
       nextBtn.addEventListener('click', function () {
         current = (current + 1) % slides.length;
-        updateSlide();
+        updateSlides();
       });
-      
-      // Initial load
-      updateSlide();
+
+      // Initial state
+      updateSlides();
     })();
 
     // Language switcher
