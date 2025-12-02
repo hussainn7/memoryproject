@@ -151,20 +151,314 @@
   </div>
 </div>
 
-  {# ---------- NEW SECTION: OPTION TWO ---------- #}
-  <section class="na-section-option">
-    <div class="container-fluid px-0">
-      <div class="na-option-visual">
-        <img
-          src="{{ asset('images/option-two.webp') }}"
-          alt="Пример страницы памяти Небесного Архива"
-          class="na-option-visual__img"
-          loading="lazy"
-          decoding="async"
-        >
-      </div>
+<section class="na-section-how">
+  <style>
+    @font-face {
+      font-family: "FranklinGothicCond";
+      src: url("{{ asset('fonts/ofont.ru_Franklin Gothic Medium Cond.ttf') }}") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+
+    .how-page {
+      position: relative;
+      width: 100%;
+      min-height: 780px;
+      background:
+        /* Two-point radial gradient at top */
+        radial-gradient(ellipse 700px 500px at 25% 20%, rgba(81,106,139,0.5) 0%, rgba(49,70,100,0.3) 40%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 70% 30%, rgba(81,106,139,0.4) 0%, rgba(49,70,100,0.25) 40%, transparent 70%),
+        /* Transition gradient from bluish to dark */
+        linear-gradient(to bottom, 
+          #0f1419 0%, 
+          #0a0d12 40%, 
+          #0d0f12 70%, 
+          #111214 100%);
+      overflow-x: visible; /* Allow hand to extend beyond right border */
+      overflow-y: visible; /* Allow fog to display at bottom */
+      color: #fff;
+      padding: 100px 0 200px;
+    }
+
+    .how-inner {
+      position: relative;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      text-align: center;
+      z-index: 3; /* контент выше тумана, ниже руки */
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: visible; /* Allow hand to extend beyond borders */
+    }
+
+    .how-title-text {
+      margin: 0 auto 60px;
+      max-width: 900px;
+      font-family: "FranklinGothicCond", "Times New Roman", serif;
+      font-size: 42px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+    }
+    .how-title-text span {
+      display: block;
+    }
+
+    /* Туман — на разделителе между секциями 2 и 3 */
+    .how-fog-back,
+    .how-fog-front {
+      position: absolute;
+      left: 0;
+      transform: none;
+      width: 110%;
+      max-width: none;
+      pointer-events: none;
+      z-index: 1; /* за контентом, но выше фона */
+      object-fit: cover;
+      object-position: left bottom;
+    }
+    .how-fog-back {
+      bottom: -60px;
+      opacity: 0.6;
+    }
+    .how-fog-front {
+      bottom: -40px;
+      opacity: 0.9;
+    }
+
+    .how-page::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 220px;
+      background: linear-gradient(to bottom, rgba(3,6,18,0) 0%, rgba(17,18,20,0.4) 60%, #111214 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .how-center {
+      position: absolute;
+      top: 175px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0; /* Below fog so it peeks from behind */
+    }
+    .how-tombstone {
+      max-height: 800px;
+    }
+
+    .how-steps {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 42px;
+      margin-top: 210px;
+      z-index: 6;
+      overflow: visible; /* Allow hand to extend beyond */
+    }
+
+    .how-step {
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .how-step-phone {
+      display: inline-block;
+      max-height: 260px;
+    }
+
+    .how-step--3 .how-step-phone {
+      max-height: 320px;
+    }
+
+    .how-step-badge {
+      display: block;
+      margin: 18px auto 10px;
+      max-width: 54px;
+    }
+
+    .how-step-caption {
+      max-width: 220px;
+      margin: 0 auto;
+      font-size: 14px;
+      line-height: 1.4;
+      color: rgba(255,255,255,.92);
+      font-family: "FranklinGothicCond", system-ui, sans-serif;
+    }
+
+    .how-step--2 .how-step-flash {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 160px;
+      z-index: -1;
+    }
+
+    .how-step--5 {
+      margin-left: 10px;
+      text-align: left;
+      max-width: 260px;
+      z-index: 6; /* above the hand image */
+      position: relative;
+    }
+    .how-step--5 .how-step-badge {
+      margin-top: 28px;
+    }
+    .how-step--5 .how-step-caption {
+      margin-top: 15px;
+    }
+
+    .how-bottom-text {
+      margin-top: 60px;
+      font-family: "FranklinGothicCond", "Times New Roman", serif;
+      font-size: 26px;
+      line-height: 1.3;
+      letter-spacing: .03em;
+      z-index: 3;
+      position: relative;
+    }
+
+    /* Рука — поверх всего (и над «5»), выходит за правую границу */
+    .how-hand-wrap {
+      position: absolute;
+      right: -280px;
+      bottom: -360px;
+      z-index: 5; /* выше inner и всего текста/иконок */
+      pointer-events: none;
+    }
+
+    .how-hand {
+      display: block;
+      max-height: 780px;
+      width: auto;
+      height: auto;
+    }
+
+    @media (max-width: 1200px) {
+      .how-inner {
+        padding-inline: 20px;
+      }
+      .how-center {
+        top: 225px;
+        transform: translateX(-50%) scale(.92);
+      }
+      .how-hand-wrap {
+        right: -220px;
+        bottom: -342px;
+        transform: scale(.95);
+      }
+    }
+
+    @media (max-width: 992px) {
+      .how-steps {
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .how-page {
+        padding-bottom: 110px;
+      }
+      .how-title-text {
+        font-size: 30px;
+      }
+      .how-center {
+        top: 250px;
+        transform: translate(-50%, 0) scale(.8);
+      }
+      .how-steps {
+        margin-top: 270px;
+        flex-wrap: wrap;
+      }
+      .how-hand-wrap {
+        position: absolute;
+        right: -120px;
+        bottom: -324px;
+        transform: scale(.9);
+      }
+      .how-bottom-text {
+        margin-top: 40px;
+      }
+    }
+  </style>
+
+  <div class="how-page">
+    {# туман — за всем #}
+    <img class="how-fog-back"  src="{{ asset('images/туман.webp') }}" alt="туман">
+    <img class="how-fog-front" src="{{ asset('images/туман.webp') }}" alt="туман">
+
+    {# Tombstone - outside how-inner so it can be below fog #}
+    <div class="how-center">
+      <img class="how-tombstone" src="{{ asset('images/надгробие.webp') }}" alt="надгробие">
     </div>
-  </section>
+
+    <div class="how-inner">
+      <h2 class="how-title-text">
+        <span>ПРОСТО СКАЧАТЬ</span>
+        <span>И ПРОСТО ИСПОЛЬЗОВАТЬ</span>
+      </h2>
+
+      <div class="how-steps">
+        <div class="how-step how-step--1">
+          <img class="how-step-phone" src="{{ asset('images/1_section.webp') }}" alt="Шаг 1">
+          <img class="how-step-badge" src="{{ asset('images/1 плашка.webp') }}" alt="1">
+          <p class="how-step-caption">
+            Генерируйте код на нашем сайте
+          </p>
+        </div>
+
+        <div class="how-step how-step--2">
+          <img class="how-step-flash" src="{{ asset('images/2 вспышки.png') }}" alt="">
+          <img class="how-step-phone" src="{{ asset('images/2_section.webp') }}" alt="Шаг 2">
+          <img class="how-step-badge" src="{{ asset('images/2 плашка.webp') }}" alt="2">
+          <p class="how-step-caption">
+            Скачивайте и гравируйте код на памятнике
+          </p>
+        </div>
+
+        <div class="how-step how-step--3">
+          <img class="how-step-phone" src="{{ asset('images/3_section.webp') }}" alt="Шаг 3">
+          <img class="how-step-badge" src="{{ asset('images/3 плашка.webp') }}" alt="3">
+          <p class="how-step-caption">
+            Клиент сканирует QR-код
+          </p>
+        </div>
+
+        <div class="how-step how-step--4">
+          <img class="how-step-phone" src="{{ asset('images/4_section.webp') }}" alt="Шаг 4">
+          <img class="how-step-badge" src="{{ asset('images/4 плашка.webp') }}" alt="4">
+          <p class="how-step-caption">
+            Клиент заполняет форму и создает страницу
+          </p>
+        </div>
+
+        <div class="how-step how-step--5">
+          <img class="how-step-badge" src="{{ asset('images/5 плашка.webp') }}" alt="5">
+          <p class="how-step-caption">
+            При наведении камеры на QR-код на памятнике
+            клиент может открывать созданную им страницу
+          </p>
+        </div>
+      </div>
+
+      {# Hand positioned to extend beyond right border, aligned with step 5 #}
+      <div class="how-hand-wrap">
+        <img class="how-hand" src="{{ asset('images/5_section.webp') }}" alt="Телефон с QR-кодом">
+      </div>
+
+      
+    </div>
+
+    
+  </div>
+</section>
+
 
   {# ---------- THIRD SECTION: BENEFITS ---------- #}
   <section class="na-section-benefits">
@@ -545,7 +839,11 @@
       min-height:100vh;
       min-height:100svh;
       background:
-        radial-gradient(1400px 900px at 90% 5%, #516a8b 0%, var(--na-blue-1) 30%, var(--na-blue-2) 100%);
+        /* Two-point radial gradient */
+        radial-gradient(ellipse 800px 600px at 30% 40%, rgba(81,106,139,0.6) 0%, rgba(49,70,100,0.4) 40%, transparent 70%),
+        radial-gradient(ellipse 700px 500px at 75% 60%, rgba(81,106,139,0.5) 0%, rgba(49,70,100,0.3) 40%, transparent 70%),
+        /* Base dark background */
+        #0f1419;
       color:#fff;
       overflow:hidden;
       padding-bottom:40px;
@@ -560,7 +858,9 @@
     }
     .na-hero::after{
       content:""; position:absolute; inset:0; pointer-events:none;
-      background:repeating-linear-gradient(0deg, rgba(255,255,255,.012), rgba(255,255,255,.012) 2px, transparent 2px, transparent 4px);
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.012), rgba(255,255,255,.012) 2px, transparent 2px, transparent 4px),
+        linear-gradient(to bottom, transparent 0%, transparent 85%, rgba(40,50,79,0.4) 95%, #28324f 100%);
       opacity:.22;
     }
 
@@ -857,6 +1157,9 @@
       justify-content:center;
       z-index:3;
       overflow:visible;
+      line-height:0;
+      border:none;
+      outline:none;
     }
 
     .na-angel__circle{
@@ -879,6 +1182,14 @@
       filter:drop-shadow(0 38px 60px rgba(0,0,0,.75));
       user-select:none;
       pointer-events:none;
+      display:block;
+      vertical-align:bottom;
+      margin:0;
+      padding:0;
+      line-height:0;
+      border:none;
+      outline:none;
+      box-shadow:none;
     }
 
     .na-angel__fog{
@@ -925,7 +1236,7 @@
       opacity:.8;
       pointer-events:none;
       user-select:none;
-      z-index:3; /* ABOVE circle, BELOW angel */
+      z-index:2; /* BELOW angel, same as circle */
 
       /* fully visible near the angel (left), softly disappears to the right */
       mask-image:linear-gradient(
@@ -1941,7 +2252,7 @@
       }
 
       function closeModal(modalId) {
-        const modal = modalId ? document.getElementById('na-modal-' + modalId) : document.querySelector('.na-modal[aria-hidden="false"]');
+        const modal = modalId ? document.getElement('na-modal-' + modalId) : document.querySelector('.na-modal[aria-hidden="false"]');
         if (modal) {
           // Remove focus from any element in modal before hiding
           const focusedElement = modal.querySelector(':focus');
